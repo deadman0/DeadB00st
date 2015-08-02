@@ -21,7 +21,7 @@ busybox mount -o remount,rw /system
 
 
 busybox clear
-busybox echo "DeadB00st v1.4(B00st Mod by deadman0)  "
+busybox echo "DeadB00st v1.5(B00st Mod by deadman0)  "
 busybox sleep 1
 busybox echo ""
 busybox echo "1. Check DeadB00st files"

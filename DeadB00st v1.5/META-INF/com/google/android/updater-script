@@ -2,7 +2,7 @@ ui_print("           DeadB00st          ");
 ui_print("              Mod        ");
 ui_print("        by deadman0@XDA ");
 ui_print("=============================================");
-ui_print("              Version 1.4          ");
+ui_print("              Version 1.5          ");
 ui_print("          Released 2 August 2015              ");
 ui_print("=============================================");
 ui_print("");
