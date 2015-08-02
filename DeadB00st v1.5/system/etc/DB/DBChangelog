@@ -44,3 +44,5 @@ busybox echo "-Added B00$t Menu(Ram cleaner(light, moderate, aggresive),Cleaner 
 busybox echo ""
 busybox echo ""
 busybox sleep 2
+busybox echo "v1.5"
+busybox sleep 2
