@@ -29,9 +29,8 @@ busybox fstrim -v /cache
 busybox sleep 1
 busybox fstrim -v /system
 busybox sleep 1
-busybox echo "DeadB00st log" >> $DBLog
-busybox echo "" | tee -a $DBLog
-busybox echo "$( date +"%m-%d-%Y %H:%M:%S" ) fstrim script is running..." | tee -a $DBLog
-
-busybox echo "Done!!!" | tee -a $DBLog
+busybox echo "DeadB00st log:" >> $DBLog
+busybox echo "-+-+-+-+-+-+-+-+-" >> $DBLog
+busybox echo "$( date +"%m-%d-%Y %H:%M:%S" ): fstrim script is running..." >> $DBLog
+busybox echo " $( date +"%m-%d-%Y %H:%M:%S" ): Done!!!" >> $DBLog
 busybox sleep 1
