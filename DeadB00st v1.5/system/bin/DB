@@ -106,7 +106,7 @@ busybox clear ;;
 
 5) busybox clear;
 busybox echo ""
-busybox echo "DeadB00st uninstaller,please wait..."
+busybox echo "DeadB00st uninstaller, please wait..."
 busybox sleep 3
 busybox echo ""
 busybox echo "Mounting /system partition..."
@@ -135,6 +135,7 @@ busybox rm -f /system/bin/d0cleaner
 busybox rm -f /system/bin/lightram
 busybox rm -f /system/bin/modram
 busybox rm -f /system/etc/init.d/dstrim
+busybox rm -f /system/etc/init.d/d0cleaner
 busybox rm -rf /system/etc/DB
 
 busybox echo "DeadB00st has been completely removed..."
