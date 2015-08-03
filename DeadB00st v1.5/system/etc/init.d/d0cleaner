@@ -77,6 +77,24 @@ busybox rm -f /data/system/usagestats/*.txt 2>/dev/null
 busybox rm -rf /sd*/LOST.DIR 2>/dev/null 
 busybox rm -f /sdcard/.aptoide/apks/* 2>/dev/null
 busybox rm -f /sdcard/.aptoide/icons/* 2>/dev/null
+
+IB="com.android.browser com.fevdev.nakedbrowser com.android.chrome com.opera.browser com.opera.mini.android com.tencent.ibibo.mtt com.mx.browser com.mx.browser.tablet mobi.mgeek.TunnyBrowser com.dolphin.browser com.boatbrowser.free com.boatgo.browser com.baidu.browser.inter com.adrenalinebrowser.browser com.chrome.beta gpc.myweb.hinet.net.PopupWeb com.uc.browser.hd com.ninesky.browser com.jiubang.browser flipboard.app"
+
+for BIA in $IB; do
+
+C=/data/data/$BIA/cache
+
+if [ -d $C ]; then
+busybox echo "" >> $DBLog
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S" ) Browser cache was found, deleting it now..."  >> $DBLog
+busybox umount $C 2>&-
+busybox rm -rf $C/* 2>&-
+busybox mount -t tmpfs -o size=25m ${BIA}_cache $C
+fi
+
+done
+
+
 busybox echo "" >> $DBLog
 busybox sleep 2
 busybox echo "" >> $DBLog
