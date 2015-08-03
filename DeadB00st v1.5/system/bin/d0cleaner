@@ -15,9 +15,13 @@
 mount -o remount,rw /
 mount -o remount,rw rootfs
 mount -o remount,rw /system
+mount -o remount,rw /data
+mount -o remount,rw /cache
 busybox mount -o remount,rw /
 busybox mount -o remount,rw rootfs
 busybox mount -o remount,rw /system
+busybox mount -o remount,rw /data
+busybox mount -o remount,rw /cache
 
 busybox clear
 busybox echo "Cleaning..."
@@ -28,41 +32,48 @@ busybox echo "."
 busybox sleep 1
 
 
-busybox rm -f /data/local/*.apk 2>/dev/null
-busybox rm -f /data/local/tmp/*.apk 2>/dev/null
-busybox rm -f /data/*.log 2>/dev/null 
-busybox rm -f /data/log/*.log 2>/dev/null
 busybox rm -f /cache/*.apk 2>/dev/null
-busybox rm -f /cache/*.tmp 2>/dev/null 
-busybox rm -f /cache/recovery/* 2>/dev/null 
-busybox rm -f /data/system/dropbox/*.txt 2>/dev/null 
-busybox rm -f /data/system/usagestats/* 2>/dev/null 
-busybox rm -f /data/backup/pending/*.tmp 2>/dev/null 
-busybox rm -f /data/tombstones/* 2>/dev/null 
-busybox rm -f /sdcard/LOST.DIR/* 2>/dev/null
+busybox rm -f /cache/*.tmp 2>/dev/null
+busybox rm -f /cache/*.log 2>/dev/null
+busybox rm -f /cache/*.txt 2>/dev/null
+busybox rm -f /cache/recovery/* 2>/dev/null
+busybox rm -f /data/*.log 2>/dev/null
+busybox rm -f /data/*.txt 2>/dev/null
+busybox rm -f /data/anr/*.log 2>/dev/null
+busybox rm -f /data/anr/*.txt 2>/dev/null
+busybox rm -f /data/backup/pending/*.tmp 2>/dev/null
+busybox rm -f /data/cache/*.* 2>/dev/null
+busybox rm -f /data/dalvik-cache/*.apk 2>/dev/null
+busybox rm -f /data/dalvik-cache/*.tmp 2>/dev/null
+busybox rm -f /data/dalvik-cache/*.log 2>/dev/null
+busybox rm -f /data/dalvik-cache/*.txt 2>/dev/null
+busybox rm -f /data/data/*.log 2>/dev/null
+busybox rm -f /data/data/*.txt 2>/dev/null
+busybox rm -f /data/log/*.log 2>/dev/null
+busybox rm -f /data/log/*.txt 2>/dev/null
+busybox rm -f /data/local/*.apk 2>/dev/null
+busybox rm -f /data/local/*.log 2>/dev/null
+busybox rm -f /data/local/*.txt 2>/dev/null
+busybox rm -f /data/local/tmp/*.log 2>/dev/null
+busybox rm -f /data/local/tmp/*.txt 2>/dev/null
+busybox rm -f /data/last_alog/*.log 2>/dev/null
+busybox rm -f /data/last_alog/*.txt 2>/dev/null
+busybox rm -f /data/last_kmsg/*.log 2>/dev/null
+busybox rm -f /data/last_kmsg/*.txt 2>/dev/null
+busybox rm -f /data/mlog/* 2>/dev/null
+busybox rm -f /data/tombstones/*.log 2>/dev/null
+busybox rm -f /data/tombstones/*.txt 2>/dev/null
+busybox rm -f /data/system/*.log 2>/dev/null
+busybox rm -f /data/system/*.txt 2>/dev/null
+busybox rm -f /data/system/dropbox/*.log 2>/dev/null
+busybox rm -f /data/system/dropbox/*.txt 2>/dev/null
+busybox rm -f /data/system/usagestats/*.log 2>/dev/null
+busybox rm -f /data/system/usagestats/*.txt 2>/dev/null
+busybox rm -rf /sd*/LOST.DIR 2>/dev/null 
 busybox rm -f /sdcard/.aptoide/apks/* 2>/dev/null
 busybox rm -f /sdcard/.aptoide/icons/* 2>/dev/null
 busybox echo ""
 busybox sleep 2
 busybox echo ""
 busybox echo "Cleaned"
-busybox sleep 2
-busybox echo "You should reboot... Reboot now?? "
-busybox echo -e "1 = Yes | 2 = No"
-read entry
-if [ $entry -eq 1] then
-busybox echo "Your Device Will Reboot..."
-busybox sleep 1
-busybox echo "3"
-busybox sleep 1
-busybox echo "2"
-busybox sleep 1
-busybox echo "1"
-busybox sleep 1
-busybox echo "Rebooting..."
-busybox sleep 1
-busybox reboot
-else
-exit
-fi
 
