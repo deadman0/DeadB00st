@@ -84,6 +84,7 @@ set_perm(0, 0, 0777, "/system/bin/d0cleaner");
 set_perm(0, 0, 0777, "/system/bin/modram");
 set_perm(0, 0, 0777, "/system/bin/lightram");
 set_perm(0, 0, 0644, "/system/etc/DB/DBChangelog");
+set_perm_recursive(0, 0, 0755, 0755, "/system/etc/DB");
 run_program("/sbin/sleep", "1");
 run_program("/sbin/sleep", "1");
 ui_print("");
