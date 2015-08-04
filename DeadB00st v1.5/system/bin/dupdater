@@ -13,11 +13,11 @@
 #=======================================================================#
 
 Version="1.4"
-
+Url=wget -qO- https://raw.githubusercontent.com/deadman0/DeadB00st/DeadB00st/UpdateUrl
 if [ $(wget -O https://raw.githubusercontent.com/deadman0/DeadB00st/DeadB00st/UpdateVersion | grp -c $Version) -eq 0] then
 busybox echo "You have the latest update"
 else
-wget https://goo.gl/tnOv8m -p /sdcard
+wget $Url -p /sdcard
 
 busybox sleep 2
 busybox echo "Update Downloaded"
