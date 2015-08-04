@@ -13,8 +13,8 @@
 #=======================================================================#
 
 Version="1.4"
-Url=wget -qO- https://raw.githubusercontent.com/deadman0/DeadB00st/DeadB00st/UpdateUrl
-if [ $(wget -O https://raw.githubusercontent.com/deadman0/DeadB00st/DeadB00st/UpdateVersion | grp -c $Version) -eq 0] then
+Url=wget -q https://raw.githubusercontent.com/deadman0/DeadB00st/DeadB00st/UpdateUrl
+if [ $(wget -O https://raw.githubusercontent.com/deadman0/DeadB00st/DeadB00st/UpdateVersion | grp -c $Version) -eq 0]; then
 busybox echo "You have the latest update"
 else
 wget $Url -p /sdcard
@@ -36,3 +36,5 @@ busybox sleep 1
 busybox echo "Installing..."
 busybox sleep 3
 reboot recovery
+exit
+fi
