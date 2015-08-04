@@ -1,0 +1,3 @@
+busybox echo "--update_package=/emmc
+/DBUpdate.zip" > /cache/recovery/command
+reboot recovery
