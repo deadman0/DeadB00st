@@ -17,12 +17,18 @@ busybox clear
 
 busybox echo "Cleaning Ram.."
 busybox sleep 1
+busybox echo ""
+free | awk '/Mem/{print "Memory Before Boosting: "$4/1024" MB";}'
+busybox sleep 2
 busybox sync
 busybox echo "3" >> /proc/sys/vm/drop_caches
 busybox sleep 3
 busybox echo "2" >> /proc/sys/vm/drop_caches
-
-
+su -c "am kill-all"
+busybox sleep 2
+busybox echo ""
+free | awk '/Mem/{print "Memory After Boosting: "$4/1024" MB";}'
+busybox sleep 2
 busybox echo "RAM cleaned"
 
 exit

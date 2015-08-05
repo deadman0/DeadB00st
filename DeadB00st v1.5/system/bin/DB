@@ -146,7 +146,7 @@ busybox echo ""
 busybox echo "Please reboot your device!"
 busybox sleep 2
 busybox rm -f /system/bin/DB
-busybox clear ;
+busybox clear ;;
 
 6) busybox clear;
 busybox echo ""
