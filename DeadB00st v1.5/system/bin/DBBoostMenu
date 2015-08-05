@@ -26,9 +26,6 @@ busybox mount -o remount,rw /system
 busybox clear
 
 
-busybox echo ""
-busybox echo ""
-busybox echo ""
 busybox echo "Choose an option to start B00sting!!!"
 busybox sleep 3
 busybox echo ""

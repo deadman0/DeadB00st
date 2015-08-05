@@ -25,10 +25,6 @@ busybox mount -o remount,rw /system
 
 busybox clear
 
-
-busybox echo ""
-busybox echo ""
-busybox echo ""
 busybox echo "Choose an option to fstrim the specific directory"
 busybox sleep 3
 busybox echo ""

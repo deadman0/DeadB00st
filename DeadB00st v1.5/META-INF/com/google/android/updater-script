@@ -25,8 +25,6 @@ run_program("/tmp/busybox","mount","-o","rw,remount","/system");
 run_program("/sbin/busybox","mount","-o","rw,remount","/system");
 ui_print("");
 run_program("/sbin/sleep", "1");
-ui_print("");
-ui_print("");
 ui_print("Deleting older files...");
 run_program("/sbin/sleep", "1");
 ui_print("");
@@ -53,15 +51,12 @@ run_program("/tmp/busybox","mv","-f","/system/xbin/qrngd.bak","/system/xbin/qrng
 run_program("/tmp/busybox","chmod","-f","777","/system/xbin/qrngd");
 ui_print("");
 run_program("/sbin/sleep", "1");
-ui_print("");
-run_program("/sbin/sleep", "1");
 ui_print("Deleting busybox...");
 run_program("/tmp/busybox.sh");
 run_program("/sbin/sleep", "1");
 ui_print("");
 ui_print("Deleting Complete!!");
 run_program("/sbin/sleep", "1");
-ui_print("");
 ui_print("");
 ui_print("Installing...");
 run_program("/sbin/sleep", "1");
@@ -85,7 +80,9 @@ set_perm(0, 0, 0777, "/system/bin/modram");
 set_perm(0, 0, 0777, "/system/bin/lightram");
 set_perm(0, 0, 0644, "/system/etc/DB/DBChangelog");
 set_perm_recursive(0, 0, 0755, 0755, "/system/etc/DB");
+ui_print("")
 run_program("/sbin/sleep", "1");
+ui_print("Done !!!")
 run_program("/sbin/sleep", "1");
 ui_print("");
 ui_print("Installing busybox..");
