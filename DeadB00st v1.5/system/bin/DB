@@ -34,9 +34,7 @@ busybox echo "4. Changelog"
 busybox echo ""
 busybox echo "5. Uninstall DeadB00st..."
 busybox echo ""
-busybox echo "6. Check for updates..."
-busybox echo ""
-busybox echo "7. Open Xda thread"
+busybox echo "6. Open Xda thread"
 busybox echo ""
 busybox echo -n "Now choose:   "            
 read entry
@@ -136,7 +134,6 @@ busybox rm -f /system/bin/dram
 busybox rm -f /system/bin/d0cleaner
 busybox rm -f /system/bin/lightram
 busybox rm -f /system/bin/modram
-busybox rm -f /system/bin/dupdater
 busybox rm -f /system/etc/init.d/dstrim
 busybox rm -f /system/etc/init.d/d0cleaner
 busybox rm -rf /system/etc/DB
@@ -149,16 +146,9 @@ busybox echo ""
 busybox echo "Please reboot your device!"
 busybox sleep 2
 busybox rm -f /system/bin/DB
-busybox clear ;;
+busybox clear ;
 
 6) busybox clear;
-busybox echo ""
-busybox echo "Checking for updates.."
-busybox sleep 2
-sh system/bin/dupdater
-busybox clear ;;
-
-7) busybox clear;
 busybox echo ""
 busybox sleep 1
 busybox echo "Please wait few secs"
@@ -179,7 +169,7 @@ busybox clear ;;
 
 
 *) busybox clear;
-busybox echo "#Exit,Invalid eoption"
+busybox echo "Exit,Invalid option"
 busybox sleep 1
 esac
 busybox echo ""
