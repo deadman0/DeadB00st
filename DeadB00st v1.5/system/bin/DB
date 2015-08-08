@@ -30,11 +30,13 @@ busybox echo "2. Trim Menu..."
 busybox echo ""
 busybox echo "3. B00st Menu..."
 busybox echo ""
-busybox echo "4. Changelog"
+busybox echo "4. DeadSwitches..."
 busybox echo ""
-busybox echo "5. Uninstall DeadB00st..."
+busybox echo "5. Changelog"
 busybox echo ""
-busybox echo "6. Open Xda thread"
+busybox echo "6. Uninstall DeadB00st..."
+busybox echo ""
+busybox echo "7. Open Xda thread"
 busybox echo ""
 busybox echo -n "Now choose:   "            
 read entry
@@ -77,6 +79,14 @@ busybox clear ;;
 
 4) busybox clear;
 busybox echo ""
+busybox echo "Opening DeadSwitches.."
+busybox sleep 2
+sh system/bin/DBSwitches
+busybox clear ;;
+
+
+5) busybox clear;
+busybox echo ""
 busybox echo "Opening CHANGELOG"
 busybox sleep 2
 sh system/etc/DB/DBChangelog
@@ -104,7 +114,7 @@ else
 fi
 busybox clear ;;
 
-5) busybox clear;
+6) busybox clear;
 busybox echo ""
 busybox echo "DeadB00st uninstaller, please wait..."
 busybox sleep 3
@@ -126,6 +136,9 @@ busybox sleep 5
 busybox echo "Removing Main Files..."
 busybox sleep 5
 
+
+busybox rm -f /system/bin/DBBoostMenu
+busybox rm -f /system/bin/DBSwitces
 busybox rm -f /system/bin/DBTrimMenu
 busybox rm -f /system/bin/DBCheck
 busybox rm -f /system/bin/dstrim
@@ -135,8 +148,12 @@ busybox rm -f /system/bin/d0cleaner
 busybox rm -f /system/bin/lightram
 busybox rm -f /system/bin/modram
 busybox rm -f /system/etc/init.d/dstrim
+busybox rm -f /system/etc/init.d/dmedia
+busybox rm -f /system/etc/init.d/dgapps
 busybox rm -f /system/etc/init.d/d0cleaner
+busybox rm -f /system/etc/init.d/01dinitlogcleaner
 busybox rm -rf /system/etc/DB
+
 
 busybox echo "DeadB00st has been completely removed..."
 busybox sleep 3
@@ -148,7 +165,7 @@ busybox sleep 2
 busybox rm -f /system/bin/DB
 busybox clear ;;
 
-6) busybox clear;
+7) busybox clear;
 busybox echo ""
 busybox sleep 1
 busybox echo "Please wait few secs"

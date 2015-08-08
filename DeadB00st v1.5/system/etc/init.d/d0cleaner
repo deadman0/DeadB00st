@@ -30,6 +30,9 @@ DBLog=/system/etc/DB/Log/DBLogC.log
 busybox rm -f $DBLog
 busybox touch $DBLog
 
+
+busybox echo "DeadB00st log:" >> $DBLog
+busybox echo "-+-+-+-+-+-+-+-+-" >> $DBLog
 busybox echo "$( date +"%m-%d-%Y %H:%M:%S" ): Cleaning..." >> $DBLog
 busybox sleep 1
 busybox echo "." >> $DBLog
@@ -85,8 +88,7 @@ for BIA in $IB; do
 C=/data/data/$BIA/cache
 
 if [ -d $C ]; then
-busybox echo "" >> $DBLog
-busybox echo "$(date +"%m-%d-%Y %H:%M:%S" ) Browser cache was found, deleting it now..."  >> $DBLog
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S" ): Browser cache was found, deleting it now..."  >> $DBLog
 busybox umount $C 2>&-
 busybox rm -rf $C/* 2>&-
 busybox mount -t tmpfs -o size=25m ${BIA}_cache $C
@@ -95,9 +97,7 @@ fi
 done
 
 
-busybox echo "" >> $DBLog
 busybox sleep 2
-busybox echo "" >> $DBLog
 busybox echo "$( date +"%m-%d-%Y %H:%M:%S" ): Cleaned" >> $DBLog
 busybox sleep 1
 exit

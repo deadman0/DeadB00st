@@ -12,25 +12,11 @@
 #  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #=======================================================================#
 
+mount -o remount,rw /system 2>/dev/null
+/tmp/busybox mount -o remount,rw /system 2>/dev/null
 
-mount -o remount,rw /
-mount -o remount,rw rootfs
-mount -o remount,rw /system
-busybox mount -o remount,rw /
-busybox mount -o remount,rw rootfs
-busybox mount -o remount,rw /system
-DBLog=/system/etc/DB/Log/DBLog.log
-busybox rm -f $DBLog
-busybox touch $DBLog
-busybox sleep 2
-busybox sleep 2
-busybox fstrim -v /data
-busybox fstrim -v /cache
-busybox sleep 1
-busybox fstrim -v /system
-busybox sleep 1
-busybox echo "DeadB00st log:" >> $DBLog
-busybox echo "-+-+-+-+-+-+-+-+-" >> $DBLog
-busybox echo "$( date +"%m-%d-%Y %H:%M:%S" ): fstrim script is running..." >> $DBLog
-busybox echo "$( date +"%m-%d-%Y %H:%M:%S" ): Done!!!" >> $DBLog
-busybox sleep 1
+/tmp/busybox mkdir /system/etc/backup/
+/tmp/busybox chmod 755 /system/etc/backup/
+
+/tmp/busybox cp /system/etc/DB/SwitchesConfig.conf /tmp/SwitchesConfig.conf
+/tmp/busybox chmod 755 /tmp/SwitchesConfig.conf

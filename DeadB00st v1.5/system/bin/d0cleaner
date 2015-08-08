@@ -82,7 +82,7 @@ C=/data/data/$BIA/cache
 
 if [ -d $C ]; then
 busybox echo "" 
-busybox echo "$(date +"%m-%d-%Y %H:%M:%S" ): Browser cache was found, deleting it now..." 
+busybox echo "Browser cache was found, deleting it now..." 
 busybox umount $C 2>&-
 busybox rm -rf $C/* 2>&-
 busybox mount -t tmpfs -o size=25m ${BIA}_cache $C
