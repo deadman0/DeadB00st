@@ -1,0 +1,105 @@
+#!/system/bin/sh
+# DeadB00st 
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your eoption) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+mount -o remount,rw /data
+mount -o remount,rw /cache
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+busybox mount -o remount,rw /data
+busybox mount -o remount,rw /cache
+
+DBLog=/system/etc/DB/Log/DBLogC.log
+
+busybox rm -f $DBLog
+busybox touch $DBLog
+
+
+busybox echo "DeadB00st log:" >> $DBLog
+busybox echo "-+-+-+-+-+-+-+-+-" >> $DBLog
+busybox echo "$( date +"%m-%d-%Y %H:%M:%S" ): Cleaning..." >> $DBLog
+busybox sleep 1
+busybox echo "." >> $DBLog
+busybox sleep 1
+busybox echo "." >> $DBLog
+busybox sleep 1
+
+busybox rm -f /cache/*.apk 2>/dev/null
+busybox rm -f /cache/*.tmp 2>/dev/null
+busybox rm -f /cache/*.log 2>/dev/null
+busybox rm -f /cache/*.txt 2>/dev/null
+busybox rm -f /cache/recovery/* 2>/dev/null
+busybox rm -f /data/*.log 2>/dev/null
+busybox rm -f /data/*.txt 2>/dev/null
+busybox rm -f /data/anr/*.log 2>/dev/null
+busybox rm -f /data/anr/*.txt 2>/dev/null
+busybox rm -f /data/backup/pending/*.tmp 2>/dev/null
+busybox rm -f /data/cache/*.* 2>/dev/null
+busybox rm -f /data/dalvik-cache/*.apk 2>/dev/null
+busybox rm -f /data/dalvik-cache/*.tmp 2>/dev/null
+busybox rm -f /data/dalvik-cache/*.log 2>/dev/null
+busybox rm -f /data/dalvik-cache/*.txt 2>/dev/null
+busybox rm -f /data/data/*.log 2>/dev/null
+busybox rm -f /data/data/*.txt 2>/dev/null
+busybox rm -f /data/log/*.log 2>/dev/null
+busybox rm -f /data/log/*.txt 2>/dev/null
+busybox rm -f /data/local/*.apk 2>/dev/null
+busybox rm -f /data/local/*.log 2>/dev/null
+busybox rm -f /data/local/*.txt 2>/dev/null
+busybox rm -f /data/local/tmp/*.log 2>/dev/null
+busybox rm -f /data/local/tmp/*.txt 2>/dev/null
+busybox rm -f /data/last_alog/*.log 2>/dev/null
+busybox rm -f /data/last_alog/*.txt 2>/dev/null
+busybox rm -f /data/last_kmsg/*.log 2>/dev/null
+busybox rm -f /data/last_kmsg/*.txt 2>/dev/null
+busybox rm -f /data/mlog/* 2>/dev/null
+busybox rm -f /data/tombstones/*.log 2>/dev/null
+busybox rm -f /data/tombstones/*.txt 2>/dev/null
+busybox rm -f /data/system/*.log 2>/dev/null
+busybox rm -f /data/system/*.txt 2>/dev/null
+busybox rm -f /data/system/dropbox/*.log 2>/dev/null
+busybox rm -f /data/system/dropbox/*.txt 2>/dev/null
+busybox rm -f /data/system/usagestats/*.log 2>/dev/null
+busybox rm -f /data/system/usagestats/*.txt 2>/dev/null
+busybox rm -rf /sd*/LOST.DIR 2>/dev/null 
+busybox rm -f /sdcard/.aptoide/apks/* 2>/dev/null
+busybox rm -f /sdcard/.aptoide/icons/* 2>/dev/null
+
+IB="com.android.browser com.fevdev.nakedbrowser com.android.chrome com.opera.browser com.opera.mini.android com.tencent.ibibo.mtt com.mx.browser com.mx.browser.tablet mobi.mgeek.TunnyBrowser com.dolphin.browser com.boatbrowser.free com.boatgo.browser com.baidu.browser.inter com.adrenalinebrowser.browser com.chrome.beta gpc.myweb.hinet.net.PopupWeb com.uc.browser.hd com.ninesky.browser com.jiubang.browser flipboard.app"
+
+for BIA in $IB; do
+
+C=/data/data/$BIA/cache
+
+if [ -d $C ]; then
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S" ): Browser cache was found, deleting it now..."  >> $DBLog
+busybox umount $C 2>&-
+busybox rm -rf $C/* 2>&-
+busybox mount -t tmpfs -o size=25m ${BIA}_cache $C
+fi
+
+done
+
+
+busybox sleep 2
+busybox echo "$( date +"%m-%d-%Y %H:%M:%S" ): Cleaned" >> $DBLog
+busybox sleep 1
+exit
+fi
+

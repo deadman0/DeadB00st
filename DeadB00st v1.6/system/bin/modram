@@ -1,0 +1,38 @@
+#!/system/bin/sh
+# DeadB00st 
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your eoption) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+
+busybox clear
+
+busybox echo "Cleaning Ram.."
+busybox sleep 1
+busybox echo ""
+free | awk '/Mem/{print "Memory Before Boosting: "$4/1024" MB";}'
+busybox sleep 2
+busybox sync
+busybox echo "3" >> /proc/sys/vm/drop_caches
+busybox sleep 3
+busybox echo "2" >> /proc/sys/vm/drop_caches
+busybox killall -9 mediaserver
+busybox killall -9 android.process.media
+busybox killall -9 com.google.android.gms
+busybox killall -9 com.google.android.gsf
+su -c "am kill-all"
+busybox sleep 2
+busybox echo ""
+free | awk '/Mem/{print "Memory After Boosting: "$4/1024" MB";}'
+busybox sleep 2
+busybox echo "RAM cleaned"
+
+exit
