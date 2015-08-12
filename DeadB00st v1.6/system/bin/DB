@@ -32,11 +32,15 @@ busybox echo "3. B00st Menu..."
 busybox echo ""
 busybox echo "4. DeadSwitches..."
 busybox echo ""
-busybox echo "5. Changelog"
+busybox echo "5. Build.prop DeadTweaks..."
 busybox echo ""
-busybox echo "6. Uninstall DeadB00st..."
+busybox echo "6. Reboot Now"
 busybox echo ""
-busybox echo "7. Open Xda thread"
+busybox echo "7. Changelog"
+busybox echo ""
+busybox echo "8. Uninstall DeadB00st..."
+busybox echo ""
+busybox echo "9. Open Xda thread"
 busybox echo ""
 busybox echo -n "Now choose:   "            
 read entry
@@ -84,8 +88,30 @@ busybox sleep 2
 sh system/bin/DBSwitches
 busybox clear ;;
 
-
 5) busybox clear;
+busybox echo ""
+busybox echo "Opening Build.prop DeadTweaker.."
+busybox sleep 2
+sh system/bin/DBBuildProp
+busybox clear ;;
+
+6) busybox clear;
+busybox echo ""
+busybox echo "Rebooting in:"
+busybox sleep 1
+busybox echo "3"
+busybox sleep 1
+busybox echo "2"
+busybox sleep 1
+busybox echo "1"
+busybox sleep 1
+busybox echo "Rebooting now.."
+busybox sleep 1
+busybox reboot
+busybox clear ;;
+
+
+7) busybox clear;
 busybox echo ""
 busybox echo "Opening CHANGELOG"
 busybox sleep 2
@@ -114,7 +140,7 @@ else
 fi
 busybox clear ;;
 
-6) busybox clear;
+8) busybox clear;
 busybox echo ""
 busybox echo "DeadB00st uninstaller, please wait..."
 busybox sleep 3
@@ -141,6 +167,7 @@ busybox rm -f /system/bin/DBBoostMenu
 busybox rm -f /system/bin/DBSwitces
 busybox rm -f /system/bin/DBTrimMenu
 busybox rm -f /system/bin/DBCheck
+busybox rm -f /system/bin/DBBuildProp
 busybox rm -f /system/bin/dstrim
 busybox rm -f /system/bin/dboost
 busybox rm -f /system/bin/dram
@@ -164,7 +191,7 @@ busybox sleep 2
 busybox rm -f /system/bin/DB
 busybox clear ;;
 
-7) busybox clear;
+9) busybox clear;
 busybox echo ""
 busybox sleep 1
 busybox echo "Please wait few secs"

@@ -20,6 +20,7 @@ cat <<EOF
 bin/d0cleaner
 bin/DB
 bin/DBBoostMenu
+bin/DBBuildProp
 bin/DBTrimMenu
 bin/DBCheck
 bin/DBSwitches

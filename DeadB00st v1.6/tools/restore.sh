@@ -22,11 +22,3 @@ if [ -e /tmp/SwitchesConfig.conf ]; then
 else
 	/tmp/busybox rm -f /tmp/SwitchesConfig.conf
 fi
-
-if [ -e /tmp/cron.conf ]; then
-	/tmp/busybox rm -f /system/etc/deadb00st_cron/cron.conf
-	/tmp/busybox cp /tmp/cron.conf /system/etc/deadb00st_cron/cron.conf 
-	/tmp/busybox chmod 755 /system/etc/deadb00st_cron/cron.conf 
-else
-	/tmp/busybox rm -f /tmp/cron.conf
-fi

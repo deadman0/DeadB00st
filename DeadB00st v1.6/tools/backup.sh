@@ -17,6 +17,3 @@ mount -o remount,rw /system 2>/dev/null
 
 /tmp/busybox cp /system/etc/DB/SwitchesConfig.conf /tmp/SwitchesConfig.conf
 /tmp/busybox chmod 755 /tmp/SwitchesConfig.conf
-
-/tmp/busybox cp /system/etc/deadb00st_cron/cron.conf /tmp/cron.conf
-/tmp/busybox chmod 755 /tmp/cron.conf
