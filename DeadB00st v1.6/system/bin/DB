@@ -107,7 +107,7 @@ busybox echo "1"
 busybox sleep 1
 busybox echo "Rebooting now.."
 busybox sleep 1
-busybox reboot
+reboot
 busybox clear ;;
 
 
