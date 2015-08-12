@@ -44,12 +44,19 @@ busybox echo "-Added B00st Menu(Ram cleaner(light, moderate, aggresive),Cleaner 
 busybox echo ""
 busybox echo ""
 busybox sleep 2
-busybox echo "v1.5"
+busybox echo "V1.5"
 busybox sleep 2
 busybox echo "-Added init.d"
 busybox echo "-More useless files directories and browser cache cleaning"
 busybox echo "-Now fstrim and cleaner is in init.d"
 busybox echo "-More ram cleaning"
 busybox echo "-Backup"
+busybox echo ""
+busybox echo ""
+busybox sleep 2
+busybox echo "V1.6"
+busybox sleep 2
+busybox echo "-Added 40 build.prop tweaks"
+busybox echo "-Added OTA survive"
 busybox echo ""
 busybox echo ""
