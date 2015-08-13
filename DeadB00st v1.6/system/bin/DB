@@ -175,7 +175,7 @@ busybox rm -f /system/bin/d0cleaner
 busybox rm -f /system/bin/lightram
 busybox rm -f /system/bin/modram
 busybox rm -f /system/etc/init.d/dstrim
-busybox rm -f /system/addon.d/75deadb00st.sh
+busybox rm -f /system/addon.d/10deadb00st.sh
 busybox rm -f /system/etc/init.d/dmedia
 busybox rm -f /system/etc/init.d/dgapps
 busybox rm -f /system/etc/init.d/d0cleaner
