@@ -22,3 +22,11 @@ if [ -e /tmp/SwitchesConfig.conf ]; then
 else
 	/tmp/busybox rm -f /tmp/SwitchesConfig.conf
 fi
+
+if [ -e /tmp/Governor.conf ]; then
+	/tmp/busybox rm -f /system/etc/DB/Governor.conf
+	/tmp/busybox cp /tmp/Governor.conf /system/etc/DB/Governor.conf 
+	/tmp/busybox chmod 755 /system/etc/DB/Governor.conf 
+else
+	/tmp/busybox rm -f /tmp/SwitchesConfig.conf
+fi

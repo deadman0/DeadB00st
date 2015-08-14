@@ -17,3 +17,6 @@ mount -o remount,rw /system 2>/dev/null
 
 /tmp/busybox cp /system/etc/DB/SwitchesConfig.conf /tmp/SwitchesConfig.conf
 /tmp/busybox chmod 755 /tmp/SwitchesConfig.conf
+
+/tmp/busybox cp /system/etc/DB/Governor.conf /tmp/Governor.conf
+/tmp/busybox chmod 755 /tmp/Governor.conf

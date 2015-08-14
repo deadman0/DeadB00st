@@ -22,6 +22,7 @@ bin/DB
 bin/DBBoostMenu
 bin/DBBuildProp
 bin/DBTrimMenu
+bin/DBGovernors
 bin/DBCheck
 bin/DBSwitches
 bin/dboost
@@ -33,6 +34,7 @@ bin/modram
 
 etc/DB/DBChangelog
 etc/DB/SwitchesConfig.conf
+etc/DB/Governor.conf
 etc/DB/ADBlock/adblock
 etc/DB/ADBlock/hosts
 etc/DB/Log
@@ -40,6 +42,7 @@ etc/DB/Log
 
 etc/init.d/d0cleaner
 etc/init.d/01dinitlogcleaner
+etc/init.d/02GovernorTweaks
 etc/init.d/dgapps
 etc/init.d/dmedia
 etc/init.d/dstrim
@@ -85,7 +88,8 @@ chmod 755 /system/bin/DBBoostMenu
 chmod 755 /system/bin/DBTrimMenu
 chmod 755 /system/bin/DBBuildProp
 chmod 755 /system/bin/DBCheck
-chmod 000 /system/bin/DBSwitches
+chmod 755 /system/bin/DBSwitches
+chmod 755 /system/bin/DBGovernors
 chmod 755 /system/bin/dram
 chmod 755 /system/bin/lightram
 chmod 755 /system/bin/modram

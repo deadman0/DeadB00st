@@ -21,7 +21,7 @@ busybox mount -o remount,rw /system
 
 
 busybox clear
-busybox echo "DeadB00st v1.6(B00st Mod by deadman0)  "
+busybox echo "DeadB00st v1.7 (B00st Mod by deadman0)  "
 busybox sleep 1
 busybox echo ""
 busybox echo "1. Check DeadB00st files"
@@ -34,13 +34,15 @@ busybox echo "4. DeadSwitches..."
 busybox echo ""
 busybox echo "5. Build.prop DeadTweaks..."
 busybox echo ""
-busybox echo "6. Reboot Now"
+busybox echo "6. Cpu Governor DeadTweaks..."
 busybox echo ""
-busybox echo "7. Changelog"
+busybox echo "7. Reboot Now"
 busybox echo ""
-busybox echo "8. Uninstall DeadB00st..."
+busybox echo "8. Changelog"
 busybox echo ""
-busybox echo "9. Open Xda thread"
+busybox echo "9. Uninstall DeadB00st..."
+busybox echo ""
+busybox echo "10. Open Xda thread"
 busybox echo ""
 busybox echo -n "Now choose:   "            
 read entry
@@ -97,6 +99,13 @@ busybox clear ;;
 
 6) busybox clear;
 busybox echo ""
+busybox echo "Opening Cpu Governor DeadTweaker.."
+busybox sleep 2
+sh system/bin/DBGovernors
+busybox clear ;;
+
+7) busybox clear;
+busybox echo ""
 busybox echo "Rebooting in:"
 busybox sleep 1
 busybox echo "3"
@@ -111,7 +120,7 @@ reboot
 busybox clear ;;
 
 
-7) busybox clear;
+8) busybox clear;
 busybox echo ""
 busybox echo "Opening CHANGELOG"
 busybox sleep 2
@@ -140,7 +149,7 @@ else
 fi
 busybox clear ;;
 
-8) busybox clear;
+9) busybox clear;
 busybox echo ""
 busybox echo "DeadB00st uninstaller, please wait..."
 busybox sleep 3
@@ -162,7 +171,7 @@ busybox sleep 5
 busybox echo "Removing Main Files..."
 busybox sleep 5
 
-
+busybox rm -f /system/bin/DBGovernors
 busybox rm -f /system/bin/DBBoostMenu
 busybox rm -f /system/bin/DBSwitces
 busybox rm -f /system/bin/DBTrimMenu
@@ -175,6 +184,8 @@ busybox rm -f /system/bin/d0cleaner
 busybox rm -f /system/bin/lightram
 busybox rm -f /system/bin/modram
 busybox rm -f /system/etc/init.d/dstrim
+busybox rm -f /system/etc/init.d/02GovernorTweaks
+busybox rm -f /system/etc/init.d/01dinitlogcleaner
 busybox rm -f /system/addon.d/10deadb00st.sh
 busybox rm -f /system/etc/init.d/dmedia
 busybox rm -f /system/etc/init.d/dgapps
@@ -191,7 +202,7 @@ busybox sleep 2
 busybox rm -f /system/bin/DB
 busybox clear ;;
 
-9) busybox clear;
+10) busybox clear;
 busybox echo ""
 busybox sleep 1
 busybox echo "Please wait few secs"
