@@ -1,0 +1,62 @@
+#!/system/bin/sh
+# DeadB00st
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+busybox clear
+busybox echo "V1.0  (initial release)"
+busybox echo ""
+busybox echo ""
+busybox sleep 2
+busybox echo ""
+busybox echo "V1.1"
+busybox echo "-Thought i fixed bugs..."
+busybox echo ""
+busybox echo ""
+busybox sleep 2
+busybox echo ""
+busybox echo "V1.2"
+busybox echo "-Thought i fixed bugs again..."
+busybox echo ""
+busybox echo ""
+busybox sleep 2
+busybox echo ""
+busybox echo "V1.3"
+busybox echo "-I fixed bugs!!"
+busybox echo ""
+busybox echo ""
+busybox sleep 2
+busybox echo "V1.4"
+busybox echo "-Changed name to DeadB00st"
+busybox echo "-Added dstrim command(fstrims all without entering the menu(su needed))"
+busybox echo "-Added dram command(Cleans the Ram))"
+busybox echo "-Added dboost command(fstrims,cleans Ram, Deletes Unwanted, Unused, Useless Files))"
+busybox echo "-Added B00st Menu(Ram cleaner(light, moderate, aggresive),Cleaner (cleans files)))"
+busybox echo ""
+busybox echo ""
+busybox sleep 2
+busybox echo "V1.5"
+busybox sleep 2
+busybox echo "-Added init.d"
+busybox echo "-More useless files directories and browser cache cleaning"
+busybox echo "-Now fstrim and cleaner is in init.d"
+busybox echo "-More ram cleaning"
+busybox echo "-Backup"
+busybox echo ""
+busybox echo ""
+busybox sleep 2
+busybox echo "V1.6"
+busybox sleep 2
+busybox echo "-Added 40 build.prop tweaks"
+busybox echo "-Added OTA survive"
+busybox echo ""
+busybox echo ""

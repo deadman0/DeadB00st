@@ -1,0 +1,175 @@
+#!/system/bin/sh
+# DeadB00st
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+Config=/system/etc/DB/Governor.conf
+
+busybox clear
+
+if [ "`grep ODBATTERY=1 $Config`" ]; then
+	odb="\e[1;32mON\e[0m"
+else
+	odb="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep ODPERFORMANCE=1 $Config`" ]; then
+	odp="\e[1;32mON\e[0m"
+else
+	odp="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep LBATTERY=1 $Config`" ]; then
+	lb="\e[1;32mON\e[0m"
+else
+	lb="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep LPERFORMANCE=1 $Config`" ]; then
+	lp="\e[1;32mON\e[0m"
+else
+	lp="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep LBALANCED=1 $Config`" ]; then
+	lbal="\e[1;32mON\e[0m"
+else
+	lbal="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep S2BATTERY=1 $Config`" ]; then
+	stb="\e[1;32mON\e[0m"
+else
+	stb="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep S2PERFORMANCE=1 $Config`" ]; then
+	stp="\e[1;32mON\e[0m"
+else
+	stp="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep CBATTERY=1 $Config`" ]; then
+	cb="\e[1;32mON\e[0m"
+else
+	cb="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep CPERFORMANCE=1 $Config`" ]; then
+	cper="\e[1;32mON\e[0m"
+else
+	cper="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep IBATTERY=1 $Config`" ]; then
+	ib="\e[1;32mON\e[0m"
+else
+	ib="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep IPERFORMANCE=1 $Config`" ]; then
+	iperf="\e[1;32mON\e[0m"
+else
+	iperf="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep IDBATTERYPERFORMANCE=1 $Config`" ]; then
+	ibp="\e[1;32mON\e[0m"
+else
+	ibp="\e[1;31mOFF\e[0m"
+fi
+
+busybox echo "DeadB00st Governor tweaks"
+busybox echo ""
+busybox echo ""
+busybox echo ""
+busybox echo "+-+OnDemand+-+"
+busybox echo -e "1. Battery life        |$odb"
+busybox echo -e "2. Performance        |$odp"
+busybox echo ""
+busybox echo ""
+busybox echo "0. EXIT"
+busybox echo ""
+busybox echo -n "Please select an option [0-3]: "
+read option
+case $option in
+
+1) busybox clear;
+
+if [ "`grep ==DeAdblocker== /system/etc/hosts`" ]; then
+          busybox echo "Disabling ADBlock..."
+          busybox sleep 2
+          busybox cp /system/etc/DB/ADBlock/hosts /system/etc/hosts
+          busybox chmod 644 /system/etc/hosts;
+		busybox echo "Done!!!"
+		busybox echo ""
+		busybox echo "You should reboot your device now!!!"
+		busybox sleep 3
+		sh system/bin/DBSwitches
+else
+          busybox "Enabling ADBlock"
+          busybox sleep 2
+          busybox cp /system/etc/DB/ADBlock/adblock /system/etc/hosts
+          busybox chmod 644 /system/etc/hosts;
+		busybox echo "Done!!!"
+		busybox echo ""
+		busybox echo "You should reboot your device now!!!"
+		busybox sleep 3
+		sh system/bin/DBSwitches
+fi
+busybox clear;;
+
+2) busybox clear;
+if [ "`grep MEDIAONBOOT=1 $Config `"]; then
+busybox echo "Disabling Kill MediaServer on Boot"
+busybox sleep 1
+busybox sed -i '/MEDIAONBOOT/c\MEDIAONBOOT=0' $Config
+else
+busybox echo "Enabling Kill MediaServer on Boot"
+busybox sleep 1
+busybox sed -i '/MEDIAONBOOT/c\MEDIAONBOOT=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+3) busybox clear;
+if [ "`grep GAPPSONBOOT=1 $Config `"]; then
+busybox echo "Disabling Kill Gapps on Boot"
+busybox sleep 1
+busybox sed -i '/GAPPSONBOOT/c\GAPPSONBOOT=0' $Config
+else
+busybox echo "Enabling Kill Gapps on Boot"
+busybox sleep 1
+busybox sed -i '/GAPPSONBOOT/c\GAPPSONBOOT=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+0) busybox clear;
+DB
+busybox clear ;;
+
+*) busybox clear;
+busybox echo "Exit,Invalid Option"
+busybox sleep 1
+esac
+busybox echo ""
+exit
