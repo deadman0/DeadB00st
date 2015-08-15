@@ -42,7 +42,7 @@ etc/DB/Log
 
 etc/init.d/d0cleaner
 etc/init.d/01dinitlogcleaner
-etc/init.d/02GovernorTweaks
+etc/init.d/dGovernorTweaks
 etc/init.d/dgapps
 etc/init.d/dmedia
 etc/init.d/dstrim

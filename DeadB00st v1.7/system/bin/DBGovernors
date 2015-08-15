@@ -100,7 +100,7 @@ busybox echo ""
 busybox echo ""
 busybox echo ""
 busybox echo "+-+OnDemand+-+"
-busybox echo -e "1. Battery life                  |$odb"
+busybox echo -e "1. Battery life                    |$odb"
 busybox echo -e "2. Performance                     |$odp"
 busybox echo -e "3. Turn Off"
 busybox echo ""
@@ -121,12 +121,12 @@ busybox echo -e "12. Performance                    |$cper"
 busybox echo -e "13. Turn Off"
 busybox echo ""
 busybox echo "+-+Interactive+-+"
-busybox echo -e "14. Battery life                   |$stb"
-busybox echo -e "15. Performance                    |$stp"
+busybox echo -e "14. Battery life                   |$ib"
+busybox echo -e "15. Performance                    |$iperf"
 busybox echo -e "16. Turn Off"
 busybox echo ""
 busybox echo "+-+Intellidemand+-+"
-busybox echo -e "17. Battery life & Performance     |$stb"
+busybox echo -e "17. Battery life & Performance     |$ibp"
 busybox echo -e "18. Turn Off"
 busybox echo ""
 busybox echo ""
@@ -137,10 +137,8 @@ read option
 case $option in
 
 1) busybox clear;
-if [ "`grep ODBATTERY=1 $Config `"]; then
-busybox echo "OnDemand Battery Life tweaks already applied"
-fi
-
+if [ "`grep ODBATTERY=1 $Config `" ]; then
+busybox echo "OnDemand Battery life tweaks already applied"
 else
 busybox echo "Enabling OnDemand Battery life tweaks..."
 busybox sed -i '/ODBATTERY/c\ODBATTERY=1' $Config
@@ -148,14 +146,13 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep ODPERFORMANCE=1 $Config `"]; then
+if [ "`grep ODPERFORMANCE=1 $Config `" ]; then
 busybox echo "Performance Tweaks for OnDemand governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling OnDemand Performace Tweaks..."
 busybox sed -i '/ODPERFORMANCE/c\ODPERFORMANCE=0' $Config
 busybox sleep 2
 fi
-
 busybox echo "OnDemand battery life tweaks successfully applied!!!"
 
 fi
@@ -165,10 +162,8 @@ DBGovernors
 busybox clear;;
 
 2) busybox clear;
-if [ "`grep ODPERFORMANCE=1 $Config `"]; then
+if [ "`grep ODPERFORMANCE=1 $Config `" ]; then
 busybox echo "OnDemand Performance tweaks already applied"
-fi
-
 else
 busybox echo "Enabling OnDemand Performance tweaks..."
 busybox sed -i '/ODPERFORMANCE/c\ODPERFORMANCE=1' $Config
@@ -176,7 +171,7 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep ODBATTERY=1 $Config `"]; then
+if [ "`grep ODBATTERY=1 $Config `" ]; then
 busybox echo "Battery life Tweaks for OnDemand governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling OnDemand Battery life Tweaks..."
@@ -193,14 +188,13 @@ DBGovernors
 busybox clear;;
 
 3) busybox clear;
-if [ "`grep ODPERFORMANCE=0 $Config `" && "`grep ODBATTERY=0 $Config `"]; then
+if [ "`grep ODPERFORMANCE=0 $Config `" ] && [ "`grep ODBATTERY=0 $Config `" ]; then
 busybox echo "OnDemand governor tweaks are already disabled"
-fi
 
 else
 busybox echo "Disabling OnDemand governor tweaks..."
 
-if [ "`grep ODPERFORMANCE=1 $Config `"]; then
+if [ "`grep ODPERFORMANCE=1 $Config `" ]; then
 busybox echo "Performance Tweaks for OnDemand governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling OnDemand Performace Tweaks..."
@@ -208,7 +202,7 @@ busybox sed -i '/ODPERFORMANCE/c\ODPERFORMANCE=0' $Config
 busybox sleep 2
 fi
 
-if [ "`grep ODBATTERY=1 $Config `"]; then
+if [ "`grep ODBATTERY=1 $Config `" ]; then
 busybox echo "Battery life Tweaks for OnDemand governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling OnDemand Performace Tweaks..."
@@ -225,9 +219,8 @@ DBGovernors
 busybox clear;;
 
 4) busybox clear;
-if [ "`grep LBATTERY=1 $Config `"]; then
+if [ "`grep LBATTERY=1 $Config `" ]; then
 busybox echo "LulzActive Battery Life tweaks already applied"
-fi
 
 else
 busybox echo "Enabling LulzActive Battery life tweaks..."
@@ -236,7 +229,7 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep LPERFORMANCE=1 $Config `"]; then
+if [ "`grep LPERFORMANCE=1 $Config `" ]; then
 busybox echo "Performance Tweaks for LulzActive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling LulzActive Performace Tweak..."
@@ -244,7 +237,7 @@ busybox sed -i '/LPERFORMANCE/c\LPERFORMANCE=0' $Config
 busybox sleep 2
 fi
 
-if [ "`grep LBALANCED=1 $Config `"]; then
+if [ "`grep LBALANCED=1 $Config `" ]; then
 busybox echo "Balanced Tweaks for LulzActive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling LulzActive Balanced Tweaks..."
@@ -262,9 +255,8 @@ DBGovernors
 busybox clear;;
 
 5) busybox clear;
-if [ "`grep LPERFORMANCE=1 $Config `"]; then
+if [ "`grep LPERFORMANCE=1 $Config `" ]; then
 busybox echo "LulzActive Performance tweaks already applied"
-fi
 
 else
 busybox echo "Enabling LulzActive Performance tweaks..."
@@ -273,7 +265,7 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep LBATTERY=1 $Config `"]; then
+if [ "`grep LBATTERY=1 $Config `" ]; then
 busybox echo "Battery life tweaks for LulzActive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling LulzActive Battery life Tweaks..."
@@ -281,7 +273,7 @@ busybox sed -i '/LBATTERY/c\LBATTERY=0' $Config
 busybox sleep 2
 fi
 
-if [ "`grep LBALANCED=1 $Config `"]; then
+if [ "`grep LBALANCED=1 $Config `" ]; then
 busybox echo "Balanced Tweaks for LulzActive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling LulzActive Balanced Tweaks..."
@@ -299,9 +291,8 @@ DBGovernors
 busybox clear;;
 
 6) busybox clear;
-if [ "`grep LBALANCED=1 $Config `"]; then
+if [ "`grep LBALANCED=1 $Config `" ]; then
 busybox echo "LulzActive Balanced tweaks already applied"
-fi
 
 else
 busybox echo "Enabling LulzActive Balanced tweaks..."
@@ -310,7 +301,7 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep LBATTERY=1 $Config `"]; then
+if [ "`grep LBATTERY=1 $Config `" ]; then
 busybox echo "Battery life tweaks for LulzActive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling LulzActive Battery life Tweaks..."
@@ -318,7 +309,7 @@ busybox sed -i '/LBATTERY/c\LBATTERY=0' $Config
 busybox sleep 2
 fi
 
-if [ "`grep LPERFORMANCE=1 $Config `"]; then
+if [ "`grep LPERFORMANCE=1 $Config `" ]; then
 busybox echo "Balanced Tweaks for LulzActive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling LulzActive Performance Tweaks..."
@@ -336,14 +327,13 @@ DBGovernors
 busybox clear;;
 
 7) busybox clear;
-if ["`grep LPERFORMANCE=0 $Config `" && "`grep LBATTERY=0 $Config `" && "`grep LBALANCED=0 $Config `" ]; then
+if ["`grep LPERFORMANCE=0 $Config `" ] && [ "`grep LBATTERY=0 $Config `" ] && [ "`grep LBALANCED=0 $Config `" ]; then
 busybox echo "LulzActive governor tweaks are already disabled"
-fi
 
 else
 busybox echo "Disabling LulzActive governor tweaks..."
 
-if [ "`grep LBATTERY=1 $Config `"]; then
+if [ "`grep LBATTERY=1 $Config `" ]; then
 busybox echo "Battery life tweaks for LulzActive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling LulzActive Battery life Tweaks..."
@@ -351,7 +341,7 @@ busybox sed -i '/LBATTERY/c\LBATTERY=0' $Config
 busybox sleep 2
 fi
 
-if [ "`grep LPERFORMANCE=1 $Config `"]; then
+if [ "`grep LPERFORMANCE=1 $Config `" ]; then
 busybox echo "Balanced Tweaks for LulzActive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling LulzActive Performance Tweaks..."
@@ -359,7 +349,7 @@ busybox sed -i '/LPERFORMANCE/c\LPERFORMANCE=0' $Config
 busybox sleep 2
 fi
 
-if [ "`grep LBALANCED=1 $Config `"]; then
+if [ "`grep LBALANCED=1 $Config `" ]; then
 busybox echo "Balanced Tweaks for LulzActive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling LulzActive Balanced Tweaks..."
@@ -376,9 +366,8 @@ DBGovernors
 busybox clear;;
 
 8) busybox clear;
-if [ "`grep S2BATTERY=1 $Config `"]; then
+if [ "`grep S2BATTERY=1 $Config `" ]; then
 busybox echo "SmartassV2 Battery Life tweaks already applied"
-fi
 
 else
 busybox echo "Enabling SmartassV2 Battery life tweaks..."
@@ -387,7 +376,7 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep S2PERFORMANCE=1 $Config `"]; then
+if [ "`grep S2PERFORMANCE=1 $Config `" ]; then
 busybox echo "Performance Tweaks for SmartassV2 governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling SmartassV2 Performace Tweaks..."
@@ -404,9 +393,8 @@ DBGovernors
 busybox clear;;
 
 9) busybox clear;
-if [ "`grep S2PERFORMANCE=1 $Config `"]; then
+if [ "`grep S2PERFORMANCE=1 $Config `" ]; then
 busybox echo "SmartassV2 Performance tweaks already applied"
-fi
 
 else
 busybox echo "Enabling SmartassV2 Performance tweaks..."
@@ -415,7 +403,7 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep S2BATTERY=1 $Config `"]; then
+if [ "`grep S2BATTERY=1 $Config `" ]; then
 busybox echo "Battery life Tweaks for SmartassV2 governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling SmartassV2 Battery life Tweaks..."
@@ -432,14 +420,13 @@ DBGovernors
 busybox clear;;
 
 10) busybox clear;
-if [ "`grep S2PERFORMANCE=0 $Config `" && "`grep S2BATTERY=0 $Config `"]; then
+if [ "`grep S2PERFORMANCE=0 $Config `" ] && [ "`grep S2BATTERY=0 $Config `" ]; then
 busybox echo "SmartassV2 governor tweaks are already disabled"
-fi
 
 else
 busybox echo "Disabling SmartassV2 governor tweaks..."
 
-if [ "`grep S2PERFORMANCE=1 $Config `"]; then
+if [ "`grep S2PERFORMANCE=1 $Config `" ]; then
 busybox echo "Performance Tweaks for SmartassV2 governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling SmartassV2 Performace Tweaks..."
@@ -447,7 +434,7 @@ busybox sed -i '/S2PERFORMANCE/c\S2PERFORMANCE=0' $Config
 busybox sleep 2
 fi
 
-if [ "`grep S2BATTERY=1 $Config `"]; then
+if [ "`grep S2BATTERY=1 $Config `" ]; then
 busybox echo "Battery life Tweaks for SmartassV2 governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling SmartassV2 Performace Tweaks..."
@@ -464,9 +451,8 @@ DBGovernors
 busybox clear;;
 
 11) busybox clear;
-if [ "`grep CBATTERY=1 $Config `"]; then
+if [ "`grep CBATTERY=1 $Config `" ]; then
 busybox echo "Conservative Battery Life tweaks already applied"
-fi
 
 else
 busybox echo "Enabling Conservative Battery life tweaks..."
@@ -475,7 +461,7 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep CPERFORMANCE=1 $Config `"]; then
+if [ "`grep CPERFORMANCE=1 $Config `" ]; then
 busybox echo "Performance Tweaks for Conservative governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling Conservative Performace Tweaks..."
@@ -493,9 +479,8 @@ busybox clear;;
 
 
 12) busybox clear;
-if [ "`grep CPERFORMANCE=1 $Config `"]; then
+if [ "`grep CPERFORMANCE=1 $Config `" ]; then
 busybox echo "Conservative Performance tweaks already applied"
-fi
 
 else
 busybox echo "Enabling Conservative Performance tweaks..."
@@ -504,7 +489,7 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep CBATTERY=1 $Config `"]; then
+if [ "`grep CBATTERY=1 $Config `" ]; then
 busybox echo "Battery life Tweaks for Conservative governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling Conservative Battery life Tweaks..."
@@ -521,14 +506,13 @@ DBGovernors
 busybox clear;;
 
 13) busybox clear;
-if [ "`grep CPERFORMANCE=0 $Config `" && "`grep CBATTERY=0 $Config `"]; then
+if [ "`grep CPERFORMANCE=0 $Config `" ] && [ "`grep CBATTERY=0 $Config `" ]; then
 busybox echo "Conservative governor tweaks are already disabled"
-fi
 
 else
 busybox echo "Disabling Conservative governor tweaks..."
 
-if [ "`grep CPERFORMANCE=1 $Config `"]; then
+if [ "`grep CPERFORMANCE=1 $Config `" ]; then
 busybox echo "Performance Tweaks for Conservative governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling Conservative Performace Tweaks..."
@@ -536,7 +520,7 @@ busybox sed -i '/CPERFORMANCE/c\CPERFORMANCE=0' $Config
 busybox sleep 2
 fi
 
-if [ "`grep CBATTERY=1 $Config `"]; then
+if [ "`grep CBATTERY=1 $Config `" ]; then
 busybox echo "Battery life Tweaks for Conservative governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling Conservative Performace Tweaks..."
@@ -553,9 +537,8 @@ DBGovernors
 busybox clear;;
 
 14) busybox clear;
-if [ "`grep IBATTERY=1 $Config `"]; then
+if [ "`grep IBATTERY=1 $Config `" ]; then
 busybox echo "Interactive Battery Life tweaks already applied"
-fi
 
 else
 busybox echo "Enabling Interactive Battery life tweaks..."
@@ -564,7 +547,7 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep IPERFORMANCE=1 $Config `"]; then
+if [ "`grep IPERFORMANCE=1 $Config `" ]; then
 busybox echo "Performance Tweaks for Interactive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling Interactive Performace Tweaks..."
@@ -582,9 +565,8 @@ busybox clear;;
 
 
 15) busybox clear;
-if [ "`grep IPERFORMANCE=1 $Config `"]; then
+if [ "`grep IPERFORMANCE=1 $Config `" ]; then
 busybox echo "Interactive Performance tweaks already applied"
-fi
 
 else
 busybox echo "Enabling Interactive Performance tweaks..."
@@ -593,10 +575,10 @@ busybox sleep 2
 busybox echo "Done!!!"
 busybox sleep 1
 
-if [ "`grep IBATTERY=1 $Config `"]; then
+if [ "`grep IBATTERY=1 $Config `" ]; then
 busybox echo "Battery life Tweaks for Interactive governor were found active!!!"
 busybox sleep 1
-busybox echo "Disabling Conservative Battery life Tweaks..."
+busybox echo "Disabling Interactive Battery life Tweaks..."
 busybox sed -i '/IBATTERY/c\IBATTERY=0' $Config
 busybox sleep 2
 fi
@@ -610,14 +592,13 @@ DBGovernors
 busybox clear;;
 
 16) busybox clear;
-if [ "`grep IPERFORMANCE=0 $Config `" && "`grep IBATTERY=0 $Config `"]; then
+if [ "`grep IPERFORMANCE=0 $Config `" ] && [ "`grep IBATTERY=0 $Config `" ]; then
 busybox echo "Interactive governor tweaks are already disabled"
-fi
 
 else
 busybox echo "Disabling Interactive governor tweaks..."
 
-if [ "`grep IPERFORMANCE=1 $Config `"]; then
+if [ "`grep IPERFORMANCE=1 $Config `" ]; then
 busybox echo "Performance Tweaks for Interactive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling Interactive Performace Tweaks..."
@@ -625,7 +606,7 @@ busybox sed -i '/IPERFORMANCE/c\IPERFORMANCE=0' $Config
 busybox sleep 2
 fi
 
-if ["`grep IBATTERY=1 $Config `"]; then
+if ["`grep IBATTERY=1 $Config `" ]; then
 busybox echo "Battery life Tweaks for Interactive governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling Interactive Performace Tweaks..."
@@ -633,7 +614,7 @@ busybox sed -i '/IBATTERY/c\IBATTERY=0' $Config
 busybox sleep 2
 fi
 
-busybox echo " Interactive governor tweaks successfully disabled!!!"
+busybox echo "Interactive governor tweaks successfully disabled!!!"
 
 fi
 
@@ -642,9 +623,8 @@ DBGovernors
 busybox clear;;
 
 17) busybox clear;
-if [ "`grep IDBATTERYPERFORMANCE=1 $Config `"]; then
+if [ "`grep IDBATTERYPERFORMANCE=1 $Config `" ]; then
 busybox echo "Intellidemand Battery life & Performance tweaks already applied"
-fi
 
 else
 busybox echo "Enabling Intellidemand Battery life & Performance tweaks..."
@@ -662,14 +642,13 @@ DBGovernors
 busybox clear;;
 
 18) busybox clear;
-if [ "`grep IDBATTERYPERFORMANCE=1 $Config `"]; then
+if [ "`grep IDBATTERYPERFORMANCE=0 $Config `" ]; then
 busybox echo "Intellidemand governor tweaks are already disabled"
-fi
 
 else
 busybox echo "Disabling Intellidemand governor tweaks..."
 
-if [ "`grep IDBATTERYPERFORMANCE=1 $Config `"]; then
+if [ "`grep IDBATTERYPERFORMANCE=1 $Config `" ]; then
 busybox echo "Battery life & Performance Tweaks for Intellidemand governor were found active!!!"
 busybox sleep 1
 busybox echo "Disabling Intellidemand Performace Tweaks..."
