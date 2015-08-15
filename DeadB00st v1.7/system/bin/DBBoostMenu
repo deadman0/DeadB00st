@@ -41,6 +41,8 @@ busybox echo ""
 busybox echo "4. Ram (Aggresive)"
 busybox echo ""
 busybox echo "5. Cleaner(Deletes Unused, Unwanted, Useless files)"
+busybox echo ""
+busybox echo "6. Battery Calibration"
 busybox sleep 1
 busybox echo ""
 busybox echo ""
@@ -145,6 +147,43 @@ Yes = 1 | No = 2 ? "
 		busybox sleep 1
 		exit
 	fi
+fi
+
+
+
+if [ $boostoption -eq 6 ]; then
+busybox sleep 2
+busybox echo ""
+busybox echo "You need a full battery to calibrate..."
+busybox echo ""
+busybox echo "Checking battery level"
+BatteryLevel=$(cat /sys/class/power_supply/battery/capacity)
+if [ "$BatteryLevel" == "100" ] ; then
+busybox mount -o rw,remount /data
+busybox sleep 2
+busybox rm -f /data/system/batterystats.bin
+busybox echo "+-+-+-+-+-+-+-+-+-+"
+busybox echo "."
+busybox sleep 1
+busybox echo "."
+busybox sleep 1
+busybox echo "."
+busybox sleep 1
+busybox echo ""
+busybox echo "Great!!! DeadB00st calibrated your battery successfully."
+busybox sleep 2
+busybox echo ""
+busybox echo "Please reboot your system."
+busybox sleep 2
+else
+busybox echo ""
+busybox echo "+-+-+-+-+-+-+-+-+-+"
+busybox sleep 2
+busybox echo ""
+busybox echo "Something went wrong... Your battery is not full, it's actually on $BatteryLevel %"
+busybox sleep 3
+fi
+sh system/bin/DBBoostMenu
 fi
 
 if [ $boostoption -eq 0 ]; then
