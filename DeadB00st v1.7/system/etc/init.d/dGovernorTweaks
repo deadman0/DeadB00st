@@ -25,8 +25,7 @@ Config=/system/etc/DB/Governor.conf
 
 busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Aplying a Governor tweak.." >> $DBLog
 
-busybox sleep 10
-
+# Single Core
 
 # Ondemand
 
@@ -55,11 +54,11 @@ busybox echo "70" > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
 busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied OnDemand Performance tweak.." >> $DBLog
 
 fi
-
+fi
 
 # LulzActive
 
-elif [ -e /sys/devices/system/cpu/cpufreq/lulzactive/inc_cpu_load ]; then
+if [ -e /sys/devices/system/cpu/cpufreq/lulzactive/inc_cpu_load ]; then
 
 if [ "`grep LBATTERY=1 $Config`" ]; then
 
@@ -100,18 +99,19 @@ busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied LulzActive Balanced tweak.."
 
 fi
 
+fi
 
 
 # SmartassV2
 
-elif [ -e /sys/devices/system/cpu/cpufreq/smartass/max_cpu_load ]; then
+if [ -e /sys/devices/system/cpu/cpufreq/smartass/max_cpu_load ]; then
 
 if [ "`grep S2BATTERY=1 $Config`" ]; then
 
 	busybox echo "85" > /sys/devices/system/cpu/cpufreq/smartass/max_cpu_load
 	busybox echo "70" > /sys/devices/system/cpu/cpufreq/smartass/min_cpu_load
   busybox echo "200000" > /sys/devices/system/cpu/cpufreq/smartass/ramp_up_step
-  busybox echo "20000" > /sys/devices/system/cpu/cpufreq/smartass/ramp_down_step
+  busybox echo "200000" > /sys/devices/system/cpu/cpufreq/smartass/ramp_down_step
   busybox echo "48000" > /sys/devices/system/cpu/cpufreq/smartass/up_rate_us
   busybox echo "49000" > /sys/devices/system/cpu/cpufreq/smartass/down_rate_us
 
@@ -132,10 +132,11 @@ busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied SmartassV2 Performance tweak
 
 fi
 
+fi
 
 # Conservative
 
-elif [ -e /sys/devices/system/cpu/cpufreq/conservative/up_threshold ]; then
+if [ -e /sys/devices/system/cpu/cpufreq/conservative/up_threshold ]; then
 
 if [ "`grep CBATTERY=1 $Config`" ]; then
 
@@ -160,10 +161,11 @@ busybox echo "60" > /sys/devices/system/cpu/cpufreq/conservative/up_threshold
 busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied Conservative Performance tweak.." >> $DBLog
 
 fi
+fi
 
 # Interactive
 
-elif [ -e /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load ]; then
+if [ -e /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load ]; then
 
 if [ "`grep IBATTERY=1 $Config`" ]; then
 
@@ -184,10 +186,11 @@ busybox echo "80" > /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
 busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied Interactive Performance tweak.." >> $DBLog
 
 fi
+fi
 
 # Intellidemand
 
-elif [ -e /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load ]; then
+if [ -e /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load ]; then
 
 if [ "`grep IBATTERYPERFORMANCE=1 $Config`" ]; then
 
@@ -198,14 +201,75 @@ if [ "`grep IBATTERYPERFORMANCE=1 $Config`" ]; then
 busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied Intellidemand Battery & Performance tweak.." >> $DBLog
 
 fi
+fi
+
+# Multi Core
+
+# Ondemand
+Number=0
+for core in "cpu0" "cpu1" "cpu2" "cpu3" "cpu4" "cpu5" "cpu6" "cpu7"; do
+Number=$(($Number + 1))
+if [ -e /sys/devices/system/cpu/${core}/cpufreq/ondemand/up_threshold ]; then
+
+if [ "`grep ODBATTERY=1 $Config`" ]; then
+
+	busybox echo "95" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/up_threshold
+	busybox echo "120000" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/sampling_rate
+  busybox echo "1" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/sampling_down_factor
+  busybox echo "5" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/down_differential
+  busybox echo "10" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/freq_step
+
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied OnDemand Battery life tweak on core $Number .." >> $DBLog
 
 fi
+
+if [ "`grep ODPERFORMANCE=1 $Config`" ]; then
+
+busybox echo "70" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/up_threshold
+	busybox echo "50000" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/sampling_rate
+  busybox echo "2" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/sampling_down_factor
+  busybox echo "15" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/down_differential
+  busybox echo "50" > /sys/devices/system/cpu/${core}/cpufreq/ondemand/freq_step
+
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied OnDemand Performance tweak on core $Number .." >> $DBLog
+
+fi
+fi
+done
+
+
+# Conservative
+Number=0
+for core in "cpu0" "cpu1" "cpu2" "cpu3" "cpu4" "cpu5" "cpu6" "cpu7"; do
+
+Number=$(($Number + 1))
+if [ -e /sys/devices/system/cpu/${core}/cpufreq/conservative/up_threshold ]; then
+
+if [ "`grep CBATTERY=1 $Config`" ]; then
+
+	busybox echo "95" > /sys/devices/system/cpu/${core}/cpufreq/conservative/up_threshold
+	busybox echo "120000" > /sys/devices/system/cpu/${core}/cpufreq/conservative/sampling_rate
+  busybox echo "1" > /sys/devices/system/cpu/${core}/cpufreq/conservative/sampling_down_factor
+  busybox echo "4" > /sys/devices/system/cpu/${core}/cpufreq/conservative/down_threshold
+  busybox echo "10" > /sys/devices/system/cpu/${core}/cpufreq/conservative/freq_step
+
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied Conservative Battery tweak on core $Number .." >> $DBLog
+
+fi
+
+if [ "`grep CPERFORMANCE=1 $Config`" ]; then
+
+busybox echo "60" > /sys/devices/system/cpu/${core}/cpufreq/conservative/up_threshold
+	busybox echo "40000" > /sys/devices/system/cpu/${core}/cpufreq/concervative/sampling_rate
+  busybox echo "5" > /sys/devices/system/cpu/${core}/cpufreq/conservative/sampling_down_factor
+  busybox echo "20" > /sys/devices/system/cpu/${core}/cpufreq/conservative/down_threshold
+  busybox echo "25" > /sys/devices/system/cpu/${core}/cpufreq/conservative/freq_step
+
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Apllied Conservative Performance tweak on core $Number .." >> $DBLog
+
+fi
+fi
+done
+
 
 exit
-
-
-else
-
-busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Your current governor is not supported.." >> $DBLog
-
-fi

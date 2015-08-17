@@ -15,6 +15,8 @@
 mount -o remount,rw /system 2>/dev/null
 /tmp/busybox mount -o remount,rw /system 2>/dev/null
 
+Config=/system/etc/DB/Governor.conf 
+
 if [ -e /tmp/SwitchesConfig.conf ]; then
 	/tmp/busybox rm -f /system/etc/DB/SwitchesConfig.conf
 	/tmp/busybox cp /tmp/SwitchesConfig.conf /system/etc/DB/SwitchesConfig.conf 
@@ -30,3 +32,4 @@ if [ -e /tmp/Governor.conf ]; then
 else
 	/tmp/busybox rm -f /tmp/SwitchesConfig.conf
 fi
+
