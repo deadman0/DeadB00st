@@ -188,6 +188,9 @@ busybox rm -f /system/etc/init.d/dGovernorTweaks
 busybox rm -f /system/etc/init.d/01dinitlogcleaner
 busybox rm -f /system/addon.d/10deadb00st.sh
 busybox rm -f /system/etc/init.d/dmedia
+busybox rm -f /system/etc/init.d/dblockflag
+busybox rm -f /system/etc/init.d/dsdtweak
+busybox rm -f /system/etc/init.d/dbatterytweak
 busybox rm -f /system/etc/init.d/dgapps
 busybox rm -f /system/etc/init.d/d0cleaner
 busybox rm -rf /system/etc/DB
