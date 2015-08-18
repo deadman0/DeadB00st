@@ -46,6 +46,9 @@ etc/init.d/dGovernorTweaks
 etc/init.d/dgapps
 etc/init.d/dmedia
 etc/init.d/dstrim
+etc/init.d/dblockflag
+etc/init.d/dbatterytweak
+etc/init.d/dsdtweak
 
 xbin/busybox
 

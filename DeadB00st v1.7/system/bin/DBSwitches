@@ -41,6 +41,24 @@ else
 	Gap="\e[1;31mOFF\e[0m"
 fi
 
+if [ "`grep SDTWEAK=1 $Config`" ]; then
+	Sdt="\e[1;32mON\e[0m"
+else
+	Sdt="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep BATTERYTWEAK=1 $Config`" ]; then
+	Bt="\e[1;32mON\e[0m"
+else
+	Bt="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep BLOCKFLAGTWEAK=1 $Config`" ]; then
+	Bft="\e[1;32mON\e[0m"
+else
+	Bft="\e[1;31mOFF\e[0m"
+fi
+
 busybox echo "DeadSwitches"
 busybox echo ""
 busybox echo ""
@@ -48,11 +66,14 @@ busybox echo ""
 busybox echo -e "1. ADBlocker                       |$ads"
 busybox echo -e "2. Kill MediaServer on Boot        |$Med"
 busybox echo -e "3. Kill Gapps on Boot              |$Gap"
+busybox echo -e "4. SD Tweaks                       |$Sdt"
+busybox echo -e "5. Battery Tweaks                  |$Bt"
+busybox echo -e "6. Flag Blocks & Cache Increase    |$Bft"
 busybox echo ""
 busybox echo ""
 busybox echo "0. EXIT"
 busybox echo ""
-busybox echo -n "Please select an option [0-3]: "
+busybox echo -n "Please select an option [0-6]: "
 read option
 case $option in
 
@@ -104,6 +125,48 @@ else
 busybox echo "Enabling Kill Gapps on Boot"
 busybox sleep 1
 busybox sed -i '/GAPPSONBOOT/c\GAPPSONBOOT=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+4) busybox clear;
+if [ "`grep SDTWEAK=1 $Config `" ]; then
+busybox echo "Disabling SD Tweaks"
+busybox sleep 1
+busybox sed -i '/SDTWEAK/c\SDTWEAK=0' $Config
+else
+busybox echo "Enabling SD Tweaks"
+busybox sleep 1
+busybox sed -i '/SDTWEAK/c\SDTWEAK=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+5) busybox clear;
+if [ "`grep BATTERYTWEAK=1 $Config `" ]; then
+busybox echo "Battery tweaks"
+busybox sleep 1
+busybox sed -i '/BATTERYTWEAK/c\BATTERYTWEAK=0' $Config
+else
+busybox echo "Battery tweaks"
+busybox sleep 1
+busybox sed -i '/BATTERYTWEAK/c\BATTERYTWEAK=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+6) busybox clear;
+if [ "`grep BLOCKFLAGTWEAK=1 $Config `" ]; then
+busybox echo "Disabling Flag Blocks & Cache Increase Tweaks"
+busybox sleep 1
+busybox sed -i '/GAPPSONBOOT/c\GAPPSONBOOT=0' $Config
+else
+busybox echo "Enabling Flag Blocks & Cache Increase Tweaks"
+busybox sleep 1
+busybox sed -i '/BLOCKFLAGTWEAK/c\BLOCKFLAGTWEAK=1' $Config
 fi;
 busybox sleep 1
 DBSwitches

@@ -15,7 +15,7 @@
 mount -o remount,rw /system 2>/dev/null
 /tmp/busybox mount -o remount,rw /system 2>/dev/null
 
-Config=/system/etc/DB/Governor.conf 
+Config=/system/etc/DB/SwitchesConfig.conf 
 
 if [ -e /tmp/SwitchesConfig.conf ]; then
 	/tmp/busybox rm -f /system/etc/DB/SwitchesConfig.conf
@@ -31,5 +31,32 @@ if [ -e /tmp/Governor.conf ]; then
 	/tmp/busybox chmod 755 /system/etc/DB/Governor.conf 
 else
 	/tmp/busybox rm -f /tmp/SwitchesConfig.conf
+fi
+
+
+if [ "`grep SDTWEAK $Config `" ]; then
+/tmp/busybox echo "OK"
+else
+/tmp/busybox echo "
+
+# SD Tweaks
+SDTWEAK=0" >> $Config 
+fi
+
+if [ "`grep BATTERYTWEAK $Config `" ]; then
+/tmp/busybox echo "OK"
+else
+/tmp/busybox echo "
+
+# Battery Tweaks
+BATTERYTWEAK=0" >> $Config 
+fi
+if [ "`grep BLOCKFLAGTWEAK $Config `" ]; then
+/tmp/busybox echo "OK"
+else
+/tmp/busybox echo "
+
+# Block Flag & Cache Increase Tweak
+BLOCKFLAGTWEAK=0" >> $Config 
 fi
 
