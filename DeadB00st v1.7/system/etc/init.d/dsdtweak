@@ -24,7 +24,7 @@ Config=/system/etc/DB/SwitchesConfig.conf
 if [ "`grep SDTWEAK=1 $Config `" ]; then
          busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): SD Tweak is activated" >> $DBLog
 
-D=2048
+D=1024
 
 MMC=`busybox ls -d /sys/block/mmc* 2>/dev/null`;
 for K in $MMC;
