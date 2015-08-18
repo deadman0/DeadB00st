@@ -24,6 +24,7 @@ bin/DBBuildProp
 bin/DBTrimMenu
 bin/DBGovernors
 bin/DBCheck
+bin/DBCpu
 bin/DBSwitches
 bin/dboost
 bin/dram
@@ -35,6 +36,7 @@ bin/modram
 etc/DB/DBChangelog
 etc/DB/SwitchesConfig.conf
 etc/DB/Governor.conf
+etc/DB/Cpu.conf
 etc/DB/ADBlock/adblock
 etc/DB/ADBlock/hosts
 etc/DB/Log
@@ -44,6 +46,7 @@ etc/init.d/d0cleaner
 etc/init.d/01dinitlogcleaner
 etc/init.d/dGovernorTweaks
 etc/init.d/dgapps
+etc/init.d/dcpu
 etc/init.d/dmedia
 etc/init.d/dstrim
 etc/init.d/dblockflag

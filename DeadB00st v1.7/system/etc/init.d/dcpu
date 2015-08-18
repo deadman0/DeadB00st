@@ -1,0 +1,74 @@
+#!/system/bin/sh
+# DeadB00st
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+dir1=/sys/block/dm-*
+dir2=/sys/block/mmc*
+dir3=/sys/block/loop*
+dir4=/sys/block/ram*
+dir5=/sys/block/zram*
+dir6=/sys/block/stl*
+dir7=/sys/block/bml*
+dir8=/sys/block/mtd*
+
+Config=/system/etc/DB/Cpu.conf
+DBLog=/system/etc/DB/Log/DBLogInit.log
+Cpudir=/system/etc/DB/Cpu
+
+DIos=$(cat $Cpudir/DIos)
+DMinFreq=$(cat $Cpudir/DMinFreq)
+DGovernor=$(cat $Cpudir/DGovernor)
+DMaxFreq=$(cat $Cpudir/DMaxFreq)
+
+if [ "`grep ENABLECPU=1 $Config`" ]; then
+	busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): DeadCpu Manager is activated" >> $DBLog
+busybox sleep 90
+if [ "$DMaxFreq" = "None" ] || [ "$DMinFreq" = "None" ] || [ "$DGovernor" = "None" ] || [ "$DIos" = "None" ]; then
+busybox echo "... But you have not set the values for DeadCpu Manager" >> DBLog
+else
+  for core in "cpu0" "cpu1" "cpu2" "cpu3" "cpu4" "cpu5" "cpu6" "cpu7"; do
+
+if [ -e /sys/devices/system/cpu/${core}/cpufreq/scaling_governor ]; then
+busybox chmod -f 644 /sys/devices/system/cpu/${core}/cpufreq/*
+busybox echo "$DGovernor" >> /sys/devices/system/cpu/${core}/cpufreq/scaling_governor
+busybox echo "$DMaxFreq" >> /sys/devices/system/cpu/${core}/cpufreq/scaling_max_freq
+busybox echo "$DMinFreq" >> /sys/devices/system/cpu/${core}/cpufreq/scaling_min_freq
+
+fi
+
+done
+
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): DeadCpu Manager Set $DMaxFreq as Max Frequency" >> $DBLog
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): DeadCpu Manager Set $DMinFreq as Min Frequency" >> $DBLog
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): DeadCpu Manager Set $DGovernor as Governor" >> $DBLog
+for sched in $dir1 $dir2 $dir3 $dir4 $dir5 $dir6 $dir7 $dir8; do
+
+if [ -e ${sched}/queue ]; then
+busybox chmod -f 644 ${sched}/queue/*
+busybox echo "$DIos" >> ${sched}/queue/scheduler
+
+
+fi
+done
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): DeadCpu Manager applied $DIos Scheduler" >> $DBLog
+fi
+else
+	 busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): DeadCpu Manager is deactivated" >> $DBLog
+fi

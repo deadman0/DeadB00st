@@ -30,7 +30,23 @@ if [ -e /tmp/Governor.conf ]; then
 	/tmp/busybox cp /tmp/Governor.conf /system/etc/DB/Governor.conf 
 	/tmp/busybox chmod 755 /system/etc/DB/Governor.conf 
 else
-	/tmp/busybox rm -f /tmp/SwitchesConfig.conf
+	/tmp/busybox rm -f /tmp/Governor.conf
+fi
+
+if [ -e /tmp/Cpu.conf ]; then
+	/tmp/busybox rm -f /system/etc/DB/Cpu.conf
+	/tmp/busybox cp /tmp/Cpu.conf /system/etc/DB/Cpu.conf 
+	/tmp/busybox chmod 755 /system/etc/DB/Cpu.conf 
+else
+	/tmp/busybox rm -f /tmp/Cpu.conf
+fi
+
+if [ -e /tmp/Cpu/ ]; then
+	/tmp/busybox rm -f /system/etc/DB/Cpu/*
+	/tmp/busybox cp /tmp/Cpu/* /system/etc/DB/Cpu/
+	/tmp/busybox chmod 755 /system/etc/DB/Cpu/*
+else
+	/tmp/busybox rm -rf /tmp/Cpu
 fi
 
 
