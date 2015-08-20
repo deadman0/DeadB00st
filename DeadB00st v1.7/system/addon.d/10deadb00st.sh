@@ -19,6 +19,9 @@ cat <<EOF
 
 bin/d0cleaner
 bin/DB
+bin/dupdater
+bin/curl
+bin/openssl
 bin/DBBoostMenu
 bin/DBBuildProp
 bin/DBTrimMenu
@@ -46,7 +49,7 @@ etc/init.d/d0cleaner
 etc/init.d/01dinitlogcleaner
 etc/init.d/dGovernorTweaks
 etc/init.d/dgapps
-etc/init.d/dcpu
+etc/init.d/02dcpu
 etc/init.d/dmedia
 etc/init.d/dstrim
 etc/init.d/dblockflag
@@ -90,6 +93,9 @@ post-restore)
 
 chmod 755 /system/bin/DB
 chmod 755 /system/bin/d0cleaner
+chmod 755 /system/bin/dupdater
+chmod 755 /system/bin/curl
+chmod 755 /system/bin/openssl
 chmod 755 /system/bin/DBBoostMenu
 chmod 755 /system/bin/DBTrimMenu
 chmod 755 /system/bin/DBBuildProp

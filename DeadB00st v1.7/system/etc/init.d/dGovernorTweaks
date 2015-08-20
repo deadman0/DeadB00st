@@ -25,6 +25,8 @@ Config=/system/etc/DB/Governor.conf
 
 busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Aplying a Governor tweak.." >> $DBLog
 
+busybox sleep 35
+
 # Single Core
 
 # Ondemand

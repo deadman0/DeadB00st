@@ -44,7 +44,9 @@ busybox echo "9. Changelog"
 busybox echo ""
 busybox echo "10. Uninstall DeadB00st..."
 busybox echo ""
-busybox echo "11. Open Xda thread"
+busybox echo "11. Check for updates...(The only MOD with Auto-Update!!!)"
+busybox echo ""
+busybox echo "12. Open Xda thread"
 busybox echo ""
 busybox echo -n "Now choose:   "            
 read entry
@@ -202,7 +204,7 @@ busybox rm -f /system/etc/init.d/dblockflag
 busybox rm -f /system/etc/init.d/dsdtweak
 busybox rm -f /system/etc/init.d/dbatterytweak
 busybox rm -f /system/etc/init.d/dgapps
-busybox rm -f /system/etc/init.d/dcpu
+busybox rm -f /system/etc/init.d/02dcpu
 busybox rm -f /system/etc/init.d/d0cleaner
 busybox rm -rf /system/etc/DB
 
@@ -217,6 +219,13 @@ busybox rm -f /system/bin/DB
 busybox clear ;;
 
 11) busybox clear;
+busybox echo ""
+busybox echo "Checking for updates.."
+busybox sleep 2
+sh system/bin/dupdater
+busybox clear ;;
+
+12) busybox clear;
 busybox echo ""
 busybox sleep 1
 busybox echo "Please wait few secs"
