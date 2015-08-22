@@ -60,3 +60,13 @@ busybox echo "-Added 40 build.prop tweaks"
 busybox echo "-Added OTA survive"
 busybox echo ""
 busybox echo ""
+busybox sleep 2
+busybox echo "V1.7"
+busybox sleep 2
+busybox echo "-Added 3 init.d tweaks"
+busybox echo "-Added Battery Calibration (B00st Menu)"
+busybox echo "-Added DeadCpu Manager (Like an overclocking app)"
+busybox echo "-Added DeadCpu Governor Tweaks Menu"
+busybox echo "-Added Auto-Update"
+busybox echo ""
+busybox echo ""

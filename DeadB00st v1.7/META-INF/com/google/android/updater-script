@@ -3,7 +3,7 @@ ui_print("              Mod        ");
 ui_print("        by deadman0@XDA ");
 ui_print("=============================================");
 ui_print("              Version 1.7        ");
-ui_print("          Released 13 August 2015              ");
+ui_print("          Released 22 August 2015              ");
 ui_print("=============================================");
 ui_print("");
 ui_print("Mounting Storage...");
