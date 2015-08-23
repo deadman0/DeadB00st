@@ -22,7 +22,7 @@ busybox mount -o remount,rw /system
 div="\e[0;100m+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[00;37;40m" 
 
 busybox clear
-busybox echo "DeadB00st v1.7 (B00st Mod by deadman0)  "
+busybox echo "DeadB00st v1.8 (B00st Mod by deadman0)  "
 busybox sleep 1
 busybox echo -e $div
 busybox echo "1. Check DeadB00st files"

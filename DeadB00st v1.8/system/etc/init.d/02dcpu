@@ -46,7 +46,6 @@ else
   for core in "cpu0" "cpu1" "cpu2" "cpu3" "cpu4" "cpu5" "cpu6" "cpu7"; do
 
 if [ -e /sys/devices/system/cpu/${core}/cpufreq/scaling_governor ]; then
-busybox chmod -f 644 /sys/devices/system/cpu/${core}/cpufreq/*
 busybox echo "$DGovernor" >> /sys/devices/system/cpu/${core}/cpufreq/scaling_governor
 busybox echo "$DMaxFreq" >> /sys/devices/system/cpu/${core}/cpufreq/scaling_max_freq
 busybox echo "$DMinFreq" >> /sys/devices/system/cpu/${core}/cpufreq/scaling_min_freq

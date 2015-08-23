@@ -68,6 +68,7 @@ Governor=$(cat $dircpu/scaling_governor)
 AvGovernor=$(cat $dircpu/scaling_available_governors)
 Frequency=$(($(cat $dircpu/scaling_cur_freq)/1000))
 AvFrequency=$(cat $dircpu/scaling_available_frequencies)
+FreqUsage=$(cat $dircpu/stats/percentage)
 
 div="\e[0;100m=============================================\e[00;37;40m" 
 
@@ -106,6 +107,12 @@ busybox sleep 1
 busybox echo "Available IO Schedulers:"
 busybox sleep 0.5
 busybox echo "$AvIos"
+busybox sleep 0.5
+busybox echo -e $div
+busybox sleep 1
+busybox echo "DeadCpu Frequency Usage:"
+busybox sleep 0.5
+busybox echo "$FreqUsage"
 busybox sleep 0.5
 busybox echo -e $div
 busybox sleep 1
