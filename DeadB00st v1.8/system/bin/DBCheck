@@ -1,0 +1,39 @@
+#!/system/bin/sh
+# DeadB00st
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+busybox clear
+   
+
+busybox sleep 2
+busybox echo ""
+busybox echo "Checking all installed files, please wait..."
+busybox sleep 2
+
+busybox echo ""
+busybox echo "Checking DeadB00st binary..."
+busybox sleep 1
+if [ -e /system/bin/DB ]; then
+	busybox echo ""
+	busybox echo "DeadB00st is installed..."
+	busybox sleep 1
+else
+	busybox echo ""
+	busybox echo "DeadB00st was not found, re-install DeadB00st."
+	busybox sleep 1
+fi
+
+
+
+busybox echo ""
+busybox echo "Checking files is finished!"
+busybox sleep 3

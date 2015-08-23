@@ -1,0 +1,2318 @@
+#!/system/bin/sh
+# DeadB00st
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+
+bpt=/system/build.prop
+
+busybox clear
+busybox echo "DeadB00st build.prop tweaks"
+busybox echo ""
+
+if [ "`grep Lock_default_launcher $bpt`" ]; then
+	ldl="\e[1;32mOn\e[0m"
+else
+	ldl="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Better_recording_quality $bpt`" ]; then
+	brq="\e[1;32mOn\e[0m"
+else
+	brq="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Faster_streaming $bpt`" ]; then
+	fs="\e[1;32mOn\e[0m"
+else
+	fs="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Video_hw $bpt`" ]; then
+	vhw="\e[1;32mOn\e[0m"
+else
+	vhw="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Screen_gpu $bpt`" ]; then
+	sg="\e[1;32mOn\e[0m"
+else
+	sg="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Disable_error_reporting $bpt`" ]; then
+	der="\e[1;32mOn\e[0m"
+else
+	der="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Dns_tweaks $bpt`" ]; then
+	dnst="\e[1;32mOn\e[0m"
+else
+	dnst="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Battery_power_improve $bpt`" ]; then
+	bpi="\e[1;32mOn\e[0m"
+else
+	bpi="\e[1;31mOff\e[0m"
+fi
+if [ "`grep 3g_tweaks $bpt`" ]; then
+	tgt="\e[1;32mOn\e[0m"
+else
+	tgt="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Liquid_smooth_UI $bpt`" ]; then
+	lsu="\e[1;32mOn\e[0m"
+else
+	lsu="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Disable_logcat $bpt`" ]; then
+	catl="\e[1;32mOn\e[0m"
+else
+	catl="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Fast_dormancy_enabled $bpt`" ]; then
+	fd="\e[1;32mOn\e[0m"
+else
+	fd="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Net_tweaks $bpt`" ]; then
+	nt="\e[1;32mOn\e[0m"
+else
+	nt="\e[1;31mOff\e[0m"
+fi
+
+if [ "`grep Screen_two_fingers $bpt`" ]; then
+	stf="\e[1;32mOn\e[0m"
+else
+	stf="\e[1;31mOff\e[0m"
+fi
+
+if [ "`grep Phone_rings_immediately $bpt`" ]; then
+	pri="\e[1;32mOn\e[0m"
+else
+	pri="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Fix_blackscreen_issue $bpt`" ]; then
+	fbi="\e[1;32mOn\e[0m"
+else
+	fbi="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Better_scrolling $bpt`" ]; then
+	bs="\e[1;32mOn\e[0m"
+else
+	bs="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Better_cell_signal $bpt`" ]; then
+	bcs="\e[1;32mOn\e[0m"
+else
+	bcs="\e[1;31mOff\e[0m"
+fi
+
+if [ "`grep Better_call_voice_quality $bpt`" ]; then
+	bcvq="\e[1;32mOn\e[0m"
+else
+	bcvq="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Faster_boot $bpt`" ]; then
+	fb="\e[1;32mOn\e[0m"
+else
+	fb="\e[1;31mOff\e[0m"
+fi
+if [ "`grep No_boot_anim $bpt`" ]; then
+	nba="\e[1;32mOn\e[0m"
+else
+	nba="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Disable_error_checking $bpt`" ]; then
+	dec="\e[1;32mOn\e[0m"
+else
+	dec="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Dalvik_vm_tweaks $bpt`" ]; then
+	dvmt="\e[1;32mOn\e[0m"
+else
+	dvmt="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Disable_google_location $bpt`" ]; then
+	dgl="\e[1;32mOn\e[0m"
+else
+	dgl="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Disable_usage_data $bpt`" ]; then
+	dud="\e[1;32mOn\e[0m"
+else
+	dud="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Better_image_lower_performance $bpt`" ]; then
+	bilp="\e[1;32mOn\e[0m"
+else
+	bilp="\e[1;31mOff\e[0m"
+fi
+
+if [ "`grep Disable_adb_notification $bpt`" ]; then
+	dadbn="\e[1;32mOn\e[0m"
+else
+	dadbn="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Camera_sound_disable $bpt`" ]; then
+	csd="\e[1;32mOn\e[0m"
+else
+	csd="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Mms_retry_timer $bpt`" ]; then
+	mrt="\e[1;32mOn\e[0m"
+else
+	mrt="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Keys_light_stay_on $bpt`" ]; then
+	klso="\e[1;32mOn\e[0m"
+else
+	klso="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Disable_strict_mode_checking $bpt`" ]; then
+	dsmc="\e[1;32mOn\e[0m"
+else
+	dsmc="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Remove_fps_cap $bpt`" ]; then
+	rfc="\e[1;32mOn\e[0m"
+else
+	rfc="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Disable_sound_sd $bpt`" ]; then
+	dss="\e[1;32mOn\e[0m"
+else
+	dss="\e[1;31mOff\e[0m"
+fi
+if [ "`grep More_volume_steps $bpt`" ]; then
+	mvs="\e[1;32mOn\e[0m"
+else
+	mvs="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Disable_wakeup_volume $bpt`" ]; then
+	dwv="\e[1;32mOn\e[0m"
+else
+	dwv="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Enable_mtp_mode $bpt`" ]; then
+	emtpm="\e[1;32mOn\e[0m"
+else
+	emtpm="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Allow_purgeable_assets $bpt`" ]; then
+	apa="\e[1;32mOn\e[0m"
+else
+	apa="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Support_ii $bpt`" ]; then
+	sii="\e[1;32mOn\e[0m"
+else
+	sii="\e[1;31mOff\e[0m"
+fi
+if [ "`grep Other $bpt`" ]; then
+	ot="\e[1;32mOn\e[0m"
+else
+	ot="\e[1;31mOff\e[0m"
+fi
+
+if [ "`grep Flag_tuners $bpt`" ]; then
+	ft="\e[1;32mOn\e[0m"
+else
+	ft="\e[1;31mOff\e[0m"
+fi
+
+
+mem=`free|grep Mem | awk '{print $2}'`
+
+busybox echo ""
+busybox sleep 1
+busybox echo -e "1. Lock default launcher in memory            |$ldl"
+busybox echo -e "2. Improved audio and video recording quality |$brq"
+busybox echo -e "3. Faster Streaming                           |$fs"
+busybox echo -e "4. Video acceleration and HW debugging        |$vhw"
+busybox echo -e "5. Use Gpu for screen compositing             |$sg"
+busybox echo -e "6. Disable built in error reporting           |$der"
+busybox echo -e "7. Google DNS Tweak (Net Speed Tweak)         |$dnst"
+busybox echo -e "8. Battery & Power improvement                |$bpi"
+busybox echo -e "9. 3g Tweaks                                  |$tgt"
+busybox echo -e "10. Liquid smooth UI (less lag)               |$lsu"
+busybox echo -e "11. Disable logcat                            |$catl"
+busybox echo -e "12. Fast dormancy                             |$fd"
+busybox echo -e "13. Buffer size tweaks (Net Speed Tweaks)     |$nt"
+busybox echo -e "14. Screen recognizes only two fingers        |$stf"
+busybox echo -e "15. Phone rings immediately                   |$pri"
+busybox echo -e "16. Fix Blackscreen issue after call          |$fbi"
+busybox echo -e "17. Better Scrolling                          |$bs"
+busybox echo -e "18. Better signal                             |$bcs"
+busybox echo -e "19. Better call voice quality                 |$bcvq"
+busybox echo -e "20. Faster boot                               |$fb"
+busybox echo -e "21. No boot animation                         |$nba"
+busybox echo -e "22. Disable error checking                    |$dec"
+busybox echo -e "23. Dalvik Virtual Machine tweaks             |$dvmt"
+busybox echo -e "24. Disable Google locating                   |$dgl"
+busybox echo -e "25. Disable sending of usage data             |$dud"
+busybox echo -e "26. Better image quality, lower performance   |$bilp"
+busybox echo -e "27. Disable notification while adb is active  |$dadbn"
+busybox echo -e "28. Disable camera sound                      |$csd"
+busybox echo -e "29. MMS APN retry timer set to 2 sec          |$mrt"
+busybox echo "If SMS or MMS cannot be sent, it retries after| 
+2 instead of 5 seconds                        |"
+busybox echo -e "30. Key lights stay on while screen is on.    |$klso"
+busybox echo -e "31. Disable strict mode checking              |$dsmc"
+busybox echo -e "32. Remove FPS cap                            |$rfc"
+busybox echo "May be unstable - better have it activated    |"   
+busybox echo -e "33. Disable notification sound for SD storage |$dss"
+busybox echo -e "34. More volume steps in call                 |$mvs"
+busybox echo -e "35. Phone will not wake up from hitting volume|$dwv"
+busybox echo -e "36. Enable MTP mode                           |$emtpm"
+busybox echo -e "37. Allow purging of assets                   |$apa"
+busybox echo "(Got from GamerzROM, memory management)       |"
+busybox echo -e "38. Support for ipv4 and ipv6                 |$sii"
+busybox echo -e "39. Other tweaks                              |$ot"
+busybox echo -e "40. Flag Tuners                               |$ft"
+busybox echo -e "41. Turn all \e[1;32mOn\e[0m                               |"
+busybox echo -e "42. Turn all \e[1;31mOff\e[0m                              |"
+busybox echo ""
+busybox echo ""
+busybox echo "0. EXIT"
+busybox sleep 1
+busybox echo ""
+busybox echo ""
+busybox echo -n "Please select an option[0-42]: "
+read option
+
+if [ $option -eq 1 ]; then
+	if [ "`grep Lock_default_launcher $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Lock_default_launcher/d' $bpt
+		busybox sed -i '/ro.HOME_APP_ADJ/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Lock_default_launcher/d' $bpt
+		busybox sed -i '/ro.HOME_APP_ADJ/d' $bpt
+		busybox sleep 1
+		busybox echo "#Lock_default_launcher
+ro.HOME_APP_ADJ=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox echo ""
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 2 ]; then
+	if [ "`grep Better_recording_quality $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Better_recording_quality/d' $bpt
+		busybox sed -i '/ro.media.enc.jpeg.quality/d' $bpt
+		busybox sed -i '/ro.media.dec.jpeg.memcap/d' $bpt
+		busybox sed -i '/ro.media.enc.hprof.vid.bps/d' $bpt
+		busybox sed -i '/ro.media.capture.maxres/d' $bpt
+		busybox sed -i '/ro.media.panorama.defres/d' $bpt
+		busybox sed -i '/ro.media.panorama.frameres/d' $bpt
+		busybox sed -i '/ro.camcorder.videoModes/d' $bpt
+		busybox sed -i '/ro.media.enc.hprof.vid.fps/d' $bpt
+     busybox sed -i '/ro.media.dec.aud.wma.enabled/d' $bpt
+		busybox sed -i '/ro.media.dec.vid.wmv.enabled/d' $bpt
+		busybox sed -i '/ro.media.cam.preview.fps/d' $bpt
+		busybox sed -i '/ro.media.codec_priority_for_thumb/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Better_recording_quality/d' $bpt
+		busybox sed -i '/ro.media.enc.jpeg.quality/d' $bpt
+		busybox sed -i '/ro.media.dec.jpeg.memcap/d' $bpt
+		busybox sed -i '/ro.media.enc.hprof.vid.bps/d' $bpt
+		busybox sed -i '/ro.media.capture.maxres/d' $bpt
+		busybox sed -i '/ro.media.panorama.defres/d' $bpt
+		busybox sed -i '/ro.media.panorama.frameres/d' $bpt
+		busybox sed -i '/ro.camcorder.videoModes/d' $bpt
+		busybox sed -i '/ro.media.enc.hprof.vid.fps/d' $bpt
+     busybox sed -i '/ro.media.dec.aud.wma.enabled/d' $bpt
+		busybox sed -i '/ro.media.dec.vid.wmv.enabled/d' $bpt
+		busybox sed -i '/ro.media.cam.preview.fps/d' $bpt
+		busybox sed -i '/ro.media.codec_priority_for_thumb/d' $bpt
+		busybox sleep 1
+		busybox echo "#Better_recording_quality
+ro.media.enc.jpeg.quality=100
+ro.media.dec.jpeg.memcap=8000000
+ro.media.enc.hprof.vid.bps=8000000
+ro.media.capture.maxres=8m
+ro.media.panorama.defres=3264x1840
+ro.media.panorama.frameres=1280x720
+ro.camcorder.videoModes=true
+ro.media.enc.hprof.vid.fps=65
+ro.media.dec.aud.wma.enabled=1
+ro.media.dec.vid.wmv.enabled=1
+ro.media.cam.preview.fps=0
+ro.media.codec_priority_for_thumb=so
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 3 ]; then
+	if [ "`grep Faster_streaming $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Faster_streaming/d' $bpt
+		busybox sed -i '/media.stagefright.enable-player/d' $bpt
+             busybox sed -i '/media.stagefright.enable-meta/d' $bpt
+		busybox sed -i '/media.stagefright.enable-scan/d' $bpt
+             busybox sed -i '/media.stagefright.enable-http/d' $bpt
+		busybox sed -i '/media.stagefright.enable-record/d' $bpt
+             busybox sed -i '/media.stagefright.enable-aac/d' $bpt
+		busybox sed -i '/media.stagefright.enable-qcp/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Faster_streaming/d' $bpt
+		busybox sed -i '/media.stagefright.enable-player/d' $bpt
+             busybox sed -i '/media.stagefright.enable-meta/d' $bpt
+		busybox sed -i '/media.stagefright.enable-scan/d' $bpt
+             busybox sed -i '/media.stagefright.enable-http/d' $bpt
+		busybox sed -i '/media.stagefright.enable-record/d' $bpt
+             busybox sed -i '/media.stagefright.enable-aac/d' $bpt
+		busybox sed -i '/media.stagefright.enable-qcp/d' $bpt
+		busybox sleep 1
+		busybox echo "#Faster_streaming
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=true
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-record=false
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 4 ]; then
+	if [ "`grep Video_hw $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Video_hw/d' $bpt
+		busybox sed -i '/debug.sf.hw/d' $bpt
+		busybox sed -i '/debug.performance.tuning/d' $bpt
+             busybox sed -i '/video.accelerate.hw/d' $bpt
+		busybox sed -i '/debug.egl.profiler/d' $bpt
+		busybox sed -i '/debug.egl.hw/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Video_hw/d' $bpt
+		busybox sed -i '/debug.sf.hw/d' $bpt
+		busybox sed -i '/debug.performance.tuning/d' $bpt
+             busybox sed -i '/video.accelerate.hw/d' $bpt
+		busybox sed -i '/debug.egl.profiler/d' $bpt
+		busybox sed -i '/debug.egl.hw/d' $bpt
+		sleep 1
+		busybox echo "#Video_hw
+debug.sf.hw=1
+debug.performance.tuning=1
+video.accelerate.hw=1
+debug.egl.profiler=1 
+debug.egl.hw=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 5 ]; then
+	if [ "`grep Screen_gpu $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Screen_gpu/d' $bpt
+		busybox sed -i '/debug.composition.type/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Screen_gpu/d' $bpt
+		busybox sed -i '/debug.composition.type/d' $bpt
+		busybox sleep 1
+		busybox echo "#Screen_gpu
+debug.composition.type=gpu
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 6 ]; then
+	if [ "`grep Disable_error_reporting $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Disable_error_reporting/d' $bpt
+		busybox sed -i '/profiler.force_disable_err_rpt/d' $bpt
+		busybox sed -i '/profiler.force_disable_ulog/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Disable_error_reporting/d' $bpt
+		busybox sed -i '/profiler.force_disable_err_rpt/d' $bpt
+		busybox sed -i '/profiler.force_disable_ulog/d' $bpt
+		busybox sleep 1
+		busybox echo "#Disable_error_reporting
+profiler.force_disable_err_rpt=1
+profiler.force_disable_ulog=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 7 ]; then
+	if [ "`grep Dns_tweaks $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Dns_tweaks/d' $bpt
+		 busybox sed -i '/net.rmnet0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.rmnet0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.ppp0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.ppp0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.wlan0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.wlan0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.eth0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.eth0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.gprs.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.gprs.dns2=8.8.4.4/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Dns_tweaks/d' $bpt
+		 busybox sed -i '/net.rmnet0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.rmnet0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.ppp0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.ppp0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.wlan0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.wlan0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.eth0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.eth0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.gprs.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.gprs.dns2=8.8.4.4/d' $bpt
+		busybox sleep 1
+		busybox echo "#Dns_tweaks
+net.rmnet0.dns1=8.8.8.8
+net.rmnet0.dns2=8.8.4.4
+net.dns1=8.8.8.8
+net.dns2=8.8.4.4
+net.ppp0.dns1=8.8.8.8
+net.ppp0.dns2=8.8.4.4
+net.wlan0.dns1=8.8.8.8
+net.wlan0.dns2=8.8.4.4
+net.eth0.dns1=8.8.8.8
+net.eth0.dns2=8.8.4.4
+net.gprs.dns1=8.8.8.8
+net.gprs.dns2=8.8.4.4
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 8 ]; then
+	if [ "`grep Battery_power_improve $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Battery_power_improve/d' $bpt
+		busybox sed -i '/ro.ril.power_collapse/d' $bpt
+		busybox sed -i '/pm.sleep_mode/d' $bpt
+		busybox sed -i '/wifi.supplicant_scan_interval/d' $bpt
+		busybox sed -i '/ro.mot.eri.losalert.delay/d' $bpt
+     busybox sed -i '/power.saving.mode/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Battery_power_improve/d' $bpt
+		busybox sed -i '/ro.ril.power_collapse/d' $bpt
+		busybox sed -i '/pm.sleep_mode/d' $bpt
+		busybox sed -i '/wifi.supplicant_scan_interval/d' $bpt
+		busybox sed -i '/ro.mot.eri.losalert.delay/d' $bpt
+     busybox sed -i '/power.saving.mode/d' $bpt
+		busybox sleep 1
+		busybox echo "#Battery_power_improve
+ro.ril.power_collapse=1
+pm.sleep_mode=2
+wifi.supplicant_scan_interval=180
+ro.mot.eri.losalert.delay=1000
+power.saving.mode=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 9 ]; then
+	if [ "`grep 3g_tweaks $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#3g_tweaks/d' $bpt
+		busybox sed -i '/ro.ril.hep/d' $bpt
+		busybox sed -i '/ro.ril.hsxpa/d' $bpt
+		busybox sed -i '/ro.ril.gprsclass/d' $bpt
+		busybox sed -i '/ro.ril.enable.dtm/d' $bpt
+		busybox sed -i '/ro.ril.hsdpa.category/d' $bpt
+		busybox sed -i '/ro.ril.enable.a53/d' $bpt
+		busybox sed -i '/ro.ril.enable.3g.prefix/d' $bpt
+    	busybox sed -i '/ro.ril.htcmaskw1.bitmask/d' $bpt
+		busybox sed -i '/ro.ril.htcmaskw1/d' $bpt
+		busybox sed -i '/ro.ril.hsupa.category/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+	 	busybox sed -i '/#3g_tweaks/d' $bpt
+		busybox sed -i '/ro.ril.hep/d' $bpt
+		busybox sed -i '/ro.ril.hsxpa/d' $bpt
+		busybox sed -i '/ro.ril.gprsclass/d' $bpt
+		busybox sed -i '/ro.ril.enable.dtm/d' $bpt
+		busybox sed -i '/ro.ril.hsdpa.category/d' $bpt
+		busybox sed -i '/ro.ril.enable.a53/d' $bpt
+		busybox sed -i '/ro.ril.enable.3g.prefix/d' $bpt
+    	busybox sed -i '/ro.ril.htcmaskw1.bitmask/d' $bpt
+		busybox sed -i '/ro.ril.htcmaskw1/d' $bpt
+		busybox sed -i '/ro.ril.hsupa.category/d' $bpt
+		busybox sleep 1
+		busybox echo "#3g_tweaks
+ro.ril.hep=0
+ro.ril.hsxpa=2
+ro.ril.gprsclass=12
+ro.ril.enable.dtm=1
+ro.ril.hsdpa.category=8
+ro.ril.enable.a53=1
+ro.ril.enable.3g.prefix=1
+ro.ril.htcmaskw1.bitmask=4294967295
+ro.ril.htcmaskw1=14449
+ro.ril.hsupa.category=6
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 10 ]; then
+	if [ "`grep Liquid_smooth_UI $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Liquid_smooth_UI/d' $bpt
+		busybox sed -i '/persist.service.lgospd.enable/d' $bpt
+		busybox sed -i '/persist.service.pcsync.enable/d' $bpt
+		busybox sed -i '/touch.pressure.scale/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Liquid_smooth_UI/d' $bpt
+		busybox sed -i '/persist.service.lgospd.enable/d' $bpt
+		busybox sed -i '/persist.service.pcsync.enable/d' $bpt
+		busybox sed -i '/touch.pressure.scale/d' $bpt
+		busybox sleep 1
+		busybox echo "#Liquid_smooth_UI
+persist.service.lgospd.enable=0
+persist.service.pcsync.enable=0
+touch.pressure.scale=0.003
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 11 ]; then
+	if [ "`grep Disable_logcat $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Disable_logcat/d' $bpt
+		busybox sed -i '/logcat.live/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Disable_logcat/d' $bpt
+		busybox sed -i '/logcat.live/d' $bpt
+		busybox sleep 1
+		busybox echo "#Disable_logcat
+logcat.live=disable
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 12 ]; then
+	if [ "`grep Fast_dormancy_enabled $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Fast_dormancy/d' $bpt
+		busybox sed -i '/ro.fast.dormancy/d' $bpt
+		busybox sed -i '/ro.ril.fast.dormancy.rule/d' $bpt
+		busybox sleep 1
+		busybox echo "#Fast_dormancy_disabled
+ro.fast.dormancy=0
+ro.ril.fast.dormancy.rule=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Fast_dormancy/d' $bpt
+		busybox sed -i '/ro.fast.dormancy/d' $bpt
+		busybox sed -i '/ro.ril.fast.dormancy.rule/d' $bpt
+		busybox sleep 1
+		busybox echo "#Fast_dormancy_enabled
+ro.fast.dormancy=1
+ro.ril.fast.dormancy.rule=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 13 ]; then
+	if [ "`grep Net_tweaks $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+              busybox sed -i '/#Net_tweaks/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.hspa/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.umts/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.edge/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.gprs/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.hsdpa/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.wifi/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.evdo_b/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.lte/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.default/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+              busybox sed -i '/#Net_tweaks/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.hspa/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.umts/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.edge/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.gprs/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.hsdpa/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.wifi/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.evdo_b/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.lte/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.default/d' $bpt
+		busybox sleep 1
+         if [ "$mem" -lt 512000 ]; then
+		busybox echo "#Net_tweaks
+net.tcp.buffersize.hspa=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.umts=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.edge=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.gprs=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.hsdpa=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.wifi=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.evdo_b=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.lte=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.default=4096,32768,12582912,4096,32768,12582912
+" >>$bpt
+else
+		busybox echo "#Net_tweaks
+net.tcp.buffersize.default=6144,87380,110208,6144,16384,110208
+net.tcp.buffersize.wifi=262144,524288,1048576,262144,524288,1048576
+net.tcp.buffersize.lte=262144,524288,3145728,262144,524288,3145728
+net.tcp.buffersize.hsdpa=6144,262144,1048576,6144,262144,1048576
+net.tcp.buffersize.evdo_b=6144,262144,1048576,6144,262144,1048576
+net.tcp.buffersize.umts=6144,87380,110208,6144,16384,110208
+net.tcp.buffersize.hspa=6144,87380,262144,6144,16384,262144
+net.tcp.buffersize.gprs=6144,8760,11680,6144,8760,11680
+net.tcp.buffersize.edge=6144,26280,35040,6144,16384,35040
+" >>$bpt
+      fi
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 14 ]; then
+	if [ "`grep Screen_two_fingers $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Screen_two_fingers/d' $bpt
+		busybox sed -i '/ro.product.multi_touch_enabled/d' $bpt
+     busybox sed -i '/ro.product.max_num_touch/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+	 	busybox sed -i '/#Screen_two_fingers/d' $bpt
+		busybox sed -i '/ro.product.multi_touch_enabled/d' $bpt
+     busybox sed -i '/ro.product.max_num_touch/d' $bpt
+		busybox sleep 1
+		busybox echo "#Screen_two_fingers
+ro.product.multi_touch_enabled=true
+ro.product.max_num_touch=2
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox echo ""
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 15 ]; then
+	if [ "`grep Phone_rings_immediately $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Phone_rings_immediately/d' $bpt
+		busybox sed -i '/ro.telephony.call_ring.delay/d' $bpt
+		busybox sed -i '/ring.delay/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Phone_rings_immediately/d' $bpt
+		busybox sed -i '/ro.telephony.call_ring.delay/d' $bpt
+		busybox sed -i '/ring.delay/d' $bpt
+		busybox sleep 1
+		busybox echo "#Phone_rings_immediately
+ro.telephony.call_ring.delay=0
+ring.delay=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 16 ]; then
+	if [ "`grep Fix_blackscreen_issue $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Fix_blackscreen_issue/d' $bpt
+		busybox sed -i '/ro.lge.proximity.delay/d' $bpt
+             busybox sed -i '/mot.proximity.delay/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Fix_blackscreen_issue/d' $bpt
+		busybox sed -i '/ro.lge.proximity.delay/d' $bpt
+             busybox sed -i '/mot.proximity.delay/d' $bpt
+		busybox sleep 1
+		busybox echo " #Fix_blackscreen_issue
+ro.lge.proximity.delay=25
+mot.proximity.delay=25
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 17 ]; then
+	if [ "`grep Better_scrolling $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Better_scrolling/d' $bpt
+		busybox sed -i '/windowsmgr.max_events_per_sec/d' $bpt
+		busybox sed -i '/ro.min_pointer_dur/d' $bpt
+             busybox sed -i '/ro.max.fling_velocity/d' $bpt
+		busybox sed -i '/ro.min.fling_velocity/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Better_scrolling/d' $bpt
+		busybox sed -i '/windowsmgr.max_events_per_sec/d' $bpt
+		busybox sed -i '/ro.min_pointer_dur/d' $bpt
+             busybox sed -i '/ro.max.fling_velocity/d' $bpt
+		busybox sed -i '/ro.min.fling_velocity/d' $bpt
+		busybox sleep 1
+		busybox echo "#Better_scrolling
+windowsmgr.max_events_per_sec=150
+ro.min_pointer_dur=8
+ro.max.fling_velocity=12000
+ro.min.fling_velocity=8000
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 18 ]; then
+	if [ "`grep Better_cell_signal $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Better_cell_signal/d' $bpt
+		busybox sed -i '/persist.cust.tel.eons/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Better_cell_signal/d' $bpt
+		busybox sed -i '/persist.cust.tel.eons/d' $bpt
+		busybox sleep 1
+		busybox echo "#Better_cell_signal
+persist.cust.tel.eons=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 19 ]; then
+	if [ "`grep Better_call_voice_quality $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Better_call_voice_quality/d' $bpt
+		busybox sed -i '/ro.ril.enable.amr.wideband/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Better_call_voice_quality/d' $bpt
+		busybox sed -i '/ro.ril.enable.amr.wideband/d' $bpt
+		busybox sleep 1
+		busybox echo "#Better_call_voice_quality
+ro.ril.enable.amr.wideband=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 20 ]; then
+	if [ "`grep Faster_boot $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Faster_boot/d' $bpt
+		 busybox sed -i '/ro.config.hw_quickpoweron/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Faster_boot/d' $bpt
+		 busybox sed -i '/ro.config.hw_quickpoweron/d' $bpt
+		busybox sleep 1
+		busybox echo "#Faster_boot
+ro.config.hw_quickpoweron=true
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 21 ]; then
+	if [ "`grep No_boot_anim $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#No_boot_anim/d' $bpt
+		busybox sed -i '/debug.sf.nobootanimation/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#No_boot_anim/d' $bpt
+		busybox sed -i '/debug.sf.nobootanimation/d' $bpt
+		busybox sleep 1
+		busybox echo "
+#No_boot_anim
+debug.sf.nobootanimation=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 22 ]; then
+	if [ "`grep Disable_error_checking $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Disable_error_checking/d' $bpt
+		busybox sed -i '/ro.kernel.android.checkjni/d' $bpt
+		busybox sed -i '/ro.kernel.checkjni/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+	 	 busybox sed -i '/#Disable_error_checking/d' $bpt
+		busybox sed -i '/ro.kernel.android.checkjni/d' $bpt
+		busybox sed -i '/ro.kernel.checkjni/d' $bpt
+		busybox sleep 1
+		busybox echo "#Disable_error_checking
+ro.kernel.android.checkjni=0
+ro.kernel.checkjni=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 23 ]; then
+	if [ "`grep Dalvik_vm_tweaks $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Dalvik_vm_tweaks/d' $bpt
+		busybox sed -i '/dalvik.vm.checkjni/d' $bpt
+		busybox sed -i '/dalvik.vm.dexopt-data-only/d' $bpt
+		busybox sed -i '/dalvik.vm.heapstartsize/d' $bpt
+     busybox sed -i '/dalvik.vm.heapgrowthlimit/d' $bpt
+		busybox sed -i '/dalvik.vm.heapsize/d' $bpt
+		busybox sed -i '/dalvik.vm.verify-bytecode/d' $bpt
+     busybox sed -i '/dalvik.vm.execution-mode/d' $bpt
+		busybox sed -i '/dalvik.vm.lockprof.threshold/d' $bpt
+     busybox sed -i '/dalvik.vm.dexopt-flags/d' $bpt
+		busybox sed -i '/dalvik.vm.stack-trace-file/d' $bpt
+		busybox sed -i '/dalvik.vm.jmiopts/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Dalvik_vm_tweaks/d' $bpt
+		busybox sed -i '/dalvik.vm.checkjni/d' $bpt
+		busybox sed -i '/dalvik.vm.dexopt-data-only/d' $bpt
+		busybox sed -i '/dalvik.vm.heapstartsize/d' $bpt
+     busybox sed -i '/dalvik.vm.heapgrowthlimit/d' $bpt
+		busybox sed -i '/dalvik.vm.heapsize/d' $bpt
+		busybox sed -i '/dalvik.vm.verify-bytecode/d' $bpt
+     busybox sed -i '/dalvik.vm.execution-mode/d' $bpt
+		busybox sed -i '/dalvik.vm.lockprof.threshold/d' $bpt
+     busybox sed -i '/dalvik.vm.dexopt-flags/d' $bpt
+		busybox sed -i '/dalvik.vm.stack-trace-file/d' $bpt
+		busybox sed -i '/dalvik.vm.jmiopts/d' $bpt
+		busybox sleep 1
+		busybox echo "#Dalvik_vm_tweaks
+dalvik.vm.checkjni=false
+dalvik.vm.dexopt-data-only=1
+dalvik.vm.heapstartsize=5m
+dalvik.vm.heapgrowthlimit=48m
+dalvik.vm.heapsize=64m
+dalvik.vm.verify-bytecode=false
+dalvik.vm.execution-mode=int:jit
+dalvik.vm.lockprof.threshold=250
+dalvik.vm.dexopt-flags=m=v,o=y
+dalvik.vm.stack-trace-file=/data/anr/traces.txt
+dalvik.vm.jmiopts=forcecopy
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 24 ]; then
+	if [ "`grep Disable_google_location $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Disable_google_location/d' $bpt
+		busybox sed -i '/ro.com.google.locationfeatures/d' $bpt
+     busybox sed -i '/ro.com.google.networklocation/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Disable_google_location/d' $bpt
+		busybox sed -i '/ro.com.google.locationfeatures/d' $bpt
+     busybox sed -i '/ro.com.google.networklocation/d' $bpt
+		busybox sleep 1
+		busybox echo "#Disable_google_location
+ro.com.google.locationfeatures=0
+ro.com.google.networklocation=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 25 ]; then
+	if [ "`grep Disable_usage_data $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Disable_usage_data/d' $bpt
+		busybox sed -i '/ro.config.nocheckin/d' $bpt
+		busybox sleep 1
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 	busybox sed -i '/#Disable_usage_data/d' $bpt
+		busybox sed -i '/ro.config.nocheckin/d' $bpt
+		busybox sleep 1
+		busybox echo "#Disable_usage_data
+ro.config.nocheckin=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 26 ]; then
+	if [ "`grep Better_image_lower_performance $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Better_image_lower_performance/d' $bpt
+		busybox sed -i '/persist.sys.use_dithering/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+	 	 busybox sed -i '/#Better_image_lower_performance/d' $bpt
+		busybox sed -i '/persist.sys.use_dithering/d' $bpt
+		busybox sleep 1
+		busybox echo "#Better_image_lower_performance
+persist.sys.use_dithering=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 27 ]; then
+	if [ "`grep Disable_adb_notification $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Disable_adb_notification/d' $bpt
+		busybox sed -i '/persist.adb.notify/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Disable_adb_notification/d' $bpt
+		busybox sed -i '/persist.adb.notify/d' $bpt
+		busybox sleep 1
+		busybox echo "#Disable_adb_notification
+persist.adb.notify=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 28 ]; then
+	if [ "`grep Camera_sound_disable $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Camera_sound_disable/d' $bpt
+		busybox sed -i '/ro.camera.sound.forced/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Camera_sound_disable/d' $bpt
+		busybox sed -i '/ro.camera.sound.forced/d' $bpt
+		busybox sleep 1
+		busybox echo "#Camera_sound_disable
+ro.camera.sound.forced=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 29 ]; then
+	if [ "`grep Mms_retry_timer $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Mms_retry_timer/d' $bpt
+		busybox sed -i '/ro.gsm.2nd_data_retry_config/d' $bpt
+		busybox sleep 1
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Mms_retry_timer/d' $bpt
+		busybox sed -i '/ro.gsm.2nd_data_retry_config/d' $bpt
+		busybox sleep 1
+		busybox echo "#Mms_retry_timer
+ro.gsm.2nd_data_retry_config=max/_retries=3, 2000, 2000, 2000
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+
+elif [ $option -eq 30 ]; then
+	if [ "`grep Keys_light_stay_on $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Keys_light_stay_on/d' $bpt
+		busybox sed -i '/ro.mot.buttonlight.timeout/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+	 	 busybox sed -i '/#Keys_light_stay_on/d' $bpt
+		busybox sed -i '/ro.mot.buttonlight.timeout/d' $bpt
+		busybox sleep 1
+		busybox echo "#Keys_light_stay_on
+ro.mot.buttonlight.timeout=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox echo ""
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 31 ]; then
+	if [ "`grep Disable_strict_mode_checking $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Disable_strict_mode_checking/d' $bpt
+		busybox sed -i '/persist.android.strictmode/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Disable_strict_mode_checking/d' $bpt
+		busybox sed -i '/persist.android.strictmode/d' $bpt
+		busybox sleep 1
+		busybox echo "#Disable_strict_mode_checking
+persist.android.strictmode=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 32 ]; then
+	if [ "`grep Remove_fps_cap $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Remove_fps_cap/d' $bpt
+		busybox sed -i '/debug.gr.swapinterval/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Remove_fps_cap/d' $bpt
+		busybox sed -i '/debug.gr.swapinterval/d' $bpt
+		busybox sleep 1
+		busybox echo "#Remove_fps_cap
+debug.gr.swapinterval=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 33 ]; then
+	if [ "`grep Disable_sound_sd $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Disable_sound_sd/d' $bpt
+		busybox sed -i '/persist.service.mount.playsnd/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Disable_sound_sd/d' $bpt
+		busybox sed -i '/persist.service.mount.playsnd/d' $bpt
+		busybox sleep 1
+		busybox echo "#Disable_sound_sd
+persist.service.mount.playsnd=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 34 ]; then
+	if [ "`grep More_volume_steps $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#More_volume_steps/d' $bpt
+		busybox sed -i '/ro.config.vc_call_steps/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#More_volume_steps/d' $bpt
+		busybox sed -i '/ro.config.vc_call_steps/d' $bpt
+		busybox sleep 1
+		busybox echo "#More_volume_steps
+ro.config.vc_call_steps=20
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 35 ]; then
+	if [ "`grep Disable_wakeup_volume $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Disable_wakeup_volume/d' $bpt
+		busybox sed -i '/ro.config.hwfeature_wakeupkey/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Disable_wakeup_volume/d' $bpt
+		busybox sed -i '/ro.config.hwfeature_wakeupkey/d' $bpt
+		busybox sleep 1
+		busybox echo "#Disable_wakeup_volume
+ro.config.hwfeature_wakeupkey=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 36 ]; then
+	if [ "`grep Enable_mtp_mode $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Enable_mtp_mode/d' $bpt
+		 busybox sed -i '/persist.sys.usb.config/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+     busybox sed -i '/#Enable_mtp_mode/d' $bpt
+		 busybox sed -i '/persist.sys.usb.config/d' $bpt
+		busybox sleep 1
+		busybox echo "#Enable_mtp_mode
+persist.sys.usb.config=mtp
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 37 ]; then
+	if [ "`grep Allow_purgeable_assets $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Allow_purgeable_assets/d' $bpt
+		busybox sed -i '/persist.sys.purgeable_assets/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Allow_purgeable_assets/d' $bpt
+		busybox sed -i '/persist.sys.purgeable_assets/d' $bpt
+		busybox sleep 1
+		busybox echo "
+#Allow_purgeable_assets
+persist.sys.purgeable_assets=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 38 ]; then
+	if [ "`grep Support_ii $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Support_ii/d' $bpt
+		busybox sed -i '/persist.telephony.support.ipv6/d' $bpt
+		busybox sed -i '/persist.telephony.support.ipv4/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+	 	 busybox sed -i '/#Support_ii/d' $bpt
+		busybox sed -i '/persist.telephony.support.ipv6/d' $bpt
+		busybox sed -i '/persist.telephony.support.ipv4/d' $bpt
+		busybox sleep 1
+		busybox echo "#Support_ii
+persist.telephony.support.ipv6=1
+persist.telephony.support.ipv4=1
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 39 ]; then
+	if [ "`grep Other_tweaks $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Other_tweaks/d' $bpt
+		busybox sed -i '/persist.sys.shutdown.mode/d' $bpt
+		busybox sed -i '/debug.kill_allocating_task/d' $bpt
+		busybox sed -i '/persist.sys.ui.hw/d' $bpt
+     busybox sed -i '/ro.debuggable/d' $bpt
+		busybox sed -i '/ro.config.disable.hw_accel/d' $bpt
+		busybox sed -i '/debug.enabletr/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Other_tweaks/d' $bpt
+		busybox sed -i '/persist.sys.shutdown.mode/d' $bpt
+		busybox sed -i '/debug.kill_allocating_task/d' $bpt
+		busybox sed -i '/persist.sys.ui.hw/d' $bpt
+     busybox sed -i '/ro.debuggable/d' $bpt
+		busybox sed -i '/ro.config.disable.hw_accel/d' $bpt
+		busybox sed -i '/debug.enabletr/d' $bpt
+		busybox sleep 1
+		busybox echo "#Other_tweaks
+persist.sys.shutdown.mode=hibernate
+debug.kill_allocating_task=0
+persist.sys.ui.hw=1
+ro.debuggable=1
+ro.config.disable.hw_accel=false
+debug.enabletr=true
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 40 ]; then
+	if [ "`grep Flag_tuners $bpt`" ]; then
+		busybox echo "Disabling build.prop tweak..."
+		busybox sleep 1
+		busybox sed -i '/#Flag_tuners/d' $bpt
+		busybox sed -i '/ENFORCE_PROCESS_LIMIT/d' $bpt
+		busybox sed -i '/MAX_SERVICE_INACTIVITY/d' $bpt
+		busybox sed -i '/MIN_HIDDEN_APPS/d' $bpt
+     busybox sed -i '/MAX_HIDDEN_APPS/d' $bpt
+		busybox sed -i '/CONTENT_APP_IDLE_OFFSET/d' $bpt
+		busybox sed -i '/EMPTY_APP_IDLE_OFFSET/d' $bpt
+     busybox sed -i '/MAX_ACTIVITIES/d' $bpt
+		busybox sed -i '/ACTIVITY_INACTIVITY_RESET_TIME/d' $bpt
+		busybox sed -i '/MAX_RECENT_TASKS/d' $bpt
+     busybox sed -i '/MIN_RECENT_TASKS/d' $bpt
+		busybox sed -i '/APP_SWITCH_DELAY_TIME/d' $bpt
+     busybox sed -i '/MAX_PROCESSES/d' $bpt
+		busybox sed -i '/PROC_START_TIMEOUT/d' $bpt
+     busybox sed -i '/CPU_MIN_CHECK_DURATION/d' $bpt
+		busybox sed -i '/GC_TIMEOUT/d' $bpt
+		busybox sed -i '/SERVICE_TIMEOUT/d' $bpt
+     busybox sed -i '/MIN_CRASH_INTERVAL/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	else
+		busybox echo "Enabling build.prop tweak..."
+		busybox sleep 1
+		 busybox sed -i '/#Flag_tuners/d' $bpt
+		busybox sed -i '/ENFORCE_PROCESS_LIMIT/d' $bpt
+		busybox sed -i '/MAX_SERVICE_INACTIVITY/d' $bpt
+		busybox sed -i '/MIN_HIDDEN_APPS/d' $bpt
+     busybox sed -i '/MAX_HIDDEN_APPS/d' $bpt
+		busybox sed -i '/CONTENT_APP_IDLE_OFFSET/d' $bpt
+		busybox sed -i '/EMPTY_APP_IDLE_OFFSET/d' $bpt
+     busybox sed -i '/MAX_ACTIVITIES/d' $bpt
+		busybox sed -i '/ACTIVITY_INACTIVITY_RESET_TIME/d' $bpt
+		busybox sed -i '/MAX_RECENT_TASKS/d' $bpt
+     busybox sed -i '/MIN_RECENT_TASKS/d' $bpt
+		busybox sed -i '/APP_SWITCH_DELAY_TIME/d' $bpt
+     busybox sed -i '/MAX_PROCESSES/d' $bpt
+		busybox sed -i '/PROC_START_TIMEOUT/d' $bpt
+     busybox sed -i '/CPU_MIN_CHECK_DURATION/d' $bpt
+		busybox sed -i '/GC_TIMEOUT/d' $bpt
+		busybox sed -i '/SERVICE_TIMEOUT/d' $bpt
+     busybox sed -i '/MIN_CRASH_INTERVAL/d' $bpt
+		busybox sleep 1
+		busybox echo " #Flag_tuners
+ENFORCE_PROCESS_LIMIT=false
+MAX_SERVICE_INACTIVITY=false
+MIN_HIDDEN_APPS=false
+MAX_HIDDEN_APPS=false
+CONTENT_APP_IDLE_OFFSET=false
+EMPTY_APP_IDLE_OFFSET=false
+MAX_ACTIVITIES=false
+ACTIVITY_INACTIVITY_RESET_TIME=false
+MAX_RECENT_TASKS=false
+MIN_RECENT_TASKS=false
+APP_SWITCH_DELAY_TIME=false
+MAX_PROCESSES=false
+PROC_START_TIMEOUT=false
+CPU_MIN_CHECK_DURATION=false
+GC_TIMEOUT=false
+SERVICE_TIMEOUT=false
+MIN_CRASH_INTERVAL=false
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+	fi
+
+elif [ $option -eq 41 ]; then
+	 busybox sed -i '/#Lock_default_launcher/d' $bpt
+		busybox sed -i '/ro.HOME_APP_ADJ/d' $bpt
+     busybox sed -i '/#Better_recording_quality/d' $bpt
+		busybox sed -i '/ro.media.enc.jpeg.quality/d' $bpt
+		busybox sed -i '/ro.media.dec.jpeg.memcap/d' $bpt
+		busybox sed -i '/ro.media.enc.hprof.vid.bps/d' $bpt
+		busybox sed -i '/ro.media.capture.maxres/d' $bpt
+		busybox sed -i '/ro.media.panorama.defres/d' $bpt
+		busybox sed -i '/ro.media.panorama.frameres/d' $bpt
+		busybox sed -i '/ro.camcorder.videoModes/d' $bpt
+		busybox sed -i '/ro.media.enc.hprof.vid.fps/d' $bpt
+     busybox sed -i '/ro.media.dec.aud.wma.enabled/d' $bpt
+		busybox sed -i '/ro.media.dec.vid.wmv.enabled/d' $bpt
+		busybox sed -i '/ro.media.cam.preview.fps/d' $bpt
+		busybox sed -i '/ro.media.codec_priority_for_thumb/d' $bpt
+     busybox sed -i '/#Faster_streaming/d' $bpt
+		busybox sed -i '/media.stagefright.enable-player/d' $bpt
+             busybox sed -i '/media.stagefright.enable-meta/d' $bpt
+		busybox sed -i '/media.stagefright.enable-scan/d' $bpt
+             busybox sed -i '/media.stagefright.enable-http/d' $bpt
+		busybox sed -i '/media.stagefright.enable-record/d' $bpt
+             busybox sed -i '/media.stagefright.enable-aac/d' $bpt
+		busybox sed -i '/media.stagefright.enable-qcp/d' $bpt
+busybox sed -i '/#Video_hw/d' $bpt
+		busybox sed -i '/debug.sf.hw/d' $bpt
+		busybox sed -i '/debug.performance.tuning/d' $bpt
+             busybox sed -i '/video.accelerate.hw/d' $bpt
+		busybox sed -i '/debug.egl.profiler/d' $bpt
+		busybox sed -i '/debug.egl.hw/d' $bpt
+busybox sed -i '/#Screen_gpu/d' $bpt
+		busybox sed -i '/debug.composition.type/d' $bpt
+busybox sed -i '/#Disable_error_reporting/d' $bpt
+		busybox sed -i '/profiler.force_disable_err_rpt/d' $bpt
+		busybox sed -i '/profiler.force_disable_ulog/d' $bpt
+busybox sed -i '/#Dns_tweaks/d' $bpt
+		 busybox sed -i '/net.rmnet0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.rmnet0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.ppp0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.ppp0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.wlan0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.wlan0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.eth0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.eth0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.gprs.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.gprs.dns2=8.8.4.4/d' $bpt
+busybox sed -i '/#Battery_power_improve/d' $bpt
+		busybox sed -i '/ro.ril.power_collapse/d' $bpt
+		busybox sed -i '/pm.sleep_mode/d' $bpt
+		busybox sed -i '/wifi.supplicant_scan_interval/d' $bpt
+		busybox sed -i '/ro.mot.eri.losalert.delay/d' $bpt
+     busybox sed -i '/power.saving.mode/d' $bpt
+     busybox sed -i '/#3g_tweaks/d' $bpt
+		busybox sed -i '/ro.ril.hep/d' $bpt
+		busybox sed -i '/ro.ril.hsxpa/d' $bpt
+		busybox sed -i '/ro.ril.gprsclass/d' $bpt
+		busybox sed -i '/ro.ril.enable.dtm/d' $bpt
+		busybox sed -i '/ro.ril.hsdpa.category/d' $bpt
+		busybox sed -i '/ro.ril.enable.a53/d' $bpt
+		busybox sed -i '/ro.ril.enable.3g.prefix/d' $bpt
+    	busybox sed -i '/ro.ril.htcmaskw1.bitmask/d' $bpt
+		busybox sed -i '/ro.ril.htcmaskw1/d' $bpt
+		busybox sed -i '/ro.ril.hsupa.category/d' $bpt
+busybox sed -i '/#Liquid_smooth_UI/d' $bpt
+		busybox sed -i '/persist.service.lgospd.enable/d' $bpt
+		busybox sed -i '/persist.service.pcsync.enable/d' $bpt
+		busybox sed -i '/touch.pressure.scale/d' $bpt
+busybox sed -i '/#Disable_logcat/d' $bpt
+		busybox sed -i '/logcat.live/d' $bpt
+busybox sed -i '/#Fast_dormancy/d' $bpt
+		busybox sed -i '/ro.fast.dormancy/d' $bpt
+		busybox sed -i '/ro.ril.fast.dormancy.rule/d' $bpt
+busybox sed -i '/#Net_tweaks/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.hspa/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.umts/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.edge/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.gprs/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.hsdpa/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.wifi/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.evdo_b/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.lte/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.default/d' $bpt
+busybox sed -i '/#Screen_two_fingers/d' $bpt
+		busybox sed -i '/ro.product.multi_touch_enabled/d' $bpt
+     busybox sed -i '/ro.product.max_num_touch/d' $bpt
+busybox sed -i '/#Phone_rings_immediately/d' $bpt
+		busybox sed -i '/ro.telephony.call_ring.delay/d' $bpt
+		busybox sed -i '/ring.delay/d' $bpt
+busybox sed -i '/#Fix_blackscreen_issue/d' $bpt
+		busybox sed -i '/ro.lge.proximity.delay/d' $bpt
+             busybox sed -i '/mot.proximity.delay/d' $bpt
+busybox sed -i '/#Better_scrolling/d' $bpt
+		busybox sed -i '/windowsmgr.max_events_per_sec/d' $bpt
+		busybox sed -i '/ro.min_pointer_dur/d' $bpt
+             busybox sed -i '/ro.max.fling_velocity/d' $bpt
+		busybox sed -i '/ro.min.fling_velocity/d' $bpt
+busybox sed -i '/#Better_cell_signal/d' $bpt
+		busybox sed -i '/persist.cust.tel.eons/d' $bpt
+busybox sed -i '/#Better_call_voice_quality/d' $bpt
+		busybox sed -i '/ro.ril.enable.amr.wideband/d' $bpt
+busybox sed -i '/#Faster_boot/d' $bpt
+		 busybox sed -i '/ro.config.hw_quickpoweron/d' $bpt
+busybox sed -i '/#No_boot_anim/d' $bpt
+		busybox sed -i '/debug.sf.nobootanimation/d' $bpt
+busybox sed -i '/#Disable_error_checking/d' $bpt
+		busybox sed -i '/ro.kernel.android.checkjni/d' $bpt
+		busybox sed -i '/ro.kernel.checkjni/d' $bpt
+busybox sed -i '/#Dalvik_vm_tweaks/d' $bpt
+		busybox sed -i '/dalvik.vm.checkjni/d' $bpt
+		busybox sed -i '/dalvik.vm.dexopt-data-only/d' $bpt
+		busybox sed -i '/dalvik.vm.heapstartsize/d' $bpt
+     busybox sed -i '/dalvik.vm.heapgrowthlimit/d' $bpt
+		busybox sed -i '/dalvik.vm.heapsize/d' $bpt
+		busybox sed -i '/dalvik.vm.verify-bytecode/d' $bpt
+     busybox sed -i '/dalvik.vm.execution-mode/d' $bpt
+		busybox sed -i '/dalvik.vm.lockprof.threshold/d' $bpt
+     busybox sed -i '/dalvik.vm.dexopt-flags/d' $bpt
+		busybox sed -i '/dalvik.vm.stack-trace-file/d' $bpt
+		busybox sed -i '/dalvik.vm.jmiopts/d' $bpt
+busybox sed -i '/#Disable_google_location/d' $bpt
+		busybox sed -i '/ro.com.google.locationfeatures/d' $bpt
+     busybox sed -i '/ro.com.google.networklocation/d' $bpt
+busybox sed -i '/#Disable_usage_data/d' $bpt
+		busybox sed -i '/ro.config.nocheckin/d' $bpt
+busybox sed -i '/#Better_image_lower_performance/d' $bpt
+		busybox sed -i '/persist.sys.use_dithering/d' $bpt
+busybox sed -i '/#Disable_adb_notification/d' $bpt
+		busybox sed -i '/persist.adb.notify/d' $bpt
+busybox sed -i '/#Camera_sound_disable/d' $bpt
+		busybox sed -i '/ro.camera.sound.forced/d' $bpt
+busybox sed -i '/#Mms_retry_timer/d' $bpt
+		busybox sed -i '/ro.gsm.2nd_data_retry_config/d' $bpt
+busybox sed -i '/#Keys_light_stay_on/d' $bpt
+		busybox sed -i '/ro.mot.buttonlight.timeout/d' $bpt
+busybox sed -i '/#Disable_strict_mode_checking/d' $bpt
+		busybox sed -i '/persist.android.strictmode/d' $bpt
+busybox sed -i '/#Remove_fps_cap/d' $bpt
+		busybox sed -i '/debug.gr.swapinterval/d' $bpt
+busybox sed -i '/#Disable_sound_sd/d' $bpt
+		busybox sed -i '/persist.service.mount.playsnd/d' $bpt
+busybox sed -i '/#More_volume_steps/d' $bpt
+		busybox sed -i '/ro.config.vc_call_steps/d' $bpt
+busybox sed -i '/#Disable_wakeup_volume/d' $bpt
+		busybox sed -i '/ro.config.hwfeature_wakeupkey/d' $bpt
+busybox sed -i '/#Enable_mtp_mode/d' $bpt
+		 busybox sed -i '/persist.sys.usb.config/d' $bpt
+busybox sed -i '/#Allow_purgeable_assets/d' $bpt
+		busybox sed -i '/persist.sys.purgeable_assets/d' $bpt
+busybox sed -i '/#Support_ii/d' $bpt
+		busybox sed -i '/persist.telephony.support.ipv6/d' $bpt
+		busybox sed -i '/persist.telephony.support.ipv4/d' $bpt
+busybox sed -i '/#Other_tweaks/d' $bpt
+		busybox sed -i '/persist.sys.shutdown.mode/d' $bpt
+		busybox sed -i '/debug.kill_allocating_task/d' $bpt
+		busybox sed -i '/persist.sys.ui.hw/d' $bpt
+     busybox sed -i '/ro.debuggable/d' $bpt
+		busybox sed -i '/ro.config.disable.hw_accel/d' $bpt
+		busybox sed -i '/debug.enabletr/d' $bpt
+     busybox sed -i '/#Flag_tuners/d' $bpt
+		busybox sed -i '/ENFORCE_PROCESS_LIMIT/d' $bpt
+		busybox sed -i '/MAX_SERVICE_INACTIVITY/d' $bpt
+		busybox sed -i '/MIN_HIDDEN_APPS/d' $bpt
+     busybox sed -i '/MAX_HIDDEN_APPS/d' $bpt
+		busybox sed -i '/CONTENT_APP_IDLE_OFFSET/d' $bpt
+		busybox sed -i '/EMPTY_APP_IDLE_OFFSET/d' $bpt
+     busybox sed -i '/MAX_ACTIVITIES/d' $bpt
+		busybox sed -i '/ACTIVITY_INACTIVITY_RESET_TIME/d' $bpt
+		busybox sed -i '/MAX_RECENT_TASKS/d' $bpt
+     busybox sed -i '/MIN_RECENT_TASKS/d' $bpt
+		busybox sed -i '/APP_SWITCH_DELAY_TIME/d' $bpt
+     busybox sed -i '/MAX_PROCESSES/d' $bpt
+		busybox sed -i '/PROC_START_TIMEOUT/d' $bpt
+     busybox sed -i '/CPU_MIN_CHECK_DURATION/d' $bpt
+		busybox sed -i '/GC_TIMEOUT/d' $bpt
+		busybox sed -i '/SERVICE_TIMEOUT/d' $bpt
+     busybox sed -i '/MIN_CRASH_INTERVAL/d' $bpt
+     busybox echo "#Lock_default_launcher
+ro.HOME_APP_ADJ=1
+#Better_recording_quality
+ro.media.enc.jpeg.quality=100
+ro.media.dec.jpeg.memcap=8000000
+ro.media.enc.hprof.vid.bps=8000000
+ro.media.capture.maxres=8m
+ro.media.panorama.defres=3264x1840
+ro.media.panorama.frameres=1280x720
+ro.camcorder.videoModes=true
+ro.media.enc.hprof.vid.fps=65
+ro.media.dec.aud.wma.enabled=1
+ro.media.dec.vid.wmv.enabled=1
+ro.media.cam.preview.fps=0
+ro.media.codec_priority_for_thumb=so
+#Faster_streaming
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=true
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-record=false
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+#Video_hw
+debug.sf.hw=1
+debug.performance.tuning=1
+video.accelerate.hw=1
+debug.egl.profiler=1 
+debug.egl.hw=1
+#Screen_gpu
+debug.composition.type=gpu
+#Disable_error_reporting
+profiler.force_disable_err_rpt=1
+profiler.force_disable_ulog=1
+#Dns_tweaks
+net.rmnet0.dns1=8.8.8.8
+net.rmnet0.dns2=8.8.4.4
+net.dns1=8.8.8.8
+net.dns2=8.8.4.4
+net.ppp0.dns1=8.8.8.8
+net.ppp0.dns2=8.8.4.4
+net.wlan0.dns1=8.8.8.8
+net.wlan0.dns2=8.8.4.4
+net.eth0.dns1=8.8.8.8
+net.eth0.dns2=8.8.4.4
+net.gprs.dns1=8.8.8.8
+net.gprs.dns2=8.8.4.4
+#Battery_power_improve
+ro.ril.power_collapse=1
+pm.sleep_mode=2
+wifi.supplicant_scan_interval=180
+ro.mot.eri.losalert.delay=1000
+power.saving.mode=1
+#3g_tweaks
+ro.ril.hep=0
+ro.ril.hsxpa=2
+ro.ril.gprsclass=12
+ro.ril.enable.dtm=1
+ro.ril.hsdpa.category=8
+ro.ril.enable.a53=1
+ro.ril.enable.3g.prefix=1
+ro.ril.htcmaskw1.bitmask=4294967295
+ro.ril.htcmaskw1=14449
+ro.ril.hsupa.category=6
+#Liquid_smooth_UI
+persist.service.lgospd.enable=0
+persist.service.pcsync.enable=0
+touch.pressure.scale=0.003
+#Disable_logcat
+logcat.live=disable
+#Fast_dormancy_enabled
+ro.fast.dormancy=1
+ro.ril.fast.dormancy.rule=1
+" >> $bpt
+if [ "$mem" -lt 512000 ]; then
+		busybox echo "#Net_tweaks
+net.tcp.buffersize.hspa=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.umts=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.edge=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.gprs=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.hsdpa=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.wifi=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.evdo_b=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.lte=4096,32768,65536,4096,32768,65536
+net.tcp.buffersize.default=4096,32768,12582912,4096,32768,12582912
+" >>$bpt
+else
+		busybox echo "#Net_tweaks
+net.tcp.buffersize.default=6144,87380,110208,6144,16384,110208
+net.tcp.buffersize.wifi=262144,524288,1048576,262144,524288,1048576
+net.tcp.buffersize.lte=262144,524288,3145728,262144,524288,3145728
+net.tcp.buffersize.hsdpa=6144,262144,1048576,6144,262144,1048576
+net.tcp.buffersize.evdo_b=6144,262144,1048576,6144,262144,1048576
+net.tcp.buffersize.umts=6144,87380,110208,6144,16384,110208
+net.tcp.buffersize.hspa=6144,87380,262144,6144,16384,262144
+net.tcp.buffersize.gprs=6144,8760,11680,6144,8760,11680
+net.tcp.buffersize.edge=6144,26280,35040,6144,16384,35040
+" >>$bpt
+      fi
+busybox echo "#Screen_two_fingers
+ro.product.multi_touch_enabled=true
+ro.product.max_num_touch=2
+#Phone_rings_immediately
+ro.telephony.call_ring.delay=0
+ring.delay=0
+#Fix_blackscreen_issue
+ro.lge.proximity.delay=25
+mot.proximity.delay=25
+#Better_scrolling
+windowsmgr.max_events_per_sec=150
+ro.min_pointer_dur=8
+ro.max.fling_velocity=12000
+ro.min.fling_velocity=8000
+#Better_cell_signal
+persist.cust.tel.eons=1
+#Better_call_voice_quality
+ro.ril.enable.amr.wideband=1
+#Faster_boot
+ro.config.hw_quickpoweron=true
+#No_boot_anim
+debug.sf.nobootanimation=1
+#Disable_error_checking
+ro.kernel.android.checkjni=0
+ro.kernel.checkjni=0
+#Dalvik_vm_tweaks
+dalvik.vm.checkjni=false
+dalvik.vm.dexopt-data-only=1
+dalvik.vm.heapstartsize=5m
+dalvik.vm.heapgrowthlimit=48m
+dalvik.vm.heapsize=64m
+dalvik.vm.verify-bytecode=false
+dalvik.vm.execution-mode=int:jit
+dalvik.vm.lockprof.threshold=250
+dalvik.vm.dexopt-flags=m=v,o=y
+dalvik.vm.stack-trace-file=/data/anr/traces.txt
+dalvik.vm.jmiopts=forcecopy
+#Disable_google_location
+ro.com.google.locationfeatures=0
+ro.com.google.networklocation=0
+#Disable_usage_data
+ro.config.nocheckin=1
+#Better_image_lower_performance
+persist.sys.use_dithering=1
+#Disable_adb_notification
+persist.adb.notify=0
+#Camera_sound_disable
+ro.camera.sound.forced=1
+#Mms_retry_timer
+ro.gsm.2nd_data_retry_config=max/_retries=3, 2000, 2000, 2000
+#Keys_light_stay_on
+ro.mot.buttonlight.timeout=0
+#Disable_strict_mode_checking
+persist.android.strictmode=0
+#Remove_fps_cap
+debug.gr.swapinterval=0
+#Disable_sound_sd
+persist.service.mount.playsnd=0
+#More_volume_steps
+ro.config.vc_call_steps=20
+#Disable_wakeup_volume
+ro.config.hwfeature_wakeupkey=0
+#Enable_mtp_mode
+persist.sys.usb.config=mtp
+#Allow_purgeable_assets
+persist.sys.purgeable_assets=1
+#Support_ii
+persist.telephony.support.ipv6=1
+persist.telephony.support.ipv4=1
+#Other_tweaks
+persist.sys.shutdown.mode=hibernate
+debug.kill_allocating_task=0
+persist.sys.ui.hw=1
+ro.debuggable=1
+ro.config.disable.hw_accel=false
+debug.enabletr=true
+#Flag_tuners
+ENFORCE_PROCESS_LIMIT=false
+MAX_SERVICE_INACTIVITY=false
+MIN_HIDDEN_APPS=false
+MAX_HIDDEN_APPS=false
+CONTENT_APP_IDLE_OFFSET=false
+EMPTY_APP_IDLE_OFFSET=false
+MAX_ACTIVITIES=false
+ACTIVITY_INACTIVITY_RESET_TIME=false
+MAX_RECENT_TASKS=false
+MIN_RECENT_TASKS=false
+APP_SWITCH_DELAY_TIME=false
+MAX_PROCESSES=false
+PROC_START_TIMEOUT=false
+CPU_MIN_CHECK_DURATION=false
+GC_TIMEOUT=false
+SERVICE_TIMEOUT=false
+MIN_CRASH_INTERVAL=false
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+
+
+elif [ $option -eq 42 ]; then
+	 busybox sed -i '/#Lock_default_launcher/d' $bpt
+		busybox sed -i '/ro.HOME_APP_ADJ/d' $bpt
+     busybox sed -i '/#Better_recording_quality/d' $bpt
+		busybox sed -i '/ro.media.enc.jpeg.quality/d' $bpt
+		busybox sed -i '/ro.media.dec.jpeg.memcap/d' $bpt
+		busybox sed -i '/ro.media.enc.hprof.vid.bps/d' $bpt
+		busybox sed -i '/ro.media.capture.maxres/d' $bpt
+		busybox sed -i '/ro.media.panorama.defres/d' $bpt
+		busybox sed -i '/ro.media.panorama.frameres/d' $bpt
+		busybox sed -i '/ro.camcorder.videoModes/d' $bpt
+		busybox sed -i '/ro.media.enc.hprof.vid.fps/d' $bpt
+     busybox sed -i '/ro.media.dec.aud.wma.enabled/d' $bpt
+		busybox sed -i '/ro.media.dec.vid.wmv.enabled/d' $bpt
+		busybox sed -i '/ro.media.cam.preview.fps/d' $bpt
+		busybox sed -i '/ro.media.codec_priority_for_thumb/d' $bpt
+busybox sed -i '/#Faster_streaming/d' $bpt
+		busybox sed -i '/media.stagefright.enable-player/d' $bpt
+             busybox sed -i '/media.stagefright.enable-meta/d' $bpt
+		busybox sed -i '/media.stagefright.enable-scan/d' $bpt
+             busybox sed -i '/media.stagefright.enable-http/d' $bpt
+		busybox sed -i '/media.stagefright.enable-record/d' $bpt
+             busybox sed -i '/media.stagefright.enable-aac/d' $bpt
+		busybox sed -i '/media.stagefright.enable-qcp/d' $bpt
+busybox sed -i '/#Video_hw/d' $bpt
+		busybox sed -i '/debug.sf.hw/d' $bpt
+		busybox sed -i '/debug.performance.tuning/d' $bpt
+             busybox sed -i '/video.accelerate.hw/d' $bpt
+		busybox sed -i '/debug.egl.profiler/d' $bpt
+		busybox sed -i '/debug.egl.hw/d' $bpt
+busybox sed -i '/#Screen_gpu/d' $bpt
+		busybox sed -i '/debug.composition.type/d' $bpt
+busybox sed -i '/#Disable_error_reporting/d' $bpt
+		busybox sed -i '/profiler.force_disable_err_rpt/d' $bpt
+		busybox sed -i '/profiler.force_disable_ulog/d' $bpt
+busybox sed -i '/#Dns_tweaks/d' $bpt
+		 busybox sed -i '/net.rmnet0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.rmnet0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.ppp0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.ppp0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.wlan0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.wlan0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.eth0.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.eth0.dns2=8.8.4.4/d' $bpt
+              busybox sed -i '/net.gprs.dns1=8.8.8.8/d' $bpt
+              busybox sed -i '/net.gprs.dns2=8.8.4.4/d' $bpt
+busybox sed -i '/#Battery_power_improve/d' $bpt
+		busybox sed -i '/ro.ril.power_collapse/d' $bpt
+		busybox sed -i '/pm.sleep_mode/d' $bpt
+		busybox sed -i '/wifi.supplicant_scan_interval/d' $bpt
+		busybox sed -i '/ro.mot.eri.losalert.delay/d' $bpt
+     busybox sed -i '/power.saving.mode/d' $bpt
+     busybox sed -i '/#3g_tweaks/d' $bpt
+		busybox sed -i '/ro.ril.hep/d' $bpt
+		busybox sed -i '/ro.ril.hsxpa/d' $bpt
+		busybox sed -i '/ro.ril.gprsclass/d' $bpt
+		busybox sed -i '/ro.ril.enable.dtm/d' $bpt
+		busybox sed -i '/ro.ril.hsdpa.category/d' $bpt
+		busybox sed -i '/ro.ril.enable.a53/d' $bpt
+		busybox sed -i '/ro.ril.enable.3g.prefix/d' $bpt
+    	busybox sed -i '/ro.ril.htcmaskw1.bitmask/d' $bpt
+		busybox sed -i '/ro.ril.htcmaskw1/d' $bpt
+		busybox sed -i '/ro.ril.hsupa.category/d' $bpt
+busybox sed -i '/#Liquid_smooth_UI/d' $bpt
+		busybox sed -i '/persist.service.lgospd.enable/d' $bpt
+		busybox sed -i '/persist.service.pcsync.enable/d' $bpt
+		busybox sed -i '/touch.pressure.scale/d' $bpt
+busybox sed -i '/#Disable_logcat/d' $bpt
+		busybox sed -i '/logcat.live/d' $bpt
+busybox sed -i '/#Fast_dormancy/d' $bpt
+		busybox sed -i '/ro.fast.dormancy/d' $bpt
+		busybox sed -i '/ro.ril.fast.dormancy.rule/d' $bpt
+busybox sed -i '/#Net_tweaks/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.hspa/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.umts/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.edge/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.gprs/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.hsdpa/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.wifi/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.evdo_b/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.lte/d' $bpt
+              busybox sed -i '/net.tcp.buffersize.default/d' $bpt
+busybox sed -i '/#Screen_two_fingers/d' $bpt
+		busybox sed -i '/ro.product.multi_touch_enabled/d' $bpt
+     busybox sed -i '/ro.product.max_num_touch/d' $bpt
+busybox sed -i '/#Phone_rings_immediately/d' $bpt
+		busybox sed -i '/ro.telephony.call_ring.delay/d' $bpt
+		busybox sed -i '/ring.delay/d' $bpt
+busybox sed -i '/#Fix_blackscreen_issue/d' $bpt
+		busybox sed -i '/ro.lge.proximity.delay/d' $bpt
+             busybox sed -i '/mot.proximity.delay/d' $bpt
+busybox sed -i '/#Better_scrolling/d' $bpt
+		busybox sed -i '/windowsmgr.max_events_per_sec/d' $bpt
+		busybox sed -i '/ro.min_pointer_dur/d' $bpt
+             busybox sed -i '/ro.max.fling_velocity/d' $bpt
+		busybox sed -i '/ro.min.fling_velocity/d' $bpt
+busybox sed -i '/#Better_cell_signal/d' $bpt
+		busybox sed -i '/persist.cust.tel.eons/d' $bpt
+busybox sed -i '/#Better_call_voice_quality/d' $bpt
+		busybox sed -i '/ro.ril.enable.amr.wideband/d' $bpt
+busybox sed -i '/#Faster_boot/d' $bpt
+		 busybox sed -i '/ro.config.hw_quickpoweron/d' $bpt
+busybox sed -i '/#No_boot_anim/d' $bpt
+		busybox sed -i '/debug.sf.nobootanimation/d' $bpt
+busybox sed -i '/#Disable_error_checking/d' $bpt
+		busybox sed -i '/ro.kernel.android.checkjni/d' $bpt
+		busybox sed -i '/ro.kernel.checkjni/d' $bpt
+busybox sed -i '/#Dalvik_vm_tweaks/d' $bpt
+		busybox sed -i '/dalvik.vm.checkjni/d' $bpt
+		busybox sed -i '/dalvik.vm.dexopt-data-only/d' $bpt
+		busybox sed -i '/dalvik.vm.heapstartsize/d' $bpt
+     busybox sed -i '/dalvik.vm.heapgrowthlimit/d' $bpt
+		busybox sed -i '/dalvik.vm.heapsize/d' $bpt
+		busybox sed -i '/dalvik.vm.verify-bytecode/d' $bpt
+     busybox sed -i '/dalvik.vm.execution-mode/d' $bpt
+		busybox sed -i '/dalvik.vm.lockprof.threshold/d' $bpt
+     busybox sed -i '/dalvik.vm.dexopt-flags/d' $bpt
+		busybox sed -i '/dalvik.vm.stack-trace-file/d' $bpt
+		busybox sed -i '/dalvik.vm.jmiopts/d' $bpt
+busybox sed -i '/#Disable_google_location/d' $bpt
+		busybox sed -i '/ro.com.google.locationfeatures/d' $bpt
+     busybox sed -i '/ro.com.google.networklocation/d' $bpt
+busybox sed -i '/#Disable_usage_data/d' $bpt
+		busybox sed -i '/ro.config.nocheckin/d' $bpt
+busybox sed -i '/#Better_image_lower_performance/d' $bpt
+		busybox sed -i '/persist.sys.use_dithering/d' $bpt
+busybox sed -i '/#Disable_adb_notification/d' $bpt
+		busybox sed -i '/persist.adb.notify/d' $bpt
+busybox sed -i '/#Camera_sound_disable/d' $bpt
+		busybox sed -i '/ro.camera.sound.forced/d' $bpt
+busybox sed -i '/#Mms_retry_timer/d' $bpt
+		busybox sed -i '/ro.gsm.2nd_data_retry_config/d' $bpt
+busybox sed -i '/#Keys_light_stay_on/d' $bpt
+		busybox sed -i '/ro.mot.buttonlight.timeout/d' $bpt
+busybox sed -i '/#Disable_strict_mode_checking/d' $bpt
+		busybox sed -i '/persist.android.strictmode/d' $bpt
+busybox sed -i '/#Remove_fps_cap/d' $bpt
+		busybox sed -i '/debug.gr.swapinterval/d' $bpt
+busybox sed -i '/#Disable_sound_sd/d' $bpt
+		busybox sed -i '/persist.service.mount.playsnd/d' $bpt
+busybox sed -i '/#More_volume_steps/d' $bpt
+		busybox sed -i '/ro.config.vc_call_steps/d' $bpt
+busybox sed -i '/#Disable_wakeup_volume/d' $bpt
+		busybox sed -i '/ro.config.hwfeature_wakeupkey/d' $bpt
+busybox sed -i '/#Enable_mtp_mode/d' $bpt
+		 busybox sed -i '/persist.sys.usb.config/d' $bpt
+busybox sed -i '/#Allow_purgeable_assets/d' $bpt
+		busybox sed -i '/persist.sys.purgeable_assets/d' $bpt
+busybox sed -i '/#Support_ii/d' $bpt
+		busybox sed -i '/persist.telephony.support.ipv6/d' $bpt
+		busybox sed -i '/persist.telephony.support.ipv4/d' $bpt
+busybox sed -i '/#Other_tweaks/d' $bpt
+		busybox sed -i '/persist.sys.shutdown.mode/d' $bpt
+		busybox sed -i '/debug.kill_allocating_task/d' $bpt
+		busybox sed -i '/persist.sys.ui.hw/d' $bpt
+     busybox sed -i '/ro.debuggable/d' $bpt
+		busybox sed -i '/ro.config.disable.hw_accel/d' $bpt
+		busybox sed -i '/debug.enabletr/d' $bpt
+     busybox sed -i '/#Flag_tuners/d' $bpt
+		busybox sed -i '/ENFORCE_PROCESS_LIMIT/d' $bpt
+		busybox sed -i '/MAX_SERVICE_INACTIVITY/d' $bpt
+		busybox sed -i '/MIN_HIDDEN_APPS/d' $bpt
+     busybox sed -i '/MAX_HIDDEN_APPS/d' $bpt
+		busybox sed -i '/CONTENT_APP_IDLE_OFFSET/d' $bpt
+		busybox sed -i '/EMPTY_APP_IDLE_OFFSET/d' $bpt
+     busybox sed -i '/MAX_ACTIVITIES/d' $bpt
+		busybox sed -i '/ACTIVITY_INACTIVITY_RESET_TIME/d' $bpt
+		busybox sed -i '/MAX_RECENT_TASKS/d' $bpt
+     busybox sed -i '/MIN_RECENT_TASKS/d' $bpt
+		busybox sed -i '/APP_SWITCH_DELAY_TIME/d' $bpt
+     busybox sed -i '/MAX_PROCESSES/d' $bpt
+		busybox sed -i '/PROC_START_TIMEOUT/d' $bpt
+     busybox sed -i '/CPU_MIN_CHECK_DURATION/d' $bpt
+		busybox sed -i '/GC_TIMEOUT/d' $bpt
+		busybox sed -i '/SERVICE_TIMEOUT/d' $bpt
+     busybox sed -i '/MIN_CRASH_INTERVAL/d' $bpt
+ busybox echo "#Fast_dormancy_disabled
+ro.fast.dormancy=0
+ro.ril.fast.dormancy.rule=0
+" >> $bpt
+		busybox sed -i '/^$/d' $bpt
+		busybox echo "Done!"
+		busybox echo ""
+		busybox echo "Please reboot your device!!!"
+		busybox sleep 3
+		sh system/bin/DBBuildProp
+
+
+elif [ $option -eq 0 ]; then
+	busybox echo "Going back to Main Menu..."
+	busybox sleep 3
+	sh system/bin/DB
+fi
+
+exit
+
+else
+	busybox echo "Invalid option, please try again..."
+	busybox sleep 1
+	sh system/bin/DBBuildProp
+fi

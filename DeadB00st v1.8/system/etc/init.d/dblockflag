@@ -1,0 +1,40 @@
+#!/system/bin/sh
+# DeadB00st 
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your eoption) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+DBLog=/system/etc/DB/Log/DBLogInit.log
+Config=/system/etc/DB/SwitchesConfig.conf
+
+if [ "`grep BLOCKFLAGTWEAK=1 $Config `" ]; then
+   busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Block Flagger & Cache Increaser Tweak is activated" >> $DBLog
+
+LOOP=`ls -d /sys/block/loop*`;
+RAM=`ls -d /sys/block/ram*`;
+MMC=`ls -d /sys/block/mmc*`;
+for k in $LOOP $RAM $MMC
+do
+echo "0" > $k/queue/rotational;
+done
+
+busybox echo "Done!!!"
+else 
+
+busybox echo "$(date +"%m-%d-%Y %H:%M:%S"): Block Flagger & Cache Increaser Tweak is deactivated" >> $DBLog
+
+fi

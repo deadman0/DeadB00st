@@ -1,0 +1,202 @@
+#!/system/bin/sh
+# DeadB00st
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+# DB
+
+div="\e[0;100m+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[00;37;40m" 
+
+busybox clear
+
+
+busybox echo "Choose an option to start B00sting!!!"
+busybox sleep 3
+busybox echo ""
+busybox echo ""
+busybox echo ""
+busybox sleep 1
+busybox echo "1. All B00st options (Ram,fstrim,cleaner)"
+busybox echo -e $div
+busybox echo "2. Ram (Light)"
+busybox echo -e $div
+busybox echo "3. Ram (Moderate)"
+busybox echo -e $div
+busybox echo "4. Ram (Aggresive)"
+busybox echo -e $div
+busybox echo "5. Cleaner(Deletes Unused, Unwanted, Useless files)"
+busybox echo -e $div
+busybox echo "6. Battery Calibration"
+busybox sleep 1
+busybox echo ""
+busybox echo ""
+busybox sleep 2
+busybox echo "0. Exit back to menu"
+busybox sleep 1
+busybox echo ""
+busybox echo ""
+busybox echo -n "Selection: "
+read boostoption
+
+if [ $boostoption -eq 1 ]; then
+	busybox sleep 2
+	sh system/bin/dboost
+	busybox sleep 5
+	busybox echo -n "Go back to B00st Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBBoostMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $boostoption -eq 2 ]; then
+	busybox sleep 2
+	sh system/bin/lightram
+	busybox sleep 5
+	busybox echo -n "Go back to B00st Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBBoostMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $boostoption -eq 3 ]; then
+	busybox sleep 2
+	sh system/bin/modram
+	busybox sleep 5
+	busybox echo -n "Go back to B00st Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBBoostMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $boostoption -eq 4 ]; then
+	busybox sleep 2
+	sh system/bin/dram
+	busybox sleep 5
+	busybox echo -n "Go back to B00st Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBBoostMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $boostoption -eq 5 ]; then
+	busybox sleep 2
+	sh system/bin/d0cleaner
+	busybox sleep 5
+	busybox echo -n "Go back to B00st Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBBoostMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+
+
+if [ $boostoption -eq 6 ]; then
+busybox sleep 2
+busybox echo ""
+busybox echo "You need a full battery to calibrate..."
+busybox echo ""
+busybox echo "Checking battery level"
+BatteryLevel=$(cat /sys/class/power_supply/battery/capacity)
+if [ "$BatteryLevel" == "100" ] ; then
+busybox mount -o rw,remount /data
+busybox sleep 2
+busybox rm -f /data/system/batterystats.bin
+busybox echo "+-+-+-+-+-+-+-+-+-+"
+busybox echo "."
+busybox sleep 1
+busybox echo "."
+busybox sleep 1
+busybox echo "."
+busybox sleep 1
+busybox echo ""
+busybox echo "Great!!! DeadB00st calibrated your battery successfully."
+busybox sleep 2
+busybox echo ""
+busybox echo "Please reboot your system."
+busybox sleep 2
+else
+busybox echo ""
+busybox echo "+-+-+-+-+-+-+-+-+-+"
+busybox sleep 2
+busybox echo ""
+busybox echo "Something went wrong... Your battery is not full, it's actually on $BatteryLevel %"
+busybox sleep 3
+fi
+sh system/bin/DBBoostMenu
+fi
+
+if [ $boostoption -eq 0 ]; then
+	busybox echo "Going to Main menu..."
+	busybox sleep 3
+	sh system/bin/DB
+fi
+
+exit
+
+else
+	busybox echo "Invalid option, please try again..."
+	busybox sleep 1
+	sh system/bin/DBBoostMenu
+fi

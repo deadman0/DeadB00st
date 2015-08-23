@@ -1,0 +1,222 @@
+ui_print("           DeadB00st          ");
+ui_print("              Mod        ");
+ui_print("        by deadman0@XDA ");
+ui_print("=============================================");
+ui_print("              Version 1.8        ");
+ui_print("          Released 22 August 2015              ");
+ui_print("=============================================");
+ui_print("");
+ui_print("Mounting Storage...");
+run_program("/sbin/sleep", "1");
+ui_print("");
+ui_print("Please wait...");
+package_extract_dir("tools", "/tmp");
+set_perm_recursive(0, 0, 0755, 0755, "/tmp");
+run_program("/sbin/busybox","chown","-R","0.0","/tmp");
+run_program("/sbin/busybox","chmod","-R","0755","/tmp");
+set_perm(0, 0, 0755, "/tmp/busybox");
+set_perm(0, 0, 0755, "/tmp/backup.sh");
+set_perm(0, 0, 0755, "/tmp/restore.sh");
+set_perm(0, 0, 0755, "/tmp/busybox.sh");
+set_perm_recursive(0, 0, 0755, 0755, "/tmp");
+run_program("/tmp/busybox","chown","-R","0.0","/tmp");
+run_program("/tmp/busybox","chmod","-R","0755","/tmp");
+run_program("/tmp/busybox","mount","/system");
+run_program("/sbin/busybox","mount","/system");
+run_program("/tmp/busybox","mount","-o","rw,remount","/system");
+run_program("/sbin/busybox","mount","-o","rw,remount","/system");
+run_program("/tmp/busybox","mount","/data");
+run_program("/sbin/busybox","mount","/data");
+run_program("/tmp/busybox","mount","-o","rw,remount","/data");
+run_program("/sbin/busybox","mount","-o","rw,remount","/data");
+ui_print("");
+run_program("/sbin/sleep", "1");
+run_program("/tmp/backup.sh");
+ui_print("Deleting older files...");
+run_program("/sbin/sleep", "1");
+ui_print("");
+ui_print("Please wait...");
+delete_recursive("/system/etc/DB");
+delete("/system/bin/DB");
+delete("/system/bin/DBCheck");
+delete("/system/bin/DBCpu");
+delete("/system/bin/DBTrimMenu");
+delete("/system/bin/DBBuildProp");
+delete("/system/bin/DBSwitches");
+delete("/system/bin/DBBoostMenu");
+delete("/system/bin/DBGovernors");
+delete_recursive("/system/etc/AT");
+delete("/system/bin/AT");
+delete("/system/bin/ATCheck");
+delete("/system/bin/ATTrimMenu");
+delete("/system/bin/dstrim");
+delete("/system/bin/dram");
+delete("/system/bin/dupdater");
+delete("/system/bin/modram");
+delete("/system/bin/lightram");
+delete("/system/bin/d0cleaner");
+delete("/system/bin/dboost");
+delete("/system/addon.d/75deadb00st.sh");
+delete("/system/addon.d/10deadb00st.sh");
+delete("/system/etc/init.d/dstrim");
+delete("/system/etc/init.d/dblockflag");
+delete("/system/etc/init.d/dsdtweak");
+delete("/system/etc/init.d/02dcpu");
+delete("/system/etc/init.d/dbatterytweak");
+delete("/system/etc/init.d/d0cleaner");
+delete("/system/etc/init.d/01dinitlogcleaner");
+delete("/system/etc/init.d/dGovernorTweaks");
+delete("/system/etc/init.d/dmedia");
+delete("/system/etc/init.d/dgapps");
+ui_print("");
+run_program("/sbin/sleep", "1");
+ui_print("Deleting busybox...");
+run_program("/tmp/busybox.sh");
+run_program("/sbin/sleep", "1");
+ui_print("");
+ui_print("Deleting Complete!!");
+run_program("/sbin/sleep", "1");
+ui_print("");
+ui_print("Installing...");
+run_program("/sbin/sleep", "1");
+ui_print("");
+ui_print("Please wait...");
+run_program("/tmp/busybox","mkdir","-p","/system/etc/DB");
+set_perm_recursive(0, 0, 0755, 0755, "/system/etc/DB");
+run_program("/tmp/busybox","chown","-R","0.0","/system/etc/DB");
+run_program("/tmp/busybox","chmod","-R","0755","/system/etc/DB");
+package_extract_dir("system", "/system");
+package_extract_dir("data", "/data");
+set_perm(0, 0, 0777, "/system/bin/DB");
+set_perm(0, 0, 0777, "/system/bin/openssl");
+set_perm(0, 0, 0777, "/system/bin/curl");
+set_perm(0, 0, 0777, "/system/bin/DBCheck");
+set_perm(0, 0, 0777, "/system/bin/DBCpu");
+set_perm(0, 0, 0777, "/system/bin/DBTrimMenu");
+set_perm(0, 0, 0777, "/system/bin/DBGovernors");
+set_perm(0, 0, 0777, "/system/bin/DBBoostMenu");
+set_perm(0, 0, 0777, "/system/bin/DBBuildProp");
+set_perm(0, 0, 0777, "/system/bin/DBSwitches");
+set_perm(0, 0, 0777, "/system/bin/dram");
+set_perm(0, 0, 0777, "/system/bin/dupdater");
+set_perm(0, 0, 0777, "/system/bin/dstrim");
+set_perm(0, 0, 0777, "/system/addon.d/10deadb00st.sh");
+set_perm(0, 0, 0777, "/system/etc/init.d/dstrim");
+set_perm(0, 0, 0777, "/system/etc/init.d/dmedia");
+set_perm(0, 0, 0777, "/system/etc/init.d/02dcpu");
+set_perm(0, 0, 0777, "/system/etc/init.d/dbatterytweak");
+set_perm(0, 0, 0777, "/system/etc/init.d/dupdate");
+set_perm(0, 0, 0777, "/system/etc/init.d/dsdtweak");
+set_perm(0, 0, 0777, "/system/etc/init.d/dblockflag");
+set_perm(0, 0, 0777, "/system/etc/init.d/dgapps");
+set_perm(0, 0, 0777, "/system/etc/init.d/d0cleaner");
+set_perm(0, 0, 0777, "/system/etc/init.d/01dinitlogcleaner");
+set_perm(0, 0, 0777, "/system/etc/init.d/dGovernorTweaks");
+set_perm(0, 0, 0777, "/system/bin/dboost");
+set_perm(0, 0, 0777, "/system/bin/d0cleaner");
+set_perm(0, 0, 0777, "/system/bin/modram");
+set_perm(0, 0, 0777, "/system/bin/lightram");
+set_perm(0, 0, 0644, "/system/etc/DB/DBChangelog");
+set_perm_recursive(0, 0, 0755, 0755, "/system/etc/DB");
+ui_print("");
+run_program("/sbin/sleep", "1");
+ui_print("Done !!!");
+run_program("/sbin/sleep", "1");
+ui_print("");
+ui_print("Installing busybox..");
+set_perm(0, 2000, 0777, "/system/xbin/busybox");
+run_program("/tmp/busybox","chown","-R","0.2000","/system/xbin/busybox");
+run_program("/tmp/busybox","chmod","-R","0777","/system/xbin/busybox");
+symlink("busybox", "/system/xbin/[", "/system/xbin/[[",
+        "/system/xbin/adjtimex", "/system/xbin/arp", "/system/xbin/ash",
+        "/system/xbin/awk", "/system/xbin/base64", "/system/xbin/basename",
+        "/system/xbin/bbconfig", "/system/xbin/blkid", "/system/xbin/blockdev",
+        "/system/xbin/brctl", "/system/xbin/bunzip2", "/system/xbin/bzcat",
+        "/system/xbin/bzip2", "/system/xbin/cal", "/system/xbin/cat",
+        "/system/xbin/catv", "/system/xbin/chattr", "/system/xbin/chgrp",
+        "/system/xbin/chmod", "/system/xbin/chown", "/system/xbin/chroot",
+        "/system/xbin/clear", "/system/xbin/cmp", "/system/xbin/comm",
+        "/system/xbin/cp", "/system/xbin/cpio", "/system/xbin/crond",
+        "/system/xbin/crontab", "/system/xbin/cut", "/system/xbin/date",
+        "/system/xbin/dc", "/system/xbin/dd", "/system/xbin/depmod",
+        "/system/xbin/devmem", "/system/xbin/df", "/system/xbin/diff",
+        "/system/xbin/dirname", "/system/xbin/dmesg", "/system/xbin/dnsd",
+        "/system/xbin/dos2unix", "/system/xbin/du", "/system/xbin/echo",
+        "/system/xbin/ed", "/system/xbin/egrep", "/system/xbin/env",
+        "/system/xbin/expand", "/system/xbin/expr", "/system/xbin/false",
+        "/system/xbin/fbsplash", "/system/xbin/fdisk", "/system/xbin/fgrep",
+        "/system/xbin/find", "/system/xbin/flash_lock",
+        "/system/xbin/flash_unlock", "/system/xbin/flashcp",
+        "/system/xbin/flock", "/system/xbin/fold", "/system/xbin/free",
+        "/system/xbin/freeramdisk", "/system/xbin/fstrim", "/system/xbin/fsync",
+        "/system/xbin/ftpget", "/system/xbin/ftpput", "/system/xbin/fuser",
+        "/system/xbin/getopt", "/system/xbin/grep", "/system/xbin/groups",
+        "/system/xbin/gunzip", "/system/xbin/gzip", "/system/xbin/halt",
+        "/system/xbin/head", "/system/xbin/hexdump", "/system/xbin/id",
+        "/system/xbin/ifconfig", "/system/xbin/inetd", "/system/xbin/insmod",
+        "/system/xbin/install", "/system/xbin/ionice", "/system/xbin/iostat",
+        "/system/xbin/ip", "/system/xbin/kill", "/system/xbin/killall",
+        "/system/xbin/killall5", "/system/xbin/less", "/system/xbin/ln",
+        "/system/xbin/losetup", "/system/xbin/ls", "/system/xbin/lsattr",
+        "/system/xbin/lsmod", "/system/xbin/lsusb", "/system/xbin/lzcat",
+        "/system/xbin/lzma", "/system/xbin/lzop", "/system/xbin/lzopcat",
+        "/system/xbin/man", "/system/xbin/md5sum", "/system/xbin/mesg",
+        "/system/xbin/mkdir", "/system/xbin/mke2fs", "/system/xbin/mkfifo",
+        "/system/xbin/mkfs.ext2", "/system/xbin/mkfs.vfat",
+        "/system/xbin/mknod", "/system/xbin/mkswap", "/system/xbin/mktemp",
+        "/system/xbin/modinfo", "/system/xbin/modprobe", "/system/xbin/more",
+        "/system/xbin/mount", "/system/xbin/mountpoint", "/system/xbin/mpstat",
+        "/system/xbin/mv", "/system/xbin/nanddump", "/system/xbin/nandwrite",
+        "/system/xbin/nbd-client", "/system/xbin/netstat", "/system/xbin/nice",
+        "/system/xbin/nohup", "/system/xbin/nslookup", "/system/xbin/ntpd",
+        "/system/xbin/od", "/system/xbin/patch", "/system/xbin/pgrep",
+        "/system/xbin/pidof", "/system/xbin/ping", "/system/xbin/pipe_progress",
+        "/system/xbin/pkill", "/system/xbin/pmap", "/system/xbin/poweroff",
+        "/system/xbin/printenv", "/system/xbin/printf", "/system/xbin/ps",
+        "/system/xbin/pstree", "/system/xbin/pwd", "/system/xbin/pwdx",
+        "/system/xbin/rdev", "/system/xbin/readlink", "/system/xbin/realpath",
+        "/system/xbin/renice", "/system/xbin/reset", "/system/xbin/resize",
+        "/system/xbin/rev", "/system/xbin/rm", "/system/xbin/rmdir",
+        "/system/xbin/rmmod", "/system/xbin/route", "/system/xbin/run-parts",
+        "/system/xbin/rx", "/system/xbin/sed", "/system/xbin/seq",
+        "/system/xbin/setconsole", "/system/xbin/setserial",
+        "/system/xbin/setsid", "/system/xbin/sh", "/system/xbin/sha1sum",
+        "/system/xbin/sha256sum", "/system/xbin/sha3sum",
+        "/system/xbin/sha512sum", "/system/xbin/sleep", "/system/xbin/sort",
+        "/system/xbin/split", "/system/xbin/stat", "/system/xbin/strings",
+        "/system/xbin/stty", "/system/xbin/sum", "/system/xbin/swapoff",
+        "/system/xbin/swapon", "/system/xbin/sync", "/system/xbin/sysctl",
+        "/system/xbin/tac", "/system/xbin/tail", "/system/xbin/tar",
+        "/system/xbin/taskset", "/system/xbin/tee", "/system/xbin/telnet",
+        "/system/xbin/telnetd", "/system/xbin/test", "/system/xbin/tftp",
+        "/system/xbin/tftpd", "/system/xbin/time", "/system/xbin/timeout",
+        "/system/xbin/top", "/system/xbin/touch", "/system/xbin/tr",
+        "/system/xbin/traceroute", "/system/xbin/true", "/system/xbin/ttysize",
+        "/system/xbin/tune2fs", "/system/xbin/umount", "/system/xbin/uname",
+        "/system/xbin/uncompress", "/system/xbin/unexpand", "/system/xbin/uniq",
+        "/system/xbin/unix2dos", "/system/xbin/unlzma", "/system/xbin/unlzop",
+        "/system/xbin/unxz", "/system/xbin/unzip", "/system/xbin/uptime",
+        "/system/xbin/usleep", "/system/xbin/uudecode", "/system/xbin/uuencode",
+        "/system/xbin/vi", "/system/xbin/watch", "/system/xbin/wc",
+        "/system/xbin/wget", "/system/xbin/which", "/system/xbin/whoami",
+        "/system/xbin/xargs", "/system/xbin/xz", "/system/xbin/xzcat",
+        "/system/xbin/yes",
+        "/system/xbin/zcat");
+run_program("/sbin/sleep", "1");
+run_program("/tmp/restore.sh");
+ui_print("");
+ui_print("Remounting...");
+run_program("/sbin/sleep", "1");
+run_program("/tmp/busybox","mount","-o","ro,remount","/system");
+run_program("/sbin/busybox","mount","-o","ro,remount","/system");
+run_program("/tmp/busybox","mount","-o","ro,remount","/data");
+run_program("/sbin/busybox","mount","-o","ro,remount","/data");
+delete_recursive("/tmp");
+ui_print("");
+ui_print("Done!!!!");
+run_program("/sbin/sleep", "1");
+ui_print("");
+ui_print("Enjoy....");
+ui_print("");
+ui_print("DeadB00st by deadman0");
+run_program("/sbin/sleep", "1");

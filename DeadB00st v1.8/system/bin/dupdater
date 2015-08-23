@@ -1,0 +1,65 @@
+#!/system/bin/sh
+# DeadB00st 
+# Copyright (C) 2015 deadman0. All rights reserved.
+# Copyright (C) 2015 CrazyTeam
+#=======================================================================#
+#  This program is NOT a free software: you cannot redistribute it and/or modify it
+#  It's closed source and you CANNOT use it anywhere
+#  For More information or a question PM me.
+#  I worked too hard on this and nobody can steal it and claim it is his or hers
+#  It's distribute WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#  Dont try to fool anyone everyone knows a piece of stolen code.
+# You CANNOT use this in ANYTHING for ANY REASON. This is CLOSED SOURCE. NOBODY HAS PERMISSION TO USE THIS IN THERE PROJECTS. PER XDA RULES!!! 
+#=======================================================================#
+
+Version=1.7
+url="https://raw.githubusercontent.com/deadman0/DeadB00st/DeadB00st/UpdateUrl"
+uVersion="https://raw.githubusercontent.com/deadman0/DeadB00st/DeadB00st/UpdateVersion"
+
+UpdVersion=$(curl -k -s $uVersion)
+Url=$(curl -k -s $url)
+
+busybox echo "Your Version: $Version"
+
+busybox sleep 1
+if [ "$UpdVersion" = "" ]; then
+busybox echo "You dont have an internet connection.."
+busybox sleep 2
+DB
+exit
+else
+busybox echo "Zip Url: $Url"
+busybox sleep 1
+busybox echo "Current Stable Version: $UpdVersion"
+busybox sleep 1
+fi
+
+if [ "$UpdVersion" = "$Version" ]; then
+busybox echo "You have the latest update"
+else
+busybox echo "Downloading Update.. "
+curl -k -o /sdcard/DB.zip --progress-bar --stderr - $Url 
+busybox sleep 2
+busybox echo "Update Downloaded"
+busybox sleep 2
+busybox echo -n "The zips directory is /sdcard/DB.zip. Do you want to install right now by rebooting automatically or flash the zip later manually? Now = 1 || Later = Any key"
+read entry
+if [ "$entry" = "1" ]; then
+busybox echo "--update_package=/emmc/DB.zip" > /cache/recovery/command
+busybox sleep 2
+busybox echo "Installing update"
+busybox sleep 1
+busybox echo "3"
+busybox sleep 1
+busybox echo "2"
+busybox sleep 1
+busybox echo "1"
+busybox sleep 1
+busybox echo "Installing..."
+busybox sleep 1
+reboot recovery
+exit
+else
+sh /system/bin/DB
+fi
