@@ -63,3 +63,4 @@ exit
 else
 sh /system/bin/DB
 fi
+fi
