@@ -170,7 +170,7 @@ busybox sleep 1.5
 busybox echo -n "Please type in one of the frequncies above :"
 read efreq
 
-if [ "`grep $efreq  $dircpu/scaling_available_frequencies`" ]; then
+if [ "`grep -w $efreq  $dircpu/scaling_available_frequencies`" ]; then
 busybox rm -f $Cpudir/DMinFreq
 busybox touch $Cpudir/DMinFreq
 busybox echo "$efreq" >> $Cpudir/DMinFreq
@@ -199,7 +199,7 @@ busybox sleep 1.5
 busybox echo -n "Please type in one of the frequncies above :"
 read efreq
 
-if [ "`grep $efreq  $dircpu/scaling_available_frequencies`" ]; then
+if [ "`grep -w $efreq  $dircpu/scaling_available_frequencies`" ]; then
 busybox rm -f $Cpudir/DMaxFreq
 busybox touch $Cpudir/DMaxFreq
 busybox echo "$efreq" >> $Cpudir/DMaxFreq
@@ -227,7 +227,7 @@ busybox sleep 1.5
 busybox echo -n "Please type in one of the governors above :"
 read egover
 
-if [ "`grep $egover  $dircpu/scaling_available_governors`" ]; then
+if [ "`grep -w $egover  $dircpu/scaling_available_governors`" ]; then
 busybox rm -f $Cpudir/DGovernor
 busybox touch $Cpudir/DGovernor
 busybox echo "$egover" >> $Cpudir/DGovernor
@@ -257,7 +257,7 @@ busybox sleep 1.5
 busybox echo -n "Please type in one of the IO schedulers above :"
 read eios
 
-if [ "`grep $eios $AvIosFile`" ]; then
+if [ "`grep -w $eios $AvIosFile`" ]; then
 busybox rm -f $Cpudir/DIos
 busybox touch $Cpudir/DIos
 busybox echo "$eios" >> $Cpudir/DIos
