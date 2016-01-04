@@ -1,0 +1,254 @@
+#!/system/bin/sh
+# DeadB00st 
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your eoption) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+div="\e[0;100m+-+-+-+-+-+-+-+-+-+-+-+-+-+\e[00;37;40m" 
+
+busybox clear
+busybox echo "DeadB00st v1.8 (B00st Mod by deadman0)  "
+busybox sleep 1
+busybox echo -e $div
+busybox echo "1. Check DeadB00st files"
+busybox echo -e $div
+busybox echo "2. Trim Menu..."
+busybox echo -e $div
+busybox echo "3. B00st Menu..."
+busybox echo -e $div
+busybox echo "4. DeadSwitches..."
+busybox echo -e $div
+busybox echo "5. Build.prop DeadTweaks..."
+busybox echo -e $div
+busybox echo "6. Cpu Governor DeadTweaks..."
+busybox echo -e $div
+busybox echo "7. DeadCpu Manager..."
+busybox echo -e $div
+busybox echo "8. Reboot Now"
+busybox echo -e $div
+busybox echo "9. Changelog"
+busybox echo -e $div
+busybox echo "10. Uninstall DeadB00st..."
+busybox echo -e $div
+busybox echo "11. Check for updates...(The only MOD with Auto-Update!!!)"
+busybox echo -e $div
+busybox echo "12. Open Xda thread"
+busybox echo -e $div
+busybox echo -n "Now choose:   "            
+read entry
+case $entry in 
+
+1) busybox clear;
+sh system/bin/DBCheck
+busybox echo ""
+busybox sleep 2
+busybox echo ""
+busybox echo -n "Go back to menu...?
+Yes = 1 | No = 2 ? "
+read eoption
+if [ $eoption -eq 1 ]; then
+	busybox echo ""
+	sh system/bin/DB
+	busybox sleep 1
+else
+	
+	busybox echo ""
+	busybox echo "Exited"
+	busybox sleep 1
+	exit
+fi
+busybox clear ;;
+
+2) busybox clear;
+busybox echo ""
+busybox echo "Opening Trim Menu.."
+busybox sleep 2
+sh system/bin/DBTrimMenu
+busybox clear ;;
+
+3) busybox clear;
+busybox echo ""
+busybox echo "Opening B00st Menu.."
+busybox sleep 2
+sh system/bin/DBBoostMenu
+busybox clear ;;
+
+4) busybox clear;
+busybox echo ""
+busybox echo "Opening DeadSwitches.."
+busybox sleep 2
+sh system/bin/DBSwitches
+busybox clear ;;
+
+5) busybox clear;
+busybox echo ""
+busybox echo "Opening Build.prop DeadTweaker.."
+busybox sleep 2
+sh system/bin/DBBuildProp
+busybox clear ;;
+
+6) busybox clear;
+busybox echo ""
+busybox echo "Opening Cpu Governor DeadTweaker.."
+busybox sleep 2
+sh system/bin/DBGovernors
+busybox clear ;;
+
+7) busybox clear;
+busybox echo ""
+busybox echo "Opening DeadCpu Manager.."
+busybox sleep 2
+sh system/bin/DBCpu
+busybox clear ;;
+
+8) busybox clear;
+busybox echo ""
+busybox echo "Rebooting in:"
+busybox sleep 1
+busybox echo "3"
+busybox sleep 1
+busybox echo "2"
+busybox sleep 1
+busybox echo "1"
+busybox sleep 1
+busybox echo "Rebooting now.."
+busybox sleep 1
+reboot
+busybox clear ;;
+
+
+9) busybox clear;
+busybox echo ""
+busybox echo "Opening CHANGELOG"
+busybox sleep 2
+sh system/etc/DB/DBChangelog
+busybox echo ""
+busybox sleep 5
+busybox echo ""
+busybox echo -n "Go back to menu...?
+Yes = 1 | No = 2 ? "
+read eoption
+if [ $eoption -eq 1 ]; then
+	busybox echo ""
+	busybox echo ""
+	busybox echo "Exiting from Changelog"
+	busybox sleep 1
+	busybox echo "Entering Main Menu..."
+	busybox sleep 1
+	sh system/bin/DB
+	busybox sleep 1	
+else
+	busybox echo ""
+	busybox echo "Exiting..."
+	busybox sleep 1
+	exit
+	
+fi
+busybox clear ;;
+
+10) busybox clear;
+busybox echo ""
+busybox echo "DeadB00st uninstaller, please wait..."
+busybox sleep 3
+busybox echo ""
+busybox echo "Mounting /system partition..."
+busybox sleep 1
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+busybox echo ""
+busybox echo "Cleaning host file..."
+busybox sleep 5
+
+
+busybox echo "Removing Main Files..."
+busybox sleep 5
+
+busybox rm -f /system/bin/DBGovernors
+busybox rm -f /system/bin/DBBoostMenu
+busybox rm -f /system/bin/DBSwitces
+busybox rm -f /system/bin/DBTrimMenu
+busybox rm -f /system/bin/DBCheck
+busybox rm -f /system/bin/DBCpu
+busybox rm -f /system/bin/DBBuildProp
+busybox rm -f /system/bin/dstrim
+busybox rm -f /system/bin/dboost
+busybox rm -f /system/bin/dram
+busybox rm -f /system/bin/d0cleaner
+busybox rm -f /system/bin/lightram
+busybox rm -f /system/bin/modram
+busybox rm -f /system/etc/init.d/dstrim
+busybox rm -f /system/etc/init.d/dGovernorTweaks
+busybox rm -f /system/etc/init.d/01dinitlogcleaner
+busybox rm -f /system/addon.d/10deadb00st.sh
+busybox rm -f /system/etc/init.d/dmedia
+busybox rm -f /system/etc/init.d/dblockflag
+busybox rm -f /system/etc/init.d/dsdtweak
+busybox rm -f /system/etc/init.d/dbatterytweak
+busybox rm -f /system/etc/init.d/dgapps
+busybox rm -f /system/etc/init.d/02dcpu
+busybox rm -f /system/etc/init.d/d0cleaner
+busybox rm -rf /system/etc/DB
+
+busybox echo "DeadB00st has been completely removed..."
+busybox sleep 3
+busybox echo ""
+busybox echo ""
+busybox echo ""
+busybox echo "Please reboot your device!"
+busybox sleep 2
+busybox rm -f /system/bin/DB
+busybox clear ;;
+
+11) busybox clear;
+busybox echo ""
+busybox echo "Checking for updates.."
+busybox sleep 2
+sh system/bin/dupdater
+busybox clear ;;
+
+12) busybox clear;
+busybox echo ""
+busybox sleep 1
+busybox echo "Please wait few secs"
+busybox sleep 0.5
+busybox echo "Waiting for your web browser"
+busybox sleep 0.5
+su -c "LD_LIBRARY_PDBH=/vendor/lib:/system/lib am start http://forum.xda-developers.com/android/software-hacking/advanced-trimmer-command-line-t3169709"
+busybox sleep 1
+busybox echo ""
+busybox sleep 0.5
+busybox echo "Going back to Main Menu"
+busybox sleep 1
+sh system/bin/DB
+busybox clear ;;
+
+
+
+
+
+*) busybox clear;
+busybox echo "Exit,Invalid option"
+busybox sleep 1
+esac
+busybox echo ""
+exit

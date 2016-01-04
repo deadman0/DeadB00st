@@ -1,0 +1,184 @@
+#!/system/bin/sh
+# DeadB00st
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+Config=/system/etc/DB/SwitchesConfig.conf
+
+busybox clear
+
+if [ "`grep ==DeAdblocker== /system/etc/hosts`" ]; then
+	ads="\e[1;32mEnabled\e[0m"
+else
+	ads="\e[1;31mDisabled\e[0m"
+fi
+
+if [ "`grep MEDIAONBOOT=1 $Config`" ]; then
+	Med="\e[1;32mON\e[0m"
+else
+	Med="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep GAPPSONBOOT=1 $Config`" ]; then
+	Gap="\e[1;32mON\e[0m"
+else
+	Gap="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep SDTWEAK=1 $Config`" ]; then
+	Sdt="\e[1;32mON\e[0m"
+else
+	Sdt="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep BATTERYTWEAK=1 $Config`" ]; then
+	Bt="\e[1;32mON\e[0m"
+else
+	Bt="\e[1;31mOFF\e[0m"
+fi
+
+if [ "`grep BLOCKFLAGTWEAK=1 $Config`" ]; then
+	Bft="\e[1;32mON\e[0m"
+else
+	Bft="\e[1;31mOFF\e[0m"
+fi
+
+busybox echo "DeadSwitches"
+busybox echo ""
+busybox echo ""
+busybox echo ""
+busybox echo -e "1. ADBlocker                       |$ads"
+busybox echo -e "2. Kill MediaServer on Boot        |$Med"
+busybox echo -e "3. Kill Gapps on Boot              |$Gap"
+busybox echo -e "4. SD Tweaks                       |$Sdt"
+busybox echo -e "5. Battery Tweaks                  |$Bt"
+busybox echo -e "6. Flag Blocks & Cache Increase    |$Bft"
+busybox echo ""
+busybox echo ""
+busybox echo "0. EXIT"
+busybox echo ""
+busybox echo -n "Please select an option [0-6]: "
+read option
+case $option in
+
+1) busybox clear;
+
+if [ "`grep ==DeAdblocker== /system/etc/hosts`" ]; then
+          busybox echo "Disabling ADBlock..."
+          busybox sleep 2
+          busybox cp /system/etc/DB/ADBlock/hosts /system/etc/hosts
+          busybox chmod 644 /system/etc/hosts;
+		busybox echo "Done!!!"
+		busybox echo ""
+		busybox echo "You should reboot your device now!!!"
+		busybox sleep 3
+		sh system/bin/DBSwitches
+else
+          busybox "Enabling ADBlock"
+          busybox sleep 2
+          busybox cp /system/etc/DB/ADBlock/adblock /system/etc/hosts
+          busybox chmod 644 /system/etc/hosts;
+		busybox echo "Done!!!"
+		busybox echo ""
+		busybox echo "You should reboot your device now!!!"
+		busybox sleep 3
+		sh system/bin/DBSwitches
+fi
+busybox clear;;
+
+2) busybox clear;
+if [ "`grep MEDIAONBOOT=1 $Config `"]; then
+busybox echo "Disabling Kill MediaServer on Boot"
+busybox sleep 1
+busybox sed -i '/MEDIAONBOOT/c\MEDIAONBOOT=0' $Config
+else
+busybox echo "Enabling Kill MediaServer on Boot"
+busybox sleep 1
+busybox sed -i '/MEDIAONBOOT/c\MEDIAONBOOT=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+3) busybox clear;
+if [ "`grep GAPPSONBOOT=1 $Config `"]; then
+busybox echo "Disabling Kill Gapps on Boot"
+busybox sleep 1
+busybox sed -i '/GAPPSONBOOT/c\GAPPSONBOOT=0' $Config
+else
+busybox echo "Enabling Kill Gapps on Boot"
+busybox sleep 1
+busybox sed -i '/GAPPSONBOOT/c\GAPPSONBOOT=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+4) busybox clear;
+if [ "`grep SDTWEAK=1 $Config `" ]; then
+busybox echo "Disabling SD Tweaks"
+busybox sleep 1
+busybox sed -i '/SDTWEAK/c\SDTWEAK=0' $Config
+else
+busybox echo "Enabling SD Tweaks"
+busybox sleep 1
+busybox sed -i '/SDTWEAK/c\SDTWEAK=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+5) busybox clear;
+if [ "`grep BATTERYTWEAK=1 $Config `" ]; then
+busybox echo "Battery tweaks"
+busybox sleep 1
+busybox sed -i '/BATTERYTWEAK/c\BATTERYTWEAK=0' $Config
+else
+busybox echo "Battery tweaks"
+busybox sleep 1
+busybox sed -i '/BATTERYTWEAK/c\BATTERYTWEAK=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+6) busybox clear;
+if [ "`grep BLOCKFLAGTWEAK=1 $Config `" ]; then
+busybox echo "Disabling Flag Blocks & Cache Increase Tweaks"
+busybox sleep 1
+busybox sed -i '/GAPPSONBOOT/c\GAPPSONBOOT=0' $Config
+else
+busybox echo "Enabling Flag Blocks & Cache Increase Tweaks"
+busybox sleep 1
+busybox sed -i '/BLOCKFLAGTWEAK/c\BLOCKFLAGTWEAK=1' $Config
+fi;
+busybox sleep 1
+DBSwitches
+busybox clear ;;
+
+0) busybox clear;
+DB
+busybox clear ;;
+
+*) busybox clear;
+busybox echo "Exit,Invalid Option"
+busybox sleep 1
+esac
+busybox echo ""
+exit

@@ -1,0 +1,293 @@
+#!/system/bin/sh
+# DeadB00st
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+dircpu=/sys/devices/system/cpu/cpu0/cpufreq
+
+Config=/system/etc/DB/Cpu.conf
+
+if [ "`grep ENABLECPU=1 $Config`" ]; then
+	ecm="\e[1;32mON\e[0m"
+else
+	ecm="\e[1;31mOFF\e[0m"
+fi
+
+
+dir1=/sys/block/mmc*
+dir2=/sys/block/stl*
+dir3=/sys/block/bml*
+dir4=/sys/block/mtd*
+
+for scheduler in $dir1 $dir2 $dir3 $dir4; do
+
+if [ -e ${scheduler}/queue/scheduler ]; then
+busybox chmod -f 644 ${scheduler}/queue/*
+AvIos=$(cat ${scheduler}/queue/scheduler)
+fi
+done
+
+AvIosFile=/system/etc/DB/Ios.db
+Cpudir=/system/etc/DB/Cpu
+
+Ios=$AvIos
+Ios=`busybox echo ${Ios#*'['}`; 
+Ios=`busybox echo ${Ios%%']'*}`; 
+
+Psv=$(cat sys/module/clock_krait_8974/parameters/table_name)
+Psv=`busybox echo ${Psv#*'-pvs'}`; 
+Psv=`busybox echo ${Psv%%'-bin'*}`; 
+
+AvIos2=`busybox echo ${AvIos#*']'}`; 
+AvIos1=`busybox echo ${AvIos%%'['*}`; 
+AvIos="$AvIos1 $Ios$AvIos2"
+
+
+DIos=$(cat $Cpudir/DIos)
+DMinFreq=$(cat $Cpudir/DMinFreq)
+DGovernor=$(cat $Cpudir/DGovernor)
+DMaxFreq=$(cat $Cpudir/DMaxFreq)
+
+MaxFreq=$(($(cat $dircpu/scaling_max_freq)/1000))
+MinFreq=$(($(cat $dircpu/scaling_min_freq)/1000))
+AvMaxFreq=$(($(cat $dircpu/cpuinfo_max_freq)/1000))
+AvMinFreq=$(($(cat $dircpu/cpuinfo_min_freq)/1000))
+Governor=$(cat $dircpu/scaling_governor)
+AvGovernor=$(cat $dircpu/scaling_available_governors)
+Frequency=$(($(cat $dircpu/scaling_cur_freq)/1000))
+AvFrequency=$(cat $dircpu/scaling_available_frequencies)
+FreqUsage=$(cat $dircpu/stats/percentage)
+
+div="\e[0;100m=============================================\e[00;37;40m" 
+
+
+busybox echo "DeadCpu Info:"
+busybox echo -e $div
+busybox sleep 0.5
+busybox echo "Available Max Frequency: $AvMaxFreq Mhz"
+busybox sleep 0.5
+busybox echo "Available Min Frequency: $AvMinFreq Mhz"
+busybox sleep 0.5
+busybox echo "Set Max Frequency: $MaxFreq Mhz"
+busybox sleep 0.5
+busybox echo "Set Min Frequency: $MinFreq Mhz" 
+busybox sleep 0.5
+busybox echo "Current Frequency: $Frequency Mhz"
+busybox sleep 0.5
+busybox echo "Governor : $Governor"
+busybox sleep 0.5
+busybox echo "IO Scheduler : $Ios"
+busybox sleep 0.5
+busybox echo -e $div
+busybox sleep 1
+busybox echo "Available Frequencies:"
+busybox sleep 0.5
+busybox echo "$AvFrequency"
+busybox sleep 0.5
+busybox echo -e $div
+busybox sleep 1
+busybox echo "Available Governors:"
+busybox sleep 0.5
+busybox echo "$AvGovernor"
+busybox sleep 0.5
+busybox echo -e $div
+busybox sleep 1
+busybox echo "Available IO Schedulers:"
+busybox sleep 0.5
+busybox echo "$AvIos"
+busybox sleep 0.5
+busybox echo "Pvs:"
+busybox sleep 0.5
+busybox echo "$Psv"
+busybox sleep 0.5
+busybox echo -e $div
+busybox sleep 1
+busybox echo "DeadCpu Frequency Usage:"
+busybox sleep 0.5
+busybox echo "$FreqUsage"
+busybox sleep 0.5
+busybox echo -e $div
+busybox sleep 1
+busybox echo "DeadCpu Manager"
+busybox echo ""
+busybox echo ""
+busybox echo -e "1. Enable DeadCpu Manager          |$ecm"
+busybox echo -e "2. Set Minimum Cpu Frequency       |$DMinFreq"
+busybox echo -e "3. Set Maximum Cpu Frequency       |$DMaxFreq"
+busybox echo -e "4. Set Governor                    |$DGovernor"
+busybox echo -e "5. Set IO Scheduler                |$DIos"
+busybox echo ""
+busybox echo ""
+busybox echo "0. EXIT"
+busybox echo ""
+busybox echo -n "Please select an option [0-5]: "
+read option
+case $option in
+
+1) busybox clear;
+
+if [ "`grep ENABLECPU=1 $Config`" ]; then
+          busybox echo "Disabling DeadCpu Manager..."
+          busybox sleep 2
+          busybox sed -i '/ENABLECPU/c\ENABLECPU=0' $Config
+else
+if [ "$DMaxFreq" = "None" ] || [ "$DMinFreq" = "None" ] || [ "$DGovernor" = "None" ] || [ "$DIos" = "None" ]; then
+busybox echo "You have not set the values for DeadCpu Manager"
+busybox sleep 3
+DBCpu
+else
+busybox echo "Enabling DeadCpu Manager"
+busybox sleep 1
+busybox sed -i '/ENABLECPU/c\ENABLECPU=1' $Config
+fi
+fi;
+busybox sleep 1
+DBCpu
+busybox clear ;;
+		
+
+2) busybox clear;
+busybox sleep 2
+busybox echo "Set Minimum Frequency: $MinFreq Mhz"
+busybox sleep 1
+busybox echo -e $div
+busybox sleep 0.5
+busybox echo "Available Frequencies:"
+busybox sleep 0.5
+busybox echo "$AvFrequency"
+busybox sleep 0.5
+busybox echo "(Measured in Hz. Not Mhz or Ghz don't worry they are the same values the overclocking apps print)"
+busybox echo -e $div
+busybox sleep 1.5
+busybox echo -n "Please type in one of the frequncies above :"
+read efreq
+
+if [ "`grep -w $efreq  $dircpu/scaling_available_frequencies`" ]; then
+busybox rm -f $Cpudir/DMinFreq
+busybox touch $Cpudir/DMinFreq
+busybox echo "$efreq" >> $Cpudir/DMinFreq
+busybox sleep 1
+DBCpu
+else
+busybox echo "Value not correct..."
+busybox sleep 2
+DBCpu
+fi
+busybox clear ;;
+
+3) busybox clear;
+busybox sleep 2
+busybox echo "Set Maximum Frequency: $MaxFreq Mhz"
+busybox sleep 1
+busybox echo -e $div
+busybox sleep 1
+busybox echo "Available Frequencies:"
+busybox sleep 0.5
+busybox echo "$AvFrequency"
+busybox sleep 0.5
+busybox echo "(Measured in Hz. Not Mhz or Ghz don't worry they are the same values the overclocking apps print)"
+busybox echo -e $div
+busybox sleep 1.5
+busybox echo -n "Please type in one of the frequncies above :"
+read efreq
+
+if [ "`grep -w $efreq  $dircpu/scaling_available_frequencies`" ]; then
+busybox rm -f $Cpudir/DMaxFreq
+busybox touch $Cpudir/DMaxFreq
+busybox echo "$efreq" >> $Cpudir/DMaxFreq
+busybox sleep 1
+DBCpu
+else
+busybox echo "Value not correct..."
+busybox sleep 2
+DBCpu
+fi
+busybox clear ;;
+
+4) busybox clear;
+busybox sleep 2
+busybox echo "Governor : $Governor"
+busybox sleep 1
+busybox echo -e $div
+busybox sleep 1
+busybox echo "Available Governors:"
+busybox sleep 0.5
+busybox echo "$AvGovernor"
+busybox sleep 0.5
+busybox echo -e $div
+busybox sleep 1.5
+busybox echo -n "Please type in one of the governors above :"
+read egover
+
+if [ "`grep -w $egover  $dircpu/scaling_available_governors`" ]; then
+busybox rm -f $Cpudir/DGovernor
+busybox touch $Cpudir/DGovernor
+busybox echo "$egover" >> $Cpudir/DGovernor
+busybox sleep 1
+DBCpu
+else
+busybox echo "Governor not correct..."
+busybox sleep 2
+DBCpu
+fi
+busybox clear ;;
+
+5) busybox clear;
+busybox touch $AvIosFile
+busybox echo "$AvIos" >> $AvIosFile
+busybox sleep 2
+busybox echo "IO Scheduler : $Ios"
+busybox sleep 1
+busybox echo -e $div
+busybox sleep 1
+busybox echo "Available IO Schedulers:"
+busybox sleep 0.5
+busybox echo "$AvIos"
+busybox sleep 0.5
+busybox echo -e $div
+busybox sleep 1.5
+busybox echo -n "Please type in one of the IO schedulers above :"
+read eios
+
+if [ "`grep -w $eios $AvIosFile`" ]; then
+busybox rm -f $Cpudir/DIos
+busybox touch $Cpudir/DIos
+busybox echo "$eios" >> $Cpudir/DIos
+busybox sleep 1
+busybox rm -f $AvIosFile
+DBCpu
+else
+busybox echo "IO Scheduler not correct..."
+busybox sleep 2
+DBCpu
+fi
+busybox clear ;;
+
+0) busybox clear;
+DB
+busybox clear ;;
+
+*) busybox clear;
+busybox echo "Exit,Invalid Option"
+busybox sleep 1
+DB
+esac
+busybox echo ""
+exit
+

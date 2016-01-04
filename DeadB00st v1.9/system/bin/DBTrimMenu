@@ -1,0 +1,316 @@
+#!/system/bin/sh
+# DeadB00st
+# Copyright (C) 2015 deadman0
+#=======================================================================#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#  GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#=======================================================================#
+
+
+mount -o remount,rw /
+mount -o remount,rw rootfs
+mount -o remount,rw /system
+busybox mount -o remount,rw /
+busybox mount -o remount,rw rootfs
+busybox mount -o remount,rw /system
+
+# DB
+
+
+busybox clear
+
+busybox echo "Choose an option to fstrim the specific directory"
+busybox sleep 3
+busybox echo ""
+busybox echo ""
+busybox echo ""
+busybox echo "All(/data, /cache, /system):"
+busybox echo ""
+busybox echo ""
+busybox sleep 1
+busybox echo "1. FStrim All"
+busybox sleep 1
+busybox echo ""
+busybox echo "Double Options:"
+busybox echo ""
+busybox echo ""
+busybox sleep 1
+busybox echo "2. FStrim /data & /cache (Usually It is not required to trim /system partition because it is read-only)"
+busybox echo "3. FStrim /data & /system"
+busybox echo "4. FStrim /cache & /system"
+busybox sleep 1
+busybox echo ""
+busybox echo "Single Options:"
+busybox echo ""
+busybox echo ""
+busybox sleep 1
+busybox echo "5. Fstrim /data"
+busybox echo "6. Fstrim /cache"
+busybox echo "7. Fstrim /system"
+busybox sleep 1
+busybox echo ""
+busybox echo ""
+busybox sleep 2
+busybox echo "0. Exit back to menu"
+busybox sleep 1
+busybox echo ""
+busybox echo ""
+busybox echo -n "Selection: "
+read trimoption
+
+if [ $trimoption -eq 1 ]; then
+	busybox sleep 2
+	busybox echo "Trimming /data..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /data
+	busybox sleep 1
+	busybox echo "Trimming /cache..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /cache
+	busybox sleep 1
+	busybox echo "Trimming /system..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /system
+	busybox echo -n "Go back to Trim Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBTrimMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $trimoption -eq 2 ]; then
+	busybox sleep 2
+	busybox echo "Trimming /data..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /data
+	busybox sleep 1
+	busybox echo "Trimming /cache..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /cache
+	busybox sleep 1
+	busybox echo -n "Go back to Trim Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBTrimMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $trimoption -eq 3 ]; then
+	busybox sleep 2
+	busybox echo "Trimming /data..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /data
+	busybox sleep 1
+	busybox echo "Trimming /system..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /system
+	busybox echo -n "Go back to Trim Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBTrimMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $trimoption -eq 4 ]; then
+	busybox sleep 2
+	busybox echo "Trimming /cache..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /cache
+	busybox sleep 1
+	busybox echo "Trimming /system..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /system
+	busybox echo -n "Go back to Trim Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBTrimMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $trimoption -eq 5 ]; then
+	busybox sleep 2
+	busybox echo "Trimming /data..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /data
+	busybox sleep 1
+	busybox echo -n "Go back to Trim Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBTrimMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $trimoption -eq 6 ]; then
+	busybox sleep 2
+	busybox echo "Trimming /cache..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /cache
+	busybox sleep 1
+	busybox echo -n "Go back to Trim Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBTrimMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+if [ $trimoption -eq 7 ]; then
+	busybox sleep 2
+	busybox echo "Trimming /system..."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox echo "."
+	busybox sleep 0.5
+	busybox fstrim -v /system
+	busybox echo -n "Go back to Trim Menu...?
+Yes = 1 | No = 2 ? "
+	read mentry
+	if [ $mentry -eq 1 ]; then
+		busybox echo ""
+		sh system/bin/DBTrimMenu
+		busybox sleep 1		
+	else
+		busybox echo ""
+		busybox echo ""
+		busybox sleep 1
+		exit
+	fi
+fi
+
+
+
+if [ $trimoption -eq 0 ]; then
+	busybox echo "Going to Main menu..."
+	busybox sleep 3
+	sh system/bin/DB
+fi
+
+exit
+
+else
+	busybox echo "Invalid option, please try again..."
+	busybox sleep 1
+	sh system/bin/DBTrimMenu
+fi
